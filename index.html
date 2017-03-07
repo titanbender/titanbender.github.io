@@ -5,7 +5,7 @@ CHAPTER 5 Data
 <head>
             <meta charset="utf-8">
             <title>D3 Test</title>
-            <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+            <script type="text/javascript" src="https://d3js.org/d3.v2.min.js"></script>
         </head>
         <body>
             <script type="text/javascript">
@@ -13,12 +13,12 @@ CHAPTER 5 Data
 
                 var colors = ["purple", "blue", "green", "yellow", "red"];
                 var c=document.getElementById("myCanvas");
-                var ctx=c.getContext("2d");
+                
 
                 for (i = 0; i < colors.length; i++) {
                 xLoc = i * 20;
                 yLoc = i * 5;
-                ctx.rect(x="xLoc" y="yLoc" width="30" height="30" fill="purple");
+                rect(x="xLoc" y="yLoc" width="30" height="30" fill="purple");
                 }
 
             </script>
