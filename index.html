@@ -1,20 +1,134 @@
- <!DOCTYPE html>
-    <html lang="en">
-CHAPTER 5 Data
-  59
-<head>
-            <meta charset="utf-8">
-            <title>D3 Test</title>
-            <script type="text/javascript" src="https://d3js.org/d3.v3.min.js"></script>
-        </head>
-        <body>
-            <script type="text/javascript">
-                d3.select("body").append("p").text("New paragraph!");
-
-                <svg width="50" height="50">
-    			<circle cx="25" cy="25" r="22" fill="blue" stroke="gray" stroke-width="2"/>
-				</svg>
+<!doctype html>
+<html>
+    
+    <head>
+        <style type = "text/css">
+            h1 {
+                font-weight: bold;
+                font-family: sans-serif;
+                background-color: white;
+                color: black;
+            }
+        h2 {
+            font-weight: bold;
+            font-family: sans-serif;
+            background-color: white;
+            color: black;
+        }
+        p {
+            font-family: sans-serif;
+            background-color: white;
+            color: black;
+        }
+        ul {
+            font-family: sans-serif;
+            background-color: white;
+            color: black;
+        }
+        </style>
+        
+        
+        
+        <title>Assignment2 D3 </title>
+        <script type="text/javascript" src="https://d3js.org/d3.v4.js"></script>
+    </head>
+    
+    
+    <body>
+        <h1> Social Data and Visualization </h1>
+        <p> MISSING:
+            <ul style="list-style-type:circle">
+                <li>Link to Jupyter NBviewer: <a href="http://nbviewer.jupyter.org/github/s160159/s160159.github.io/blob/master/Assignment_2.ipynb">NBviewer</a></li>
+                <li>Data set:</li>
+            </ul>
+        <p>
+        
+        <h2> Assignment 2A: Simple SVG stuff </h2>
+        <p> MISSING TEXT <p>
+        <script>
+            var canvas_width = 500
+            var canvas_heigth = 500
+            
+            var rect_width = 80
+            var crect_heigth = 80
+            
+            var canvas = d3.select("body")
+            .append("svg")
+            .attr("width", canvas_width)
+            .attr("heigth", canvas_heigth);
+            
+            var rect = canvas.append("rect")
+            .attr("width", rect_width)
+            .attr("height", crect_heigth)
+            .attr("x",40)
+            .attr("y",50)
+            .attr("fill", "rgba(255,0,255, 0.75)")
+            .attr("stroke","gray")
+            .attr("stroke-width","2");
+            
+            var rect = canvas.append("rect")
+            .attr("width", rect_width)
+            .attr("height", crect_heigth)
+            .attr("x",50)
+            .attr("y",40)
+            .attr("fill", "rgba(0,0,255, 0.75)")
+            .attr("stroke","gray")
+            .attr("stroke-width","2");
+            
+            var rect = canvas.append("rect")
+            .attr("width", rect_width)
+            .attr("height", crect_heigth)
+            .attr("x",60)
+            .attr("y",30)
+            .attr("fill", "rgba(0,255,0, 0.75)")
+            .attr("stroke","gray")
+            .attr("stroke-width","2");
+            
+            var rect = canvas.append("rect")
+            .attr("width", rect_width)
+            .attr("height", crect_heigth)
+            .attr("x",70)
+            .attr("y",20)
+            .attr("fill", "rgba(255, 255, 0, 0.75)")
+            .attr("stroke","gray")
+            .attr("stroke-width","2");
+            
+            var rect = canvas.append("rect")
+            .attr("width", rect_width)
+            .attr("height", crect_heigth)
+            .attr("x",80)
+            .attr("y",10)
+            .attr("fill", "rgba(255, 0, 0, 0.75)")
+            .attr("stroke","gray")
+            .attr("stroke-width","2");
+            
             </script>
+        
+        <h2> Assignment 2B: One scatter plot and two datasets </h2>
+        <p> MISSING TEXT <p>
+        <script type="text/javascript">
+            
+        </script>
 
-        </body>
+        <h2> Assignment 2C: One barchart and (at least) two datasets </h2>
+        <p> Here we focus a the three focus crimes from last time:
+            <ul style="list-style-type:circle">
+                <li>PROSTITUTION</li>
+                <li>DRUG/NARCOTIC</li>
+                <li>DRIVING UNDER THE INFLUENCE</li>
+            </ul>
+        <p>
+        <script type="text/javascript">
+            
+        </script>
+
+         <h2> Assignment 2D: Visualizing geodata </h2>
+         <p> MISSING TEXT <p>
+        <script type="text/javascript">
+            
+        </script>
+
+
+    </body>
+    
 </html>
