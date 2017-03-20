@@ -1,0 +1,583 @@
+<!doctype html>
+<html>
+    <head>
+        <style type = "text/css">
+            h1 {
+                font-weight: bold;
+                font-family: sans-serif;
+                background-color: white;
+                color: black;
+            }
+            h2 {
+                font-weight: bold;
+                font-family: sans-serif;
+                background-color: white;
+                color: black;
+            }
+            p {
+                font-family: sans-serif;
+                background-color: white;
+                color: black;
+            }
+            ul {
+                font-family: sans-serif;
+                background-color: white;
+                color: black;
+            }
+            
+            .bar {
+                fill: teal;
+            }
+            .bar:hover{
+                fill: steelblue;
+            }
+            .point {
+                fill: teal;
+            }
+            .point:hover{
+                fill: steelblue;            
+            }
+            .axis {
+                font-size: 8pt;
+                font-family: sans-serif;
+            }
+            .axis path,
+            .axis line {
+                fill: none;
+                stroke: #000;
+                shape-rendering: crispEdges;
+            }
+            .x.axis path {
+                display: none;
+            }
+            .y.axis path {
+                display: none;
+            }
+            .d3-tip {
+                line-height: 1;
+                font-size: 8pt;
+                font-family: sans-serif;
+                padding: 12px;
+                background: rgba(0, 0, 0, 0.8);
+                color: #fff;
+                border-radius: 2px;
+            }
+            /* Creates a small triangle extender for the tooltip */
+            .d3-tip:after {
+                box-sizing: border-box;
+                display: inline;
+                font-size: 10px;
+                width: 100%;
+                line-height: 1;
+                color: rgba(0, 0, 0, 0.8);
+                content: "\25BC";
+                position: absolute;
+                text-align: center;
+            }
+            /* Style northward tooltips differently */
+            .d3-tip.n:after {
+                margin: -1px 0 0 0;
+                top: 100%;
+                left: 0;
+            }
+        </style>
+        <title>Assignment s160159 DTU</title>
+        <script src="https://d3js.org/d3.v3.js"></script>
+        <script src="tip.js"></script>
+    </head>
+
+    <body>
+        <h1> Social Data and Visualization </h1>
+        <p> MISSING:
+            <ul style="list-style-type:circle">
+                <li>Link to Jupyter NBviewer: <a href="http://nbviewer.jupyter.org/github/s160159/s160159.github.io/blob/master/Assignment_2.ipynb">NBviewer</a></li>
+                <li>Data set:</li>
+            </ul>
+        </p>
+        
+        <h2> Assignment 2A: Simple SVG stuff </h2>
+        <p> MISSING TEXT </p>
+        <script type="text/javascript">
+            var canvas_width = 500
+            var canvas_heigth = 500
+            
+            var rect_width = 80
+            var crect_heigth = 80
+            
+            var canvas = d3.select("body")
+            .append("svg")
+            .attr("width", canvas_width)
+            .attr("heigth", canvas_heigth);
+            
+            var rect = canvas.append("rect")
+            .attr("width", rect_width)
+            .attr("height", crect_heigth)
+            .attr("x",40)
+            .attr("y",50)
+            .attr("fill", "rgba(255,0,255, 0.75)")
+            .attr("stroke","gray")
+            .attr("stroke-width","2");
+            
+            var rect = canvas.append("rect")
+            .attr("width", rect_width)
+            .attr("height", crect_heigth)
+            .attr("x",50)
+            .attr("y",40)
+            .attr("fill", "rgba(0,0,255, 0.75)")
+            .attr("stroke","gray")
+            .attr("stroke-width","2");
+            
+            var rect = canvas.append("rect")
+            .attr("width", rect_width)
+            .attr("height", crect_heigth)
+            .attr("x",60)
+            .attr("y",30)
+            .attr("fill", "rgba(0,255,0, 0.75)")
+            .attr("stroke","gray")
+            .attr("stroke-width","2");
+            
+            var rect = canvas.append("rect")
+            .attr("width", rect_width)
+            .attr("height", crect_heigth)
+            .attr("x",70)
+            .attr("y",20)
+            .attr("fill", "rgba(255, 255, 0, 0.75)")
+            .attr("stroke","gray")
+            .attr("stroke-width","2");
+            
+            var rect = canvas.append("rect")
+            .attr("width", rect_width)
+            .attr("height", crect_heigth)
+            .attr("x",80)
+            .attr("y",10)
+            .attr("fill", "rgba(255, 0, 0, 0.75)")
+            .attr("stroke","gray")
+            .attr("stroke-width","2");  
+        </script>
+        
+        
+
+
+
+        <h2> Assignment 2B: One scatter plot and two datasets </h2>
+        <p> Below is a visualization of vehicle and prostituion crime data in SF. Observations are clustered into cirlces based upon the distrcit of the crime location. The size of the circle represents the number of occurances in the district </p>
+        <p> Select year for crime data:
+                <click2014> <button type="button">2014</button></click2014>
+                <click2015> <button type="button">2015</button></click2015> 
+                <click2016> <button type="button">2016</button></click2016> 
+
+        </p>
+        <script type="text/javascript">
+            // Width and height of the canvas
+            var wA2B = 700;
+            var hA2B = 400;
+            // Plotting margin
+            var marginA2B = {top: 20, right: 20, bottom: 70, left: 40};
+            var widthA2B = wA2B - marginA2B.left - marginA2B.right;
+            var heightA2B = hA2B - marginA2B.top - marginA2B.bottom;
+            var paddingA2B = 15;
+            // Set the ranges
+            var xScaleA2B = d3.scale.linear().range([paddingA2B * 2, widthA2B]);
+            var yScaleA2B = d3.scale.linear().range([heightA2B, paddingA2B]);
+            // Define the axis
+            var xAxisA2B = d3.svg.axis()
+                        .scale(xScaleA2B)
+                        .orient("bottom");
+            var yAxisA2B = d3.svg.axis()
+                        .scale(yScaleA2B)
+                        .orient("left");
+            // MAX value of y in all three data sets
+            // scale the range of the data so it fits all data
+            xMaxA2B = 275;
+            yMaxA2B = 1550;
+            xScaleA2B.domain([0, xMaxA2B]);
+            yScaleA2B.domain([0, yMaxA2B]);
+            //Create SVG element
+            var svgA2B = d3.select("body") 
+                        .append("svg")
+                        .attr("width", widthA2B + marginA2B.left + marginA2B.right)
+                        .attr("height", heightA2B + marginA2B.top + marginA2B.bottom)
+                        .append("g")
+                        .attr("transform",  "translate(" + marginA2B.left + "," + marginA2B.top + ")");
+            // TODO
+            var tipA2B = d3.tip()
+                .attr('class', 'd3-tip')
+                .offset([-10, 0])
+                .html(function(d) { return "Pdist.: " + d.value + "<br/>" +"No. PROSTITUTION: " + d.X + "<br/>" + "No. VEHICLE THEFT: " + d.Y; }); //TODO
+            // voke 
+            svgA2B.call(tipA2B); 
+            
+            
+            // load the data 2014 INITIAL
+            d3.json("https://s160159.github.io/assignment2BJSON_2014.json", function(error, data) {
+                    data.forEach(function(d) {
+                        d.X = d.X;
+                        d.Y = d.Y;
+                        d.tot = d.tot;
+                        d.sub = d.sub;
+                        d.r = d.r;
+                        d.value = d.value;
+                    });
+                    //Create circles
+                     svgA2B.selectAll("circle")
+                        .data(data) // prositution as initial
+                        .enter()
+                        .append("circle")
+                        .attr("class", "point")
+                        .attr("cx", function(d) { return xScaleA2B(d.X); })
+                        .attr("r", function(d) { return d.r; })
+                        .attr("cy", function(d) { return yScaleA2B(d.Y); })
+                        .on('mouseover', tipA2B.show)
+                        .on('mouseout', tipA2B.hide);
+                    // add axis
+                    // x-axis
+                    svgA2B.append("g")
+                        .attr("class", "x axis")
+                        .attr("transform", "translate(0," + heightA2B + ")")
+                        .call(xAxisA2B);
+                    
+                    // y-axis
+                    svgA2B.append("g")
+                        .attr("class", "y axis")
+                        .attr("transform", "translate(" + paddingA2B + ",0)")
+                        .call(yAxisA2B);
+                    
+                    // y label taxt
+                    svgA2B.append("text")
+                        .attr("class", "y axis")
+                        .attr("transform", "rotate(-90)")
+                        .attr("y", -marginA2B.left)             
+                        .attr("x", -yScaleA2B(yMaxA2B / 2))
+                        .attr("dy", "1em")
+                        .style("text-anchor", "middle")  
+                        .style("font-size", "8pt")
+                        .style("font-family", "sans-serif")
+                        .text("VEHICLE THEFT");
+                    
+                    // x label taxt
+                    svgA2B.append("text")
+                        .attr("class", "x axis")
+                        .attr("y", hA2B - marginA2B.bottom + marginA2B.top)             
+                        .attr("x", xScaleA2B(xMaxA2B / 2))
+                        .attr("text-anchor", "middle")  
+                        .style("font-size", "8pt")
+                        .style("font-family", "sans-serif")
+                        .text("PROSTITUTION");
+                    // title text   
+                    svgA2B.append("text")
+                        .attr("class", "title")
+                        .attr("x", (widthA2B / 2))             
+                        .attr("y", 1 - (marginA2B.top / 2))
+                        .attr("text-anchor", "middle")  
+                        .style("font-size", "8pt")
+                        .style("font-family", "sans-serif")
+                        .text("Year 2014");
+            });
+            // toggle between data
+            // 2014
+            d3.select("click2014")
+                .on("click", function() {
+                    //New values for dataset
+                    d3.json("https://s160159.github.io/assignment2BJSON_2014.json", function(error, data) {
+                        data.forEach(function(d) {
+                            d.X = d.X;
+                            d.Y = d.Y;
+                            d.tot = d.tot;
+                            d.sub = d.sub;
+                            d.r = d.r;
+                            d.value = d.value;
+                        });
+                        
+                        //Create bars
+                         svgA2B.selectAll(".point")
+                            .data(data) // prositution as initial
+                            .transition() 
+                            .delay(function(d, i) { return i * 100; })
+                            .duration(500) 
+                            .attr("cx", function(d) { return xScaleA2B(d.X); })
+                            .attr("r", function(d) { return d.r; })
+                            .attr("cy", function(d) { return yScaleA2B(d.Y); });
+                        // Update title
+                        svgA2B.select("text.title")
+                            .transition()
+                            .duration(500)
+                            .text("Year 2014");
+                    });
+                });
+            // 2015
+            d3.select("click2015")
+                .on("click", function() {
+                    //New values for dataset
+                    d3.json("https://s160159.github.io/assignment2BJSON_2015.json", function(error, data) {
+                        data.forEach(function(d) {
+                            d.X = d.X;
+                            d.Y = d.Y;
+                            d.tot = d.tot;
+                            d.sub = d.sub;
+                            d.r = d.r;
+                            d.value = d.value;
+                        });
+                        
+                        //Create bars
+                         svgA2B.selectAll(".point")
+                            .data(data) // prositution as initial
+                            .transition() 
+                            .delay(function(d, i) { return i * 100; })
+                            .duration(500) 
+                            .attr("cx", function(d) { return xScaleA2B(d.X); })
+                            .attr("r", function(d) { return d.r; })
+                            .attr("cy", function(d) { return yScaleA2B(d.Y); });
+                        // Update title
+                        svgA2B.select("text.title")
+                            .transition()
+                            .duration(500)
+                            .text("Year 2015");
+                    });
+                });
+            // 2016
+            d3.select("click2016")
+                .on("click", function() {
+                    //New values for dataset
+                    d3.json("https://s160159.github.io/assignment2BJSON_2016.json", function(error, data) {
+                        data.forEach(function(d) {
+                            d.X = d.X;
+                            d.Y = d.Y;
+                            d.tot = d.tot;
+                            d.sub = d.sub;
+                            d.r = d.r;
+                            d.value = d.value;
+                        });
+                        //Create bars
+                         svgA2B.selectAll(".point")
+                            .data(data) // prositution as initial
+                            .transition() 
+                            //.delay(function(d, i) { return i * 100; })
+                            .duration(500) 
+                            .attr("cx", function(d) { return xScaleA2B(d.X); })
+                            .attr("r", function(d) { return d.r; })
+                            .attr("cy", function(d) { return yScaleA2B(d.Y); });
+                        // Update title
+                        svgA2B.select("text.title")
+                            .transition()
+                            .duration(500)
+                            .text("Year 2016");
+                    });
+                });  
+        </script>
+
+
+
+
+
+        <h2> Assignment 2C: One barchart and (at least) two datasets </h2>
+        <p> Here we focus a the three focus crimes from last time:
+            <ul style="list-style-type:circle">
+                <li> <clickPro> PROSTITUTION </clickPro> </li>
+                <li> <clickDru> DRUG/NARCOTIC </clickDru> </li>
+                <li> <clickDri> DRIVING UNDER THE INFLUENCE </clickDri> </li>
+            </ul>
+        </p>
+        <script type="text/javascript">
+            // Width and height of the canvas
+            var w = 700;
+            var h = 400;
+            // Plotting margin
+            var margin = {top: 20, right: 20, bottom: 70, left: 40};
+            var width = w - margin.left - margin.right;
+            var height = h - margin.top - margin.bottom;
+            var padding = 15;
+            // Set the ranges
+            var xScale = d3.scale.ordinal().rangeRoundBands([padding * 1, width], .05);
+            var yScale = d3.scale.linear().range([height, padding]);
+            // Define the axis
+            var xAxis = d3.svg.axis()
+                        .scale(xScale)
+                        .orient("bottom");
+            var yAxis = d3.svg.axis()
+                        .scale(yScale)
+                        .orient("left")
+                        .ticks(10);
+            // MAX value of y in all three data sets
+            //yMax = 8718; // max for all sets 
+            //Create SVG element
+            var svg = d3.select("body") 
+                        .append("svg")
+                        .attr("width", width + margin.left + margin.right)
+                        .attr("height", height + margin.top + margin.bottom)
+                        .append("g")
+                        .attr("transform",  "translate(" + margin.left + "," + margin.top + ")");
+            // tip
+            var tip = d3.tip()
+                .attr('class', 'd3-tip')
+                .offset([-10, 0])
+                .html(function(d) { return "No. crimes: " + d.value; });
+            svg.call(tip); 
+            // load the data PRO INITIAL
+            // d3.json("assignment2CJSON_pro.json", function(error, data) {
+            d3.json("https://s160159.github.io/assignment2CJSON_dri.json", function(error, data) {
+                    data.forEach(function(d) {
+                        d.key = d.key;
+                        d.value = d.value;
+                    });         
+                        
+                // scale the range of the data
+                xScale.domain(data.map(function(d) { return d.key; }));
+                yMax = d3.max(data, function(d) { return d.value; });
+                yScale.domain([0, yMax]);
+                //Create bars
+                 svg.selectAll("rect")
+                    .data(data) // prositution as initial
+                    .enter()
+                    .append("rect")
+                    .attr("class", "bar")
+                    .attr("x", function(d) { return xScale(d.key); })
+                    .attr("width", xScale.rangeBand())
+                    .attr("y", function(d) { return yScale(d.value); })
+                    .attr("height", function(d) { return height - yScale(d.value); })
+                    .on('mouseover', tip.show)
+                    .on('mouseout', tip.hide);
+                // add axis
+                // x-axis
+                svg.append("g")
+                    .attr("class", "x axis")
+                    .attr("transform", "translate(0," + height + ")")
+                    .call(xAxis)
+                    .selectAll("text")
+                    .style("text-anchor", "end")
+                    .attr("dx", "-.8em")
+                    .attr("dy", "-.55em")
+                    .attr("transform", "rotate(-90)" );
+                
+                // y-axis
+                svg.append("g")
+                    .attr("class", "y axis")
+                    .attr("transform", "translate(" + padding + ",0)")
+                    .call(yAxis);
+                // title text   
+                svg.append("text")
+                    .attr("class", "title")
+                    .attr("x", (width / 2))             
+                    .attr("y", 1 - (margin.top / 2))
+                    .attr("text-anchor", "middle")  
+                    .style("font-size", "8pt")
+                    .style("font-family", "sans-serif")
+                    .text("PROSTITUTION");
+            });
+            // toggle between data
+            // PROSTITUTION
+            d3.select("clickPro")
+                .on("click", function() {
+                    //New values for dataset
+                    d3.json("https://s160159.github.io/assignment2CJSON_pro.json", function(error, data) {
+                        data.forEach(function(d) {
+                            d.key = d.key;
+                            d.value = d.value;
+                        });
+        
+                    // scale the range of the data
+                    yMax = d3.max(data, function(d) { return d.value; });
+                    yScale.domain([0, yMax]);
+                    //Create bars
+                     svg.selectAll(".bar")
+                        .data(data) // prositution as initial
+                        .transition() 
+                        .delay(function(d, i) { return i * 100; })
+                        .duration(500) 
+                        .attr("y", function(d) { return yScale(d.value); })
+                        .attr("height", function(d) { return height - yScale(d.value); });
+                    // Update title
+                    svg.select("text.title")
+                        .transition()
+                        .duration(500)
+                        .text("PROSTITUTION");
+                    //Update Y axis
+                    svg.select(".y.axis")
+                        .transition()
+                        .duration(500)
+                        .call(yAxis);
+                    });
+                });
+            // DRUG/NARCOTIC
+            d3.select("clickDru")
+                .on("click", function() {
+                    //New values for dataset
+                    d3.json("https://s160159.github.io/assignment2CJSON_dru.json", function(error, data) {
+                        data.forEach(function(d) {
+                            d.key = d.key;
+                            d.value = d.value;
+                        });
+                        // scale the range of the data
+                        yMax = d3.max(data, function(d) { return d.value; });
+                        yScale.domain([0, yMax]);
+                        //Create bars
+                         svg.selectAll(".bar")
+                            .data(data) // prositution as initial
+                            .transition() 
+                            .delay(function(d, i) { return i * 100; })
+                            .duration(500) 
+                            .attr("y", function(d) { return yScale(d.value); })
+                            .attr("height", function(d) { return height - yScale(d.value); });
+                        // Update title
+                        svg.select("text.title")
+                            .transition()
+                            .duration(500)
+                            .text("DRUG/NARCOTIC");
+                        //Update Y axis
+                        svg.select(".y.axis")
+                            .transition()
+                            .duration(500)
+                            .call(yAxis);
+                    });
+                });
+            // DRIVING UNDER THE INFLUENCE
+            d3.select("clickDri")
+                .on("click", function() {
+                    //New values for dataset
+                    d3.json("https://s160159.github.io/assignment2CJSON_dri.json", function(error, data) {
+                        data.forEach(function(d) {
+                            d.key = d.key;
+                            d.value = d.value;
+                        });         
+                        // scale the range of the data
+                        yMax = d3.max(data, function(d) { return d.value; });
+                        yScale.domain([0, yMax]);
+                        //Create bars
+                         svg.selectAll(".bar")
+                            .data(data) // prositution as initial
+                            .transition() 
+                            .delay(function(d, i) { return i * 100; })
+                            .duration(500) 
+                            .attr("y", function(d) { return yScale(d.value); })
+                            .attr("height", function(d) { return height - yScale(d.value); });
+                            
+                        // Update title
+                        svg.select("text.title")
+                            .transition()
+                            .duration(500)
+                            .text("DRIVING UNDER THE INFLUENCE");
+                        //Update Y axis
+                        svg.select(".y.axis")
+                            .transition()
+                            .duration(500)
+                            .call(yAxis);
+                    });
+                });            
+        </script>
+
+
+
+
+
+
+
+
+        <h2> Assignment 2D: Visualizing geodata </h2>
+        <p> MISSING TEXT <p>
+        <script type="text/javascript">
+            
+        </script>
+
+
+    </body>
+    
+</html>
