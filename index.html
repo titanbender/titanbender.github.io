@@ -35,11 +35,17 @@
             margin-right: 2px;
         }
 
+        .loading {
+            text-align: center;
+            font-size: 18px;
+            color: rgba(255,255,255,0.5);
+        }
+
         </style>
             
         
         <title>Assignment2 D3 </title>
-        <script type="text/javascript" src="https://d3js.org/d3.v4.js"></script>
+        <script type="text/javascript" src="https://d3js.org/d3.v3.js"></script>
     </head>
     
     
@@ -287,6 +293,50 @@
             
         </script>
 
+         <h2> Creating visualization with geoJSON data</h2>
+    
+
+        <script type="text/javascript">
+            //Width and height
+            var w = 1000;
+            var h = 600;
+
+            //Define map projection
+            var projection = d3.geo.mercator()
+                .center([-122.431297, 37.773972])
+                .scale(150000)
+                .translate([w / 2, h / 2])
+
+            //Define default path generator
+            var path = d3.geo.path()
+                .projection(projection);
+            //Create SVG element
+            var svg = d3.select("body")
+                        .append("svg")
+                        .attr("width", w)
+                        .attr("height", h);
+            //Load in GeoJSON data
+            d3.json("https://raw.githubusercontent.com/suneman/socialdataanalysis2016/master/files/sfpddistricts.geojson", function(json) {
+                
+                //Bind data and create one path per GeoJSON feature
+                svg.selectAll("path")
+                   .data(json.features)
+                   .enter()
+                   .append("path")
+                   .attr("d", path)
+                   .style("fill", 'rgba(255, 0, 255, 0.75)')
+                   .attr("stroke", "white")
+                    .attr("stroke-width", 2.5)
+            });
+
+                 var tip = d3.tip()
+                    .attr('class', 'd3-tip')
+                    .offset([-10, 0])
+                    .html(function(d) { return "SF District: " + d.json.features.DISTRICT; });
+                svg.call(tip); 
+            
+
+        </script>
 
     </body>
     

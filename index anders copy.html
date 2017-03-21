@@ -155,12 +155,10 @@
             .attr("stroke-width","2");  
         </script>
         
-        
-
 
 
         <h2> Assignment 2B: One scatter plot and two datasets </h2>
-        <p> Below is a visualization of vehicle and prostituion crime data in SF. Observations are clustered into cirlces based upon the distrcit of the crime location. The size of the circle represents the number of occurances in the district </p>
+        <p> Below is a visualization of vehicle and prostituion crime data in SF. Observations are clustered into cirlces based upon the distrcit of the crime location. The size of the circle represents the crime occurances in the district in a normalized format </p>
         <p> Select year for crime data:
                 <click2014> <button type="button">2014</button></click2014>
                 <click2015> <button type="button">2015</button></click2015> 
@@ -242,7 +240,7 @@
                         .attr("transform", "translate(" + paddingA2B + ",0)")
                         .call(yAxisA2B);
                     
-                    // y label taxt
+                    // y label text
                     svgA2B.append("text")
                         .attr("class", "y axis")
                         .attr("transform", "rotate(-90)")
@@ -462,6 +460,7 @@
                     .style("font-size", "8pt")
                     .style("font-family", "sans-serif")
                     .text("PROSTITUTION");
+
             });
             // toggle between data
             // PROSTITUTION
@@ -549,7 +548,7 @@
                             .duration(500) 
                             .attr("y", function(d) { return yScale(d.value); })
                             .attr("height", function(d) { return height - yScale(d.value); });
-                            
+
                         // Update title
                         svg.select("text.title")
                             .transition()
@@ -561,14 +560,30 @@
                             .duration(500)
                             .call(yAxis);
                     });
-                });            
+                });   
+
+
+        var districts = ["SOUTHERN", "MISSION", "NORTHERN", "BAYVIEW", "CENTRAL", "TENDERLOIN", "INGLESIDE", "TARAVAL", "PARK", "RICHMOND"];
+
+        var districtColors = ["rgb(26,19,52)", "rgb(38,41,74)", "rgb(1,84,90)", "rgb(1,115,81)", "rgb(3,195,131)", "rgb(170,217,98)", "rgb(251,191,69)", "rgb(239,106,50)", "rgb(237,3,69)", "rgb(161,42,94)"]
+
+        d3.select("body").selectAll("div")
+                .data(dataset)
+                .enter()
+                .append("div")
+                .attr("class", "bar")
+                .style("height", 5px); // decides the height based on the number in the dataset
+                .style("width", 20px)
+            });
+
         </script>
 
+        <p> Select year for crime data:
+                <div>SOUTHERN </div>
+                <click2015> <button type="button">2015</button></click2015> 
+                <click2016> <button type="button">2016</button></click2016> 
 
-
-
-
-
+        </p>
 
 
         <h2> Assignment 2D: Visualizing geodata </h2>
