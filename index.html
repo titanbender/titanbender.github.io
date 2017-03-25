@@ -166,6 +166,8 @@
 
         <br>
         <br>
+
+        <img src="michael-hirsch-1962.jpg" alt="Mountain View" style="width:800px;height:600px;">
         
         <h2> Introduction To SF Crime Data </h2>
         <p>
@@ -264,7 +266,7 @@
             
             
             // load the data 2014 INITIAL
-            d3.json("https://s160159.github.io/data/assignment2BJSON_2014.json", function(error, data) {
+            d3.json("https://titanbender.github.io/data/assignment2BJSON_2014.json", function(error, data) {
                     data.forEach(function(d) {
                         d.X = d.X;
                         d.Y = d.Y;
@@ -339,7 +341,7 @@
             d3.select("click2014")
                 .on("click", function() {
                     //New values for dataset
-                    d3.json("https://s160159.github.io/data/assignment2BJSON_2014.json", function(error, data) {
+                    d3.json("https://titanbender.github.io/data/assignment2BJSON_2014.json", function(error, data) {
                         data.forEach(function(d) {
                             d.X = d.X;
                             d.Y = d.Y;
@@ -375,7 +377,7 @@
             d3.select("click2015")
                 .on("click", function() {
                     //New values for dataset
-                    d3.json("https://s160159.github.io/data/assignment2BJSON_2015.json", function(error, data) {
+                    d3.json("https://titanbender.github.io/data/assignment2BJSON_2015.json", function(error, data) {
                         data.forEach(function(d) {
                             d.X = d.X;
                             d.Y = d.Y;
@@ -408,7 +410,7 @@
             d3.select("click2016")
                 .on("click", function() {
                     //New values for dataset
-                    d3.json("https://s160159.github.io/data/assignment2BJSON_2016.json", function(error, data) {
+                    d3.json("https://titanbender.github.io/data/assignment2BJSON_2016.json", function(error, data) {
                         data.forEach(function(d) {
                             d.X = d.X;
                             d.Y = d.Y;
@@ -492,7 +494,7 @@
                             .attr("height", hA2B);
 
             //Load in GeoJSON data
-            d3.json("https://s160159.github.io/data/sfpddistricts.geojson", function(json) {
+            d3.json("https://titanbender.github.io/data/sfpddistricts.geojson", function(json) {
                 //Bind data and create one path per GeoJSON feature
                 svgA2B.selectAll("path")
                        .data(json.features)
@@ -505,7 +507,7 @@
                        .text("sda");
 
                 // names on districts 
-                d3.json("https://s160159.github.io/data/dist_names_json.json", function(dataDist) {
+                d3.json("https://titanbender.github.io/data/dist_names_json.json", function(dataDist) {
                     svgA2B.selectAll("text")
                             .data(dataDist)
                             .enter()
@@ -530,7 +532,7 @@
                         .text("K = 2");
 
                 // load the data obs. K2 INITIAL
-                d3.json("https://s160159.github.io/data/assignment2DJSON_K2.json", function(error, data) {
+                d3.json("https://titanbender.github.io/data/assignment2DJSON_K2.json", function(error, data) {
                     data.forEach(function(d) {
                         d.lat = d.lat;
                         d.lon = d.lon;
@@ -565,7 +567,7 @@
 
             // toggle between data
             d3.select("clickK2").on("click", function() {
-                d3.json("https://s160159.github.io/data/assignment2DJSON_K2.json", function(error, data) {
+                d3.json("https://titanbender.github.io/data/assignment2DJSON_K2.json", function(error, data) {
                     data.forEach(function(d) {
                         d.lat = d.lat;
                         d.lon = d.lon;
@@ -607,7 +609,7 @@
 
             // toggle between data
             d3.select("clickK3").on("click", function() {
-                d3.json("https://s160159.github.io/data/assignment2DJSON_K3.json", function(error, data) {
+                d3.json("https://titanbender.github.io/data/assignment2DJSON_K3.json", function(error, data) {
                     data.forEach(function(d) {
                         d.lat = d.lat;
                         d.lon = d.lon;
@@ -649,7 +651,7 @@
 
             // toggle between data
             d3.select("clickK4").on("click", function() {
-                d3.json("https://s160159.github.io/data/assignment2DJSON_K4.json", function(error, data) {
+                d3.json("https://titanbender.github.io/data/assignment2DJSON_K4.json", function(error, data) {
                     data.forEach(function(d) {
                         d.lat = d.lat;
                         d.lon = d.lon;
@@ -691,7 +693,7 @@
 
             // toggle between data
             d3.select("clickK5").on("click", function() {
-                d3.json("https://s160159.github.io/data/assignment2DJSON_K5.json", function(error, data) {
+                d3.json("https://titanbender.github.io/data/assignment2DJSON_K5.json", function(error, data) {
                     data.forEach(function(d) {
                         d.lat = d.lat;
                         d.lon = d.lon;
@@ -733,7 +735,7 @@
 
             // toggle between data
             d3.select("clickK6").on("click", function() {
-                d3.json("https://s160159.github.io/data/assignment2DJSON_K6.json", function(error, data) {
+                d3.json("https://titanbender.github.io/data/assignment2DJSON_K6.json", function(error, data) {
                     data.forEach(function(d) {
                         d.lat = d.lat;
                         d.lon = d.lon;
