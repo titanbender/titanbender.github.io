@@ -89,7 +89,7 @@
             }
 
             .scatter {
-                width: 75%; 
+                width: 65%; 
             }
 
             .foo {
@@ -440,8 +440,8 @@
                     });
                 });  
         </script>
-        <p>
-            <b>ANSWER TO QUESTION:</b> Although the maximum values changes from year to year, the values on the axes should remain the same in order to visually understand the changes from year to year.   
+        <p class="scatter">
+            <b>ANSWER TO QUESTION:</b> Although the maximum values on the axes changes from year to year, the values on the axes should remain the same in order to visually understand the yearly changes.   
         </p>
 
         <br>
@@ -450,12 +450,13 @@
         <!-- Assignment 2B -->
 
         <h2> Assignment 2B: Visualizing Geodata </h2>
-        <p> Below is a visualization of <b>prostituion </b>crime data in SF for Year 2014, 2015 and 2016. The circles represents the locations for the occurances within the city.
+        <p class="scatter"> Below is a visualization of <b>prostituion </b>crime data in SF for Year 2014, 2015 and 2016. The circles represents the locations for the occurances within the city.
         <br/>
         <br/>
-        There has been implemented a K-Means algorithm for clustering the occurances of <b>prostituion</b>. The inital number of clusters is two. And it is possible to toggle between the number of clusters (K = [2,6]). 
+        A K-Means algorithm has been implemented for clustering the occurances of <b>prostituion</b>. The default number of clusters are two (see map). However, it is possible between different number of clusters and view them on the map. As seen on the map, each observations are given a color depending on the cluster it belongs to. Further, the centers of the clusters, also known as centroids, are illustrated as a black bold circle. 
         <br/> 
-        The initial number of clusters are two and it is possible to see the the centroids for a gvien K and thier belonging asssinged crimes. 
+        <br>
+        In terms of real-world applications, one could imagine the visualisation could help the police departement decide where special units are deployed in the city, depending on the total amount of special units available (amount of clusters). 
         <br/> 
         <br/> 
         Select the specific number of clusters you want to explore:
@@ -464,6 +465,9 @@
         <button> <clickK4> K = 4 </clickK4></button>
         <button> <clickK5> K = 5 </clickK5></button>
         <button> <clickK6> K = 6 </clickK6></button>
+        </p>
+
+        <p class="scatter"> <b>NOTE:</b> Please have patience as the data updates when chosing between different centroid numbers.
         </p>
 
         <script type="text/javascript">
@@ -776,7 +780,6 @@
             });
 
             </script>
-        <p> The coordinates of the two inital centroids (K = 2) do not cahnge rapidly when insetting additional two clusters.
-        </p>
+
     </body>
 </html>
