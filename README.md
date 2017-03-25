@@ -10,7 +10,6 @@ Used for Social Data and Visualization 2017, DTU
 ## Structure
 
 Inside the data folder is our JSON files for assignment 2A and 2B.
-The Index file includes our D3 visualizations
-The ipynb file is a python script used to filter and prepare our JSON data
+The Index.html file includes our D3 visualizations. This file can be viewed here https://titanbender.github.io/.
+Finally,the ipynb file is the python script used to filter and prepare our JSON data
 
-The final implementation can be viewed here: https://titanbender.github.io/
