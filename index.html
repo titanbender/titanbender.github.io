@@ -37,9 +37,9 @@
             .bar:hover{
                 fill: steelblue;
             }
-/*            .point {
-                fill: blue;*/
-            }
+            /*.point {
+                fill: blue;
+            }*/
             .point:hover{
                 fill: steelblue;            
             }
@@ -98,14 +98,14 @@
                   height: 20px;
                   margin: 5px;
                   border-radius: 50%;
-                }
+            }
 
             .district {
                   float: left;
                   margin-top: 8px;
                   font-family: sans-serif;
                   font-size: 8pt;
-                }
+            }
 
             .CENTRAL {
               background: pink;
@@ -157,15 +157,40 @@
 
     <body>
         <h1> Social Data and Visualization DTU: Assignment 2 </h1>
+        
         <p> 
             <ul style="list-style-type:circle">
                 <li>Link to Jupyter NBviewer: <a href="http://nbviewer.jupyter.org/url/s160159.github.io/Assignment_2.ipynb">NBviewer</a></li>
             </ul>
         </p>
+
+        <br>
+        <br>
         
+        <h2> Introduction To SF Crime Data </h2>
+        <p>
+        The crime data has been downloaded from the following source: <a href="https://data.sfgov.org/Public-Safety/SFPD-Incidents-from-1-January-2003/tmnf-yvry">SF Open Data</a> 
+        <br>
+        Further the data has been cleaned for analysis. The crime data from our visualizations include the following properties:
+        <ul style="list-style-type:circle">
+            <li>Date is between: 01/01/2014 and 12/31/2016 </li>
+            <li>Categories is: PROSTITUTION and VEHICLE THEFT </li>
+        </ul>
+        </p>
+        <p>
+        Number of crimes:
+        <ul style="list-style-type:circle">
+            <li>Total number of crimes from the mentioned period: 22876</li>
+            <li>Number of PROSTITUTION crimes from the mentioned period: 1463</li>
+            <li>Number of VEHICLE THEFT crimes from the mentioned period: 21413</li>
+        </ul>
+        </p>
+        <br>
+        <br>
+
         <!-- Assignment 2A -->
-        <h2> Assignment 2A: One scatter plot and two datasets </h2>
-        <p class="scatter"> Below is a visualization of <b> vehicle - </b> and <b> pro stituion </b>crime data in SF. The circles represents the crime occurances for individual districts within the city. To see the exact number of crime occurances, you can hover over the individual circles with your cursor. </p>
+        <h2> Assignment 2A: Scatterplot</h2>
+        <p class="scatter"> Below is a visualization of <b> vehicle - </b> and <b> prostituion </b>crime data in SF. The circles represents the crime occurances for individual districts within the city. To see the exact number of crime occurances, you can hover over the individual circles with your cursor. </p>
 
         <p>
         Please select the specific year you want to explore:
@@ -182,12 +207,12 @@
         <div class="foo INGLESIDE"></div> <p class="district">INGLESIDE</p>
         <div class="foo SOUTHERN"></div> <p class="district">SOUTHERN</p>
         <div class="foo MISSION"></div> <p class="district">MISSION</p>
+        <div class="foo TENDERLOIN"></div> <p class="district">TENDERLOIN</p>
         <div class="foo RICHMOND"></div> <p class="district">RICHMOND</p>
         <div class="foo TARAVAL"></div> <p class="district">TARAVAL</p>
         <div class="foo BAYVIEW"></div> <p class="district">BAYVIEW</p>
         <div class="foo PARK"></div> <p class="district">PARK</p>
-        
-        <br>
+
         <br>
         <br>
         <br>
@@ -257,7 +282,7 @@
                         .append("circle")
                         .attr("class", "point")
                         .attr("cx", function(d) { return xScaleA2A(d.X); })
-                        .attr("r", function(d) { return d.r; })
+                        .attr("r", function(d) { return d.r * 1.25; })
                         .attr("cy", function(d) { return yScaleA2A(d.Y); })
                         .style("fill", function(d) { return d.color; })
                         .on('mouseover', tipA2A.show)
@@ -332,7 +357,7 @@
                             .delay(function(d, i) { return i * 100; })
                             .duration(500) 
                             .attr("cx", function(d) { return xScaleA2A(d.X); })
-                            .attr("r", function(d) { return d.r; })
+                            .attr("r", function(d) { return d.r  * 1.25; })
                             .attr("cy", function(d) { return yScaleA2A(d.Y); })
                             .style("fill", function(d) { return d.color; });
 
@@ -368,7 +393,7 @@
                             .delay(function(d, i) { return i * 100; })
                             .duration(500) 
                             .attr("cx", function(d) { return xScaleA2A(d.X); })
-                            .attr("r", function(d) { return d.r; })
+                            .attr("r", function(d) { return d.r  * 1.25; })
                             .attr("cy", function(d) { return yScaleA2A(d.Y); })
                             .style("fill", function(d) { return d.color; });
 
@@ -398,10 +423,10 @@
                          svgA2A.selectAll(".point")
                             .data(data) // prositution as initial
                             .transition() 
-                            //.delay(function(d, i) { return i * 100; })
+                            .delay(function(d, i) { return i * 100; })
                             .duration(500) 
                             .attr("cx", function(d) { return xScaleA2A(d.X); })
-                            .attr("r", function(d) { return d.r; })
+                            .attr("r", function(d) { return d.r  * 1.25; })
                             .attr("cy", function(d) { return yScaleA2A(d.Y); })
                             .style("fill", function(d) { return d.color; });
 
@@ -413,36 +438,30 @@
                     });
                 });  
         </script>
-		<p>
-            By hovering each observation it is possible to see the belonging district and its numbers of the two crimes.
-        <br/> 
-		HVAD VISER GRAFEN???:
-            <ul style="list-style-type:circle">
-                <li> Missing </li>
-                <li> Missing </li>
-                <li> Missing </li>
-            </ul>
+        <p>
+            <b>ANSWER TO QUESTION:</b> Although the maximum values changes from year to year, the values on the axes should remain the same in order to visually understand the changes from year to year.   
         </p>
 
-		<!-- Assignment 2B -->
+        <br>
+        <br>
 
-        <h2> Assignment 2B: Visualizing geodata </h2>
-        <p> Hvad er vores sprøgsmål som skal besvares.. Hvad betyder , 
-        	<br/> 
-        	TODO
-        	<br/> 
-        	<br/> 
-        	It is possible to toggle between K = [2,6]. 
-        	<br/> 
-        	The initial number of clusters are two and it is possible to see the the centroids for a gvien K and thier belonging asssinged crimes. 
-        	<br/> 
-        	Toggle the number of cluster by clicking at the wanted botton: 
-        	<br/> 
-        	<button> <clickK2> K = 2 </clickK2></button> 
-        	<button> <clickK3> K = 3 </clickK3></button>
-        	<button> <clickK4> K = 4 </clickK4></button>
-        	<button> <clickK5> K = 5 </clickK5></button>
-        	<button> <clickK6> K = 6 </clickK6></button>
+        <!-- Assignment 2B -->
+
+        <h2> Assignment 2B: Visualizing Geodata </h2>
+        <p> Below is a visualization of <b>prostituion </b>crime data in SF for Year 2014, 2015 and 2016. The circles represents the locations for the occurances within the city.
+        <br/>
+        <br/>
+        There has been implemented a K-Means algorithm for clustering the occurances of <b>prostituion</b>. The inital number of clusters is two. And it is possible to toggle between the number of clusters (K = [2,6]). 
+        <br/> 
+        The initial number of clusters are two and it is possible to see the the centroids for a gvien K and thier belonging asssinged crimes. 
+        <br/> 
+        <br/> 
+        Select the specific number of clusters you want to explore:
+        <button> <clickK2> K = 2 </clickK2></button> 
+        <button> <clickK3> K = 3 </clickK3></button>
+        <button> <clickK4> K = 4 </clickK4></button>
+        <button> <clickK5> K = 5 </clickK5></button>
+        <button> <clickK6> K = 6 </clickK6></button>
         </p>
 
         <script type="text/javascript">
@@ -452,15 +471,15 @@
 
             // tip "hovering info"
             var tipA2B = d3.tip()
-		                .attr('class', 'd3-tip')
-		                .offset([-10, 0])
-		                .html(function(d) { return "No. of crimes in cluster: " + d.no + "<br/>" +"Distribution of crimes in cluster: " + d.ratio + "%"; });
+                        .attr('class', 'd3-tip')
+                        .offset([-10, 0])
+                        .html(function(d) { return "No. of crimes in cluster: " + d.no + "<br/>" +"Distribution of crimes in cluster: " + d.ratio + "%"; });
 
             // Our functions
             projectionA2B = d3.geo.mercator()
-	                        .center([-122.433701, 37.767683])
-	                        .scale(240000)
-	                        .translate([wA2B / 2, hA2B / 2]);
+                            .center([-122.433701, 37.767683])
+                            .scale(280000)
+                            .translate([wA2B / 2, hA2B / 2]);
 
             //
             var pathA2B = d3.geo.path()
@@ -468,64 +487,80 @@
             
             //Create SVG element
             var svgA2B = d3.select("body")
-	                        .append("svg")
-	                        .attr("width", wA2B)
-	                        .attr("height", hA2B);
+                            .append("svg")
+                            .attr("width", wA2B)
+                            .attr("height", hA2B);
 
             //Load in GeoJSON data
             d3.json("https://s160159.github.io/data/sfpddistricts.geojson", function(json) {
                 //Bind data and create one path per GeoJSON feature
                 svgA2B.selectAll("path")
-	                   .data(json.features)
-	                   .enter()
-	                   .append("path")
-	                   .attr("d", pathA2B)
-	                   .style("fill", "teal")
-	                   .attr("stroke","white")
-	                   .attr("stroke-width", 2);
-            
-	            // load the data obs. K2 INITIAL
-	            d3.json("https://s160159.github.io/data/assignment2DJSON_K2.json", function(error, data) {
-	                data.forEach(function(d) {
-	                    d.lat = d.lat;
-	                    d.lon = d.lon;
-	                    d.col = d.col;
-	                    d.farve = d.farve;
-	                    d.stroke = d.stroke;
-	                    d.r = d.r;
-	                    d.no = d.no;
-	                    d.ratio = d.ratio;
-	                });
-	                
-	                // tip
-	                svgA2B.call(tipA2B);          
-	                
-	                //Create circles
-	                 svgA2B.selectAll("circle")
-	                        .data(data) // prositution as initial
-	                        .enter()
-	                        .append("circle")
-	                        .attr("class", "point")
-	                        .attr("cx", function(d) { return projectionA2B([d.lon, d.lat])[0]; })
-	                        .attr("cy", function(d) { return projectionA2B([d.lon, d.lat])[1]; })
-	                        .attr("r", function(d) { return d.r; })
-	                        .style("fill", function(d) { return d.farve; })
-	                        .style("stroke", function(d) { return d.stroke; })
-	                        .style("stroke-width", 3)
+                       .data(json.features)
+                       .enter()
+                       .append("path")
+                       .attr("d", pathA2B)
+                       .style("fill", "teal")
+                       .attr("stroke","white")
+                       .attr("stroke-width", 2)
+                       .text("sda");
 
-	                        .on('mouseover', tipA2B.show)
-                        	.on('mouseout', tipA2B.hide);
+                // names on districts 
+                d3.json("https://s160159.github.io/data/dist_names_json.json", function(dataDist) {
+                    svgA2B.selectAll("text")
+                            .data(dataDist)
+                            .enter()
+                            .append("text")
+                            .attr("class", "areaneme")
+                            .attr("x", function (d) {return projectionA2B([d.lon, d.lat])[0] ;})
+                            .attr("y", function (d) {return projectionA2B([d.lon, d.lat])[1] ;})
+                            .attr("text-anchor", "middle")  
+                            .style("font-size", "12pt")
+                            .style("font-family", "sans-serif")
+                            .text(function (d) {return d.dist ;});
+                });
 
-	                // title text   
-	                svgA2B.append("text")
-		                    .attr("class", "title")
-		                    .attr("x", projectionA2B([-122.433701, 37.767683])[0])    
-		                    .attr("y", projectionA2B([-122.433701, 37.820268])[1])
-		                    .attr("text-anchor", "middle")  
-		                    .style("font-size", "12pt")
-		                    .style("font-family", "sans-serif")
-		                    .text("K = 2");
-	            });
+                // title text: Number of clusters  
+                svgA2B.append("text")
+                        .attr("class", "title")
+                        .attr("x", projectionA2B([-122.433701, 37.820268])[0])    
+                        .attr("y", projectionA2B([-122.433701, 37.820268])[1])
+                        .attr("text-anchor", "middle")  
+                        .style("font-size", "12pt")
+                        .style("font-family", "sans-serif")
+                        .text("K = 2");
+
+                // load the data obs. K2 INITIAL
+                d3.json("https://s160159.github.io/data/assignment2DJSON_K2.json", function(error, data) {
+                    data.forEach(function(d) {
+                        d.lat = d.lat;
+                        d.lon = d.lon;
+                        d.col = d.col;
+                        d.farve = d.farve;
+                        d.stroke = d.stroke;
+                        d.r = d.r;
+                        d.no = d.no;
+                        d.ratio = d.ratio;
+                    });
+
+                    // tip
+                    svgA2B.call(tipA2B);          
+                    
+                    //Create circles
+                     svgA2B.selectAll("circle")
+                            .data(data) // prositution as initial
+                            .enter()
+                            .append("circle")
+                            .attr("class", "point")
+                            .attr("cx", function(d) { return projectionA2B([d.lon, d.lat])[0]; })
+                            .attr("cy", function(d) { return projectionA2B([d.lon, d.lat])[1]; })
+                            .attr("r", function(d) { return d.r; })
+                            .style("fill", function(d) { return d.farve; })
+                            .style("stroke", function(d) { return d.stroke; })
+                            .style("stroke-width", 3)
+
+                            .on('mouseover', tipA2B.show)
+                            .on('mouseout', tipA2B.hide);
+                });
             });
 
             // toggle between data
@@ -541,7 +576,7 @@
                         d.no = d.no;
                         d.ratio = d.ratio;
                     });
-                	// tip
+                    // tip
                     svgA2B.call(tipA2B);           
 
                     // remove old 
@@ -557,8 +592,8 @@
                         .attr("cy", function(d) { return projectionA2B([d.lon, d.lat])[1]; })
                         .attr("r", function(d) { return d.r; })
                         .style("fill", function(d) { return d.farve; })
-	                   	.style("stroke", function(d) { return d.stroke; })
-	                    .style("stroke-width", 3)
+                        .style("stroke", function(d) { return d.stroke; })
+                        .style("stroke-width", 3)
                         .on('mouseover', tipA2B.show)
                         .on('mouseout', tipA2B.hide);
 
@@ -583,7 +618,7 @@
                         d.no = d.no;
                         d.ratio = d.ratio;
                     });
-                	// tip
+                    // tip
                     svgA2B.call(tipA2B);           
 
                     // remove old 
@@ -600,7 +635,7 @@
                         .attr("r", function(d) { return d.r; })
                         .style("fill", function(d) { return d.farve; })
                         .style("stroke", function(d) { return d.stroke; })
-	                    .style("stroke-width", 3)
+                        .style("stroke-width", 3)
                         .on('mouseover', tipA2B.show)
                         .on('mouseout', tipA2B.hide);
 
@@ -625,7 +660,7 @@
                         d.no = d.no;
                         d.ratio = d.ratio;
                     });
-                	// tip
+                    // tip
                     svgA2B.call(tipA2B);           
 
                     // remove old 
@@ -642,7 +677,7 @@
                         .attr("r", function(d) { return d.r; })
                         .style("fill", function(d) { return d.farve; })
                         .style("stroke", function(d) { return d.stroke; })
-	                    .style("stroke-width", 3)
+                        .style("stroke-width", 3)
                         .on('mouseover', tipA2B.show)
                         .on('mouseout', tipA2B.hide);
 
@@ -654,7 +689,7 @@
                 });
             });
 
-			// toggle between data
+            // toggle between data
             d3.select("clickK5").on("click", function() {
                 d3.json("https://s160159.github.io/data/assignment2DJSON_K5.json", function(error, data) {
                     data.forEach(function(d) {
@@ -667,7 +702,7 @@
                         d.no = d.no;
                         d.ratio = d.ratio;
                     });
-                	// tip
+                    // tip
                     svgA2B.call(tipA2B);           
 
                     // remove old 
@@ -684,7 +719,7 @@
                         .attr("r", function(d) { return d.r; })
                         .style("fill", function(d) { return d.farve; })
                         .style("stroke", function(d) { return d.stroke; })
-	                    .style("stroke-width", 3)
+                        .style("stroke-width", 3)
                         .on('mouseover', tipA2B.show)
                         .on('mouseout', tipA2B.hide);
 
@@ -709,7 +744,7 @@
                         d.no = d.no;
                         d.ratio = d.ratio;
                     });
-                	// tip
+                    // tip
                     svgA2B.call(tipA2B);           
 
                     // remove old 
@@ -726,7 +761,7 @@
                         .attr("r", function(d) { return d.r; })
                         .style("fill", function(d) { return d.farve; })
                         .style("stroke", function(d) { return d.stroke; })
-	                    .style("stroke-width", 3)
+                        .style("stroke-width", 3)
                         .on('mouseover', tipA2B.show)
                         .on('mouseout', tipA2B.hide);
 
@@ -739,10 +774,7 @@
             });
 
             </script>
-
-
+        <p> The coordinates of the two inital centroids (K = 2) do not cahnge rapidly when insetting additional two clusters.
+        </p>
     </body>
-    
 </html>
-
-
