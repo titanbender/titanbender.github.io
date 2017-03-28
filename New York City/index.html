@@ -1,0 +1,790 @@
+<!doctype html>
+<html>
+    <head>
+        <style type = "text/css">
+            h1 {
+                font-weight: bold;
+                font-family: sans-serif;
+                background-color: white;
+                color: black;
+            }
+            h2 {
+                font-weight: bold;
+                font-family: sans-serif;
+                background-color: white;
+                color: black;
+            }
+            p {
+                font-family: sans-serif;
+                background-color: white;
+                color: black;
+
+            }
+            ul {
+                font-family: sans-serif;
+                background-color: white;
+                color: black;
+            }
+
+            body {
+                margin-left: 50px;
+                margin-top: 50px;
+            }
+            
+            .bar {
+                fill: teal;
+            }
+            .bar:hover{
+                fill: steelblue;
+            }
+            /*.point {
+                fill: blue;
+            }*/
+            .point:hover{
+                fill: steelblue;            
+            }
+            .axis {
+                font-size: 8pt;
+                font-family: sans-serif;
+            }
+            .axis path,
+            .axis line {
+                fill: none;
+                stroke: #000;
+                shape-rendering: crispEdges;
+            }
+            .x.axis path {
+                display: none;
+            }
+            .y.axis path {
+                display: none;
+            }
+            .d3-tip {
+                line-height: 1;
+                font-size: 8pt;
+                font-family: sans-serif;
+                padding: 12px;
+                background: rgba(0, 0, 0, 0.8);
+                color: #fff;
+                border-radius: 2px;
+            }
+            /* Creates a small triangle extender for the tooltip */
+            .d3-tip:after {
+                box-sizing: border-box;
+                display: inline;
+                font-size: 10px;
+                width: 100%;
+                line-height: 1;
+                color: rgba(0, 0, 0, 0.8);
+                content: "\25BC";
+                position: absolute;
+                text-align: center;
+            }
+
+            /* Style northward tooltips differently */
+            .d3-tip.n:after {
+                margin: -1px 0 0 0;
+                top: 100%;
+                left: 0;
+            }
+
+            .scatter {
+                width: 1000px; 
+            }
+
+            .foo {
+                  float: left;
+                  width: 20px;
+                  height: 20px;
+                  margin: 5px;
+                  border-radius: 50%;
+            }
+
+            .district {
+                  float: left;
+                  margin-top: 8px;
+                  font-family: sans-serif;
+                  font-size: 8pt;
+            }
+
+            .CENTRAL {
+              background: pink;
+              float: left;
+            }
+
+            .NORTHERN {
+              background: rgba(38,41,74,1);
+              float: left;
+            }
+
+            .INGLESIDE {
+              background: rgba(1,84,90,1);
+            }
+            
+            .SOUTHERN  {
+                background: rgba(1,115,81,1);
+            }
+            
+            .MISSION {
+                background: rgba(3,195,131,1);
+            }
+            
+            .TENDERLOIN {
+                background: rgba(170,217,98,1);
+            }            
+            
+            .RICHMOND {
+                background: rgba(251,191,69,1);
+            }
+
+            .TARAVAL {
+                background: rgba(239,106,50,1);
+            }
+
+            .BAYVIEW  {
+                background: rgba(237,3,69,1);
+            }
+
+            .PARK {
+                background: rgba(161,42,94,1);
+            }
+
+        </style>
+        <title>Social Data and Visualization DTU: Assignment 2</title>
+        <script src="https://d3js.org/d3.v3.js"></script>
+        <script src="tip.js"></script>
+    </head>
+
+    <body>
+        <h1> Social Data and Visualization DTU: Assignment 2 </h1>
+        
+        <p> 
+            <ul style="list-style-type:circle">
+                <li>Link to Jupyter NBviewer: <a href="http://nbviewer.jupyter.org/url/s160159.github.io/Assignment_2.ipynb">NBviewer</a></li>
+            </ul>
+        </p>
+
+        <br>
+        <br>
+
+        <img src="michael-hirsch-1962.jpg" alt="Mountain View" style="width:800px;height:600px;">
+        
+        <h2> Introduction To SF Crime Data </h2>
+        <p>
+        The crime data has been downloaded from the following source: <a href="https://data.sfgov.org/Public-Safety/SFPD-Incidents-from-1-January-2003/tmnf-yvry">SF Open Data</a> 
+        <br>
+        Further the data has been cleaned for analysis. The crime data from the  visualizations include the following filters:
+        <ul style="list-style-type:circle">
+            <li>Date: 01/01/2014 and 12/31/2016 </li>
+            <li>Categories: Prostitution and Vehicle Theft </li>
+        </ul>
+        </p>
+        <br>
+        <p>
+        <b>The Filtered Data: </b>
+        <ul style="list-style-type:circle">
+            <li>Total number of crimes from the mentioned period: 22,876</li>
+            <li>Number of Prostitution crimes from the mentioned period: 1,463</li>
+            <li>Number of Vehicle Theft from the mentioned period: 21,413</li>
+        </ul>
+        </p>
+
+        <p class="scatter"> As seen from the numbers above, the amount of Vehicle Theft is an order of magnitude larger than the amount of Prostitution Crime. Given this relationship between the crime categories, the data has been normalized when analyzing aggregate crime occurances within specific city districts.</p>
+        <br>
+        <br>
+
+        <!-- Assignment 2A -->
+        <h2> Assignment 2A: Scatterplot</h2>
+        <p class="scatter"> Below is a visualization of <b> vehicle - </b> and <b> prostitution </b>crime data for SF's city distritcs. The circles represents the crime occurances for individual districts within the city districts. To see the exact number of crime occurances hover over the individual circles with your cursor. </p>
+        
+        <p>
+        Please select the specific year you want to explore:
+            <button> <click2014> Year 2014 </click2014></button> 
+            <button> <click2015> Year 2015 </click2015></button>
+            <button> <click2016> Year 2016 </click2016></button>
+        </p>
+
+
+        <br>
+
+        <div class="foo CENTRAL"></div> <p class="district">CENTRAL</p>
+        <div class="foo NORTHERN"></div> <p class="district">NORTHERN</p>
+        <div class="foo INGLESIDE"></div> <p class="district">INGLESIDE</p>
+        <div class="foo SOUTHERN"></div> <p class="district">SOUTHERN</p>
+        <div class="foo MISSION"></div> <p class="district">MISSION</p>
+        <div class="foo TENDERLOIN"></div> <p class="district">TENDERLOIN</p>
+        <div class="foo RICHMOND"></div> <p class="district">RICHMOND</p>
+        <div class="foo TARAVAL"></div> <p class="district">TARAVAL</p>
+        <div class="foo BAYVIEW"></div> <p class="district">BAYVIEW</p>
+        <div class="foo PARK"></div> <p class="district">PARK</p>
+
+        <br>
+        <br>
+        <br>
+
+        <script type="text/javascript">
+
+            // Width and height of the canvas
+            var wA2A = 800;
+            var hA2A = 600;
+            // Plotting margin
+            var marginA2A = {top: 20, right: 20, bottom: 70, left: 40};
+            var widthA2A = wA2A - marginA2A.left - marginA2A.right;
+            var heightA2A = hA2A - marginA2A.top - marginA2A.bottom;
+            var paddingA2A = 15;
+
+            // Set the ranges
+            var xScaleA2A = d3.scale.linear().range([paddingA2A * 2, widthA2A]);
+            var yScaleA2A = d3.scale.linear().range([heightA2A, paddingA2A]);
+
+            // Define the axis
+            var xAxisA2A = d3.svg.axis()
+                        .scale(xScaleA2A)
+                        .orient("bottom");
+            var yAxisA2A = d3.svg.axis()
+                        .scale(yScaleA2A)
+                        .orient("left");
+
+            // MAX value of y in all three data sets
+            // scale the range of the data so it fits all data
+            xMaxA2A = 275;
+            yMaxA2A = 1550;
+            xScaleA2A.domain([0, xMaxA2A]);
+            yScaleA2A.domain([0, yMaxA2A]);
+
+            //Create SVG element
+            var svgA2A = d3.select("body") 
+                        .append("svg")
+                        .attr("width", widthA2A + marginA2A.left + marginA2A.right)
+                        .attr("height", heightA2A + marginA2A.top + marginA2A.bottom)
+                        .append("g")
+                        .attr("transform",  "translate(" + marginA2A.left + "," + marginA2A.top + ")");
+            // TODO
+            var tipA2A = d3.tip()
+                .attr('class', 'd3-tip')
+                .offset([-10, 0])
+                .html(function(d) { return "Pdist.: " + d.value + "<br/>" +"No. PROSTITUTION: " + d.X + "<br/>" + "No. VEHICLE THEFT: " + d.Y; }); 
+            // voke 
+            svgA2A.call(tipA2A); 
+            
+            
+            // load the data 2014 INITIAL
+            d3.json("https://titanbender.github.io/data/assignment2BJSON_2014.json", function(error, data) {
+                    data.forEach(function(d) {
+                        d.X = d.X;
+                        d.Y = d.Y;
+                        d.tot = d.tot;
+                        d.sub = d.sub;
+                        d.r = d.r;
+                        d.value = d.value;
+                        d.color = d.color;
+                    });
+
+                    //Create circles
+                     svgA2A.selectAll("circle")
+                        .data(data) // prostitution as initial
+                        .enter()
+                        .append("circle")
+                        .attr("class", "point")
+                        .attr("cx", function(d) { return xScaleA2A(d.X); })
+                        .attr("r", function(d) { return d.r * 1.25; })
+                        .attr("cy", function(d) { return yScaleA2A(d.Y); })
+                        .style("fill", function(d) { return d.color; })
+                        .on('mouseover', tipA2A.show)
+                        .on('mouseout', tipA2A.hide);
+
+                    // add axis
+                    // x-axis
+                    svgA2A.append("g")
+                        .attr("class", "x axis")
+                        .attr("transform", "translate(0," + heightA2A + ")")
+                        .call(xAxisA2A);
+                    
+                    // y-axis
+                    svgA2A.append("g")
+                        .attr("class", "y axis")
+                        .attr("transform", "translate(" + paddingA2A + ",0)")
+                        .call(yAxisA2A);
+                    
+                    // y label taxt
+                    svgA2A.append("text")
+                        .attr("class", "y axis")
+                        .attr("transform", "rotate(-90)")
+                        .attr("y", -marginA2A.left)             
+                        .attr("x", -yScaleA2A(yMaxA2A / 2))
+                        .attr("dy", "1em")
+                        .style("text-anchor", "middle")  
+                        .style("font-size", "8pt")
+                        .style("font-family", "sans-serif")
+                        .text("VEHICLE THEFT");
+                    
+                    // x label taxt
+                    svgA2A.append("text")
+                        .attr("class", "x axis")
+                        .attr("y", hA2A - marginA2A.bottom + marginA2A.top )             
+                        .attr("x", xScaleA2A(xMaxA2A / 2))
+                        .attr("text-anchor", "middle")  
+                        .style("font-size", "8pt")
+                        .style("font-family", "sans-serif")
+                        .text("PROSTITUTION");
+
+                    // title text   
+                    svgA2A.append("text")
+                        .attr("class", "title")
+                        .attr("x", (widthA2A / 2))             
+                        .attr("y", 1 - (marginA2A.top / 10))
+                        .attr("text-anchor", "middle")  
+                        .style("font-size", "12pt")
+                        .style("font-family", "sans-serif")
+                        .text("Year 2014");
+            });
+
+            // toggle between data
+            // 2014
+            d3.select("click2014")
+                .on("click", function() {
+                    //New values for dataset
+                    d3.json("https://titanbender.github.io/data/assignment2BJSON_2014.json", function(error, data) {
+                        data.forEach(function(d) {
+                            d.X = d.X;
+                            d.Y = d.Y;
+                            d.tot = d.tot;
+                            d.sub = d.sub;
+                            d.r = d.r;
+                            d.value = d.value;
+                            d.color = d.color;
+                        });
+                        
+                        //Create bars
+                         svgA2A.selectAll(".point")
+                            .data(data) // prositution as initial
+                            .transition() 
+                            .delay(function(d, i) { return i * 100; })
+                            .duration(500) 
+                            .attr("cx", function(d) { return xScaleA2A(d.X); })
+                            .attr("r", function(d) { return d.r  * 1.25; })
+                            .attr("cy", function(d) { return yScaleA2A(d.Y); })
+                            .style("fill", function(d) { return d.color; });
+
+
+
+
+                        // Update title
+                        svgA2A.select("text.title")
+                            .transition()
+                            .duration(500)
+                            .text("Year 2014");
+                    });
+                });
+            // 2015
+            d3.select("click2015")
+                .on("click", function() {
+                    //New values for dataset
+                    d3.json("https://titanbender.github.io/data/assignment2BJSON_2015.json", function(error, data) {
+                        data.forEach(function(d) {
+                            d.X = d.X;
+                            d.Y = d.Y;
+                            d.tot = d.tot;
+                            d.sub = d.sub;
+                            d.r = d.r;
+                            d.value = d.value;
+                            d.color = d.color;
+                        });
+                        
+                        //Create new points
+                         svgA2A.selectAll(".point")
+                            .data(data) // prositution as initial
+                            .transition() 
+                            .delay(function(d, i) { return i * 100; })
+                            .duration(500) 
+                            .attr("cx", function(d) { return xScaleA2A(d.X); })
+                            .attr("r", function(d) { return d.r  * 1.25; })
+                            .attr("cy", function(d) { return yScaleA2A(d.Y); })
+                            .style("fill", function(d) { return d.color; });
+
+                        // Update title
+                        svgA2A.select("text.title")
+                            .transition()
+                            .duration(500)
+                            .text("Year 2015");
+                    });
+                });
+            // 2016
+            d3.select("click2016")
+                .on("click", function() {
+                    //New values for dataset
+                    d3.json("https://titanbender.github.io/data/assignment2BJSON_2016.json", function(error, data) {
+                        data.forEach(function(d) {
+                            d.X = d.X;
+                            d.Y = d.Y;
+                            d.tot = d.tot;
+                            d.sub = d.sub;
+                            d.r = d.r;
+                            d.value = d.value;
+                            d.color = d.color;
+                        });
+
+                        //Create bars
+                         svgA2A.selectAll(".point")
+                            .data(data) // prositution as initial
+                            .transition() 
+                            .delay(function(d, i) { return i * 100; })
+                            .duration(500) 
+                            .attr("cx", function(d) { return xScaleA2A(d.X); })
+                            .attr("r", function(d) { return d.r  * 1.25; })
+                            .attr("cy", function(d) { return yScaleA2A(d.Y); })
+                            .style("fill", function(d) { return d.color; });
+
+                        // Update title
+                        svgA2A.select("text.title")
+                            .transition()
+                            .duration(500)
+                            .text("Year 2016");
+                    });
+                });  
+        </script>
+        <p class="scatter">
+            <b>ANSWER TO QUESTION:</b> Although the maximum values on the axes changes from year to year, the values on the axes should remain the same in order to visually understand the yearly changes.   
+        </p>
+
+        <br>
+        <br>
+
+        <!-- Assignment 2B -->
+
+        <h2> Assignment 2B: Visualizing Geodata </h2>
+        <p class="scatter"> Below is a visualization of <b>prostitution </b>crime data in SF for Year 2014, 2015 and 2016. The circles represents the locations for the occurances within the city.
+        <br/>
+        <br/>
+        A K-Means algorithm has been implemented for clustering the occurances of <b>prostitution</b>. The default number of clusters are two (see map). However, it is possible between different number of clusters and view them on the map. As seen on the map, each observation is given a color depending on the cluster it belongs to. Further, the centers of the clusters, also known as centroids, are illustrated as a black bold circle. 
+        <br/> 
+        <br>
+        In terms of real-world applications, one could imagine the visualisation could help the police departement decide where special units are deployed in the city, depending on the total amount of special units available (amount of clusters). 
+        <br/> 
+        <br/> 
+        Select the specific number of clusters you want to explore:
+        <button> <clickK2> K = 2 </clickK2></button> 
+        <button> <clickK3> K = 3 </clickK3></button>
+        <button> <clickK4> K = 4 </clickK4></button>
+        <button> <clickK5> K = 5 </clickK5></button>
+        <button> <clickK6> K = 6 </clickK6></button>
+        </p>
+
+        <p class="scatter"> <b>NOTE:</b> Please have patience as the data updates when chosing between different cluster numbers.
+        </p>
+
+        <script type="text/javascript">
+            // Width and height of the canvas
+            var wA2B = wA2A;
+            var hA2B = wA2A;
+
+            // tip "hovering info"
+            var tipA2B = d3.tip()
+                        .attr('class', 'd3-tip')
+                        .offset([-10, 0])
+                        .html(function(d) { return "No. of crimes in cluster: " + d.no + "<br/>" +"Distribution of crimes in cluster: " + d.ratio + "%"; });
+
+            // Our functions
+            projectionA2B = d3.geo.mercator()
+                            .center([-122.433701, 37.767683])
+                            .scale(280000)
+                            .translate([wA2B / 2, hA2B / 2]);
+
+            //
+            var pathA2B = d3.geo.path()
+                            .projection(projectionA2B);
+            
+            //Create SVG element
+            var svgA2B = d3.select("body")
+                            .append("svg")
+                            .attr("width", wA2B)
+                            .attr("height", hA2B);
+
+            //Load in GeoJSON data
+            d3.json("https://titanbender.github.io/data/sfpddistricts.geojson", function(json) {
+                //Bind data and create one path per GeoJSON feature
+                svgA2B.selectAll("path")
+                       .data(json.features)
+                       .enter()
+                       .append("path")
+                       .attr("d", pathA2B)
+                       .style("fill", "teal")
+                       .attr("stroke","white")
+                       .attr("stroke-width", 2)
+                       .text("sda");
+
+                // names on districts 
+                d3.json("https://titanbender.github.io/data/dist_names_json.json", function(dataDist) {
+                    svgA2B.selectAll("text")
+                            .data(dataDist)
+                            .enter()
+                            .append("text")
+                            .attr("class", "areaneme")
+                            .attr("x", function (d) {return projectionA2B([d.lon, d.lat])[0] ;})
+                            .attr("y", function (d) {return projectionA2B([d.lon, d.lat])[1] ;})
+                            .attr("text-anchor", "middle")  
+                            .style("font-size", "12pt")
+                            .style("font-family", "sans-serif")
+                            .text(function (d) {return d.dist ;});
+                });
+
+                // title text: Number of clusters  
+                svgA2B.append("text")
+                        .attr("class", "title")
+                        .attr("x", projectionA2B([-122.433701, 37.820268])[0])    
+                        .attr("y", projectionA2B([-122.433701, 37.820268])[1])
+                        .attr("text-anchor", "middle")  
+                        .style("font-size", "12pt")
+                        .style("font-family", "sans-serif")
+                        .text("K = 2");
+
+                // load the data obs. K2 INITIAL
+                d3.json("https://titanbender.github.io/data/assignment2DJSON_K2.json", function(error, data) {
+                    data.forEach(function(d) {
+                        d.lat = d.lat;
+                        d.lon = d.lon;
+                        d.col = d.col;
+                        d.farve = d.farve;
+                        d.stroke = d.stroke;
+                        d.r = d.r;
+                        d.no = d.no;
+                        d.ratio = d.ratio;
+                    });
+
+                    // tip
+                    svgA2B.call(tipA2B);          
+                    
+                    //Create circles
+                     svgA2B.selectAll("circle")
+                            .data(data) // prositution as initial
+                            .enter()
+                            .append("circle")
+                            .attr("class", "point")
+                            .attr("cx", function(d) { return projectionA2B([d.lon, d.lat])[0]; })
+                            .attr("cy", function(d) { return projectionA2B([d.lon, d.lat])[1]; })
+                            .attr("r", function(d) { return d.r; })
+                            .style("fill", function(d) { return d.farve; })
+                            .style("stroke", function(d) { return d.stroke; })
+                            .style("stroke-width", 3)
+
+                            .on('mouseover', tipA2B.show)
+                            .on('mouseout', tipA2B.hide);
+                });
+            });
+
+            // toggle between data
+            d3.select("clickK2").on("click", function() {
+                d3.json("https://titanbender.github.io/data/assignment2DJSON_K2.json", function(error, data) {
+                    data.forEach(function(d) {
+                        d.lat = d.lat;
+                        d.lon = d.lon;
+                        d.col = d.col;
+                        d.farve = d.farve;
+                        d.stroke = d.stroke;
+                        d.r = d.r;
+                        d.no = d.no;
+                        d.ratio = d.ratio;
+                    });
+                    // tip
+                    svgA2B.call(tipA2B);           
+
+                    // remove old 
+                    svgA2B.selectAll("circle").remove()
+
+                    //Create circles
+                     svgA2B.selectAll("circle")
+                        .data(data) // prositution as initial
+                        .enter()
+                        .append("circle")
+                        .attr("class", "point")
+                        .attr("cx", function(d) { return projectionA2B([d.lon, d.lat])[0]; })
+                        .attr("cy", function(d) { return projectionA2B([d.lon, d.lat])[1]; })
+                        .attr("r", function(d) { return d.r; })
+                        .style("fill", function(d) { return d.farve; })
+                        .style("stroke", function(d) { return d.stroke; })
+                        .style("stroke-width", 3)
+                        .on('mouseover', tipA2B.show)
+                        .on('mouseout', tipA2B.hide);
+
+                    // Update title
+                    svgA2B.select("text.title")
+                        .transition()
+                        .duration(5)
+                        .text("K = 2");
+                });
+            });
+
+            // toggle between data
+            d3.select("clickK3").on("click", function() {
+                d3.json("https://titanbender.github.io/data/assignment2DJSON_K3.json", function(error, data) {
+                    data.forEach(function(d) {
+                        d.lat = d.lat;
+                        d.lon = d.lon;
+                        d.col = d.col;
+                        d.farve = d.farve;
+                        d.stroke = d.stroke;
+                        d.r = d.r;
+                        d.no = d.no;
+                        d.ratio = d.ratio;
+                    });
+                    // tip
+                    svgA2B.call(tipA2B);           
+
+                    // remove old 
+                    svgA2B.selectAll("circle").remove()
+
+                    //Create circles
+                     svgA2B.selectAll("circle")
+                        .data(data) // prositution as initial
+                        .enter()
+                        .append("circle")
+                        .attr("class", "point")
+                        .attr("cx", function(d) { return projectionA2B([d.lon, d.lat])[0]; })
+                        .attr("cy", function(d) { return projectionA2B([d.lon, d.lat])[1]; })
+                        .attr("r", function(d) { return d.r; })
+                        .style("fill", function(d) { return d.farve; })
+                        .style("stroke", function(d) { return d.stroke; })
+                        .style("stroke-width", 3)
+                        .on('mouseover', tipA2B.show)
+                        .on('mouseout', tipA2B.hide);
+
+                    // Update title
+                    svgA2B.select("text.title")
+                        .transition()
+                        .duration(5)
+                        .text("K = 3");
+                });
+            });
+
+            // toggle between data
+            d3.select("clickK4").on("click", function() {
+                d3.json("https://titanbender.github.io/data/assignment2DJSON_K4.json", function(error, data) {
+                    data.forEach(function(d) {
+                        d.lat = d.lat;
+                        d.lon = d.lon;
+                        d.col = d.col;
+                        d.farve = d.farve;
+                        d.stroke = d.stroke;
+                        d.r = d.r;
+                        d.no = d.no;
+                        d.ratio = d.ratio;
+                    });
+                    // tip
+                    svgA2B.call(tipA2B);           
+
+                    // remove old 
+                    svgA2B.selectAll("circle").remove()
+
+                    //Create circles
+                     svgA2B.selectAll("circle")
+                        .data(data) // prositution as initial
+                        .enter()
+                        .append("circle")
+                        .attr("class", "point")
+                        .attr("cx", function(d) { return projectionA2B([d.lon, d.lat])[0]; })
+                        .attr("cy", function(d) { return projectionA2B([d.lon, d.lat])[1]; })
+                        .attr("r", function(d) { return d.r; })
+                        .style("fill", function(d) { return d.farve; })
+                        .style("stroke", function(d) { return d.stroke; })
+                        .style("stroke-width", 3)
+                        .on('mouseover', tipA2B.show)
+                        .on('mouseout', tipA2B.hide);
+
+                    // Update title
+                    svgA2B.select("text.title")
+                        .transition()
+                        .duration(5)
+                        .text("K = 4");
+                });
+            });
+
+            // toggle between data
+            d3.select("clickK5").on("click", function() {
+                d3.json("https://titanbender.github.io/data/assignment2DJSON_K5.json", function(error, data) {
+                    data.forEach(function(d) {
+                        d.lat = d.lat;
+                        d.lon = d.lon;
+                        d.col = d.col;
+                        d.farve = d.farve;
+                        d.stroke = d.stroke;
+                        d.r = d.r;
+                        d.no = d.no;
+                        d.ratio = d.ratio;
+                    });
+                    // tip
+                    svgA2B.call(tipA2B);           
+
+                    // remove old 
+                    svgA2B.selectAll("circle").remove()
+
+                    //Create circles
+                     svgA2B.selectAll("circle")
+                        .data(data) // prositution as initial
+                        .enter()
+                        .append("circle")
+                        .attr("class", "point")
+                        .attr("cx", function(d) { return projectionA2B([d.lon, d.lat])[0]; })
+                        .attr("cy", function(d) { return projectionA2B([d.lon, d.lat])[1]; })
+                        .attr("r", function(d) { return d.r; })
+                        .style("fill", function(d) { return d.farve; })
+                        .style("stroke", function(d) { return d.stroke; })
+                        .style("stroke-width", 3)
+                        .on('mouseover', tipA2B.show)
+                        .on('mouseout', tipA2B.hide);
+
+                    // Update title
+                    svgA2B.select("text.title")
+                        .transition()
+                        .duration(5)
+                        .text("K = 5");
+                });
+            });
+
+            // toggle between data
+            d3.select("clickK6").on("click", function() {
+                d3.json("https://titanbender.github.io/data/assignment2DJSON_K6.json", function(error, data) {
+                    data.forEach(function(d) {
+                        d.lat = d.lat;
+                        d.lon = d.lon;
+                        d.col = d.col;
+                        d.farve = d.farve;
+                        d.stroke = d.stroke;
+                        d.r = d.r;
+                        d.no = d.no;
+                        d.ratio = d.ratio;
+                    });
+                    // tip
+                    svgA2B.call(tipA2B);           
+
+                    // remove old 
+                    svgA2B.selectAll("circle").remove()
+
+                    //Create circles
+                     svgA2B.selectAll("circle")
+                        .data(data) // prositution as initial
+                        .enter()
+                        .append("circle")
+                        .attr("class", "point")
+                        .attr("cx", function(d) { return projectionA2B([d.lon, d.lat])[0]; })
+                        .attr("cy", function(d) { return projectionA2B([d.lon, d.lat])[1]; })
+                        .attr("r", function(d) { return d.r; })
+                        .style("fill", function(d) { return d.farve; })
+                        .style("stroke", function(d) { return d.stroke; })
+                        .style("stroke-width", 3)
+                        .on('mouseover', tipA2B.show)
+                        .on('mouseout', tipA2B.hide);
+
+                    // Update title
+                    svgA2B.select("text.title")
+                        .transition()
+                        .duration(5)
+                        .text("K = 6");
+                });
+            });
+
+// bla bla bla
+
+            </script>
+
+    </body>
+</html>
