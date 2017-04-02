@@ -3,12 +3,15 @@ Used for Social Data and Visualization 2017, DTU
 
 ## Final Project
 
-* [link to video](https://titanbender.github.io) 
-* [link to visualizations](https://s160159.github.io) 
-* [link to Jupyter NB](http://nbviewer.jupyter.org/url/titanbender.github.io/Final.ipynb)
+* [link to video](https://titanbender.github.io) TODO change 
+* [link to d3 home page](https://titanbender.github.io) TODO change 
+* [link to Jupyter NB](http://nbviewer.jupyter.org/url/titanbender.github.io/Final.ipynb) TODO change 
 
-## Structure
+## Structure inside the git repo
 
-Inside the data folder is our JSON files for the final assignment.
-The Index.html file includes our D3 visualizations. This file can be viewed here https://titanbender.github.io/.
-Finally,the ipynb file is the python script used to filter and prepare our JSON data.
+- data contains the json files for the final assignment
+- css:
+- fonts:
+- js:
+- index.html file includes our D3 visualizations and home page structure. It is possible to view the home page on following [link to d3 home page](https://titanbender.github.io).
+- Final_project.ipynb file is the python script which is used to filter and prepare our JSON data for the story telling.
