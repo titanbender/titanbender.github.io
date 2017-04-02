@@ -34,16 +34,8 @@ d3.json("https://titanbender.github.io/data/nyc.geojson", function(nyc_map) {
         .attr("stroke-width", 0.25)
         .style("stroke","black");
 
-
-
-
-
-
-    d3.json("data/all.json", function(data) {
+    d3.json("https://titanbender.github.io/data/geo_plot_2013.json", function(data) {
         //Create circles
-        
-        
-        
         // var data = [{'district': 'BROOKLYN', 'hour': 14, 'lon': -73.957523800000004, 'r': 1, 'lat': 40.580222499999998, 'class': 'all'}, {'district': 'BROOKLYN', 'hour': 15, 'lon': -73.963056600000002, 'r': 1, 'lat': 40.606975200000001, 'class': 'all'}, {'district': 'BROOKLYN', 'hour': 12, 'lon': -74.007564799999997, 'r': 1, 'lat': 40.654430100000006, 'class': 'all'}, {'district': 'QUEENS', 'hour': 0, 'lon': -73.847002500000002, 'r': 1, 'lat': 40.698824200000004, 'class': 'all'}, {'district': 'QUEENS', 'hour': 4, 'lon': -73.86649109999999, 'r': 1, 'lat': 40.747614599999999, 'class': 'all'}, {'district': 'BROOKLYN', 'hour': 11, 'lon': -73.911503699999997, 'r': 1, 'lat': 40.657382599999998, 'class': 'all'}, {'district': 'BROOKLYN', 'hour': 11, 'lon': -73.911503699999997, 'r': 1, 'lat': 40.657382599999998, 'class': 'all'}, {'district': 'QUEENS', 'hour': 7, 'lon': -73.844640200000001, 'r': 1, 'lat': 40.680296500000004, 'class': 'all'}, {'district': 'BROOKLYN', 'hour': 16, 'lon': -73.874158899999998, 'r': 1, 'lat': 40.677689399999998, 'class': 'all'}, {'district': 'BROOKLYN', 'hour': 4, 'lon': -73.898348400000003, 'r': 1, 'lat': 40.6173115, 'class': 'all'}];
 
                     console.log(data);
@@ -56,10 +48,10 @@ d3.json("https://titanbender.github.io/data/nyc.geojson", function(nyc_map) {
             .attr("class", function(d) { return d.class; })
             .attr("cx", function (d) {return projection([d.lon, d.lat])[0] ;})
             .attr("cy", function (d) {return projection([d.lon, d.lat])[1] ;})
-            .attr("r", function (d) {return d.r * 2 ;})
-            .style("fill", "red")
-            .style("stroke", "black")
-            .style("stroke-width", 1)
+            .attr("r", function (d) {return d.r * 0.5 ;})
+            .style("fill", rgba(255,255,255, 0.25))
+            // .style("stroke", "black")
+            // .style("stroke-width", 1)
             ;
     });    
 });
