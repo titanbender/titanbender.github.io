@@ -45,7 +45,7 @@ d3.json("https://titanbender.github.io/data/nyc.geojson", function(nyc_map) {
             .data(data) // prositution as initial
             .enter()
             .append("circle")
-            .attr("class", function(d) { return d.class; })
+            // .attr("class", function(d) { return d.class; })
             .attr("cx", function (d) {return projection([d.lon, d.lat])[0] ;})
             .attr("cy", function (d) {return projection([d.lon, d.lat])[1] ;})
             .attr("r", function (d) {return d.r * 0.5 ;})
