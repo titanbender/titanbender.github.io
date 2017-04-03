@@ -11,15 +11,9 @@
     <link href="d3/tip.js">
     <!-- <script src="titanbender.github.io/d3/tip.js"></script> -->
 
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/scrolling-nav.css" rel="stylesheet">
-
+    <link href="css/bootstrap.min.css" rel="stylesheet"> <!-- Bootstrap Core CSS -->
+    <link href="css/scrolling-nav.css" rel="stylesheet"> <!-- Custom CSS -->
 </head>
-
-<!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
@@ -31,8 +25,7 @@
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                    <!-- <span class="icon-bar"></span> -->
-                    <!-- <span class="icon-bar"></span> -->
+                    <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">DTU Social Data and Visualization</a>
             </div>
@@ -56,26 +49,13 @@
     <section id="intro" class="intro-section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <h1>Project Assignment</h1>
-                    <!-- <p><strong>Usage Instructions:</strong> Make sure to include the <code>scrolling-nav.js</code>, <code>jquery.easing.min.js</code>, and <code>scrolling-nav.css</code> files. To make a link smooth scroll to another section on the page, give the link the <code>.page-scroll</code> class and set the link target to a corresponding ID on the page.</p>
-                    <a class="btn btn-default page-scroll" href="#about">Click Me to Scroll Down!</a> -->
-                </div>
-
-
-                <!-- javascript for intro plot -->
-                <div class="col-lg-12">
+                <div class="col-lg-12" id="area_intro">
+                    <h1 class="text-justify">Project Assignment</h1>
+                    <p class="text-justify">
+                    Missing text..
+                    <!-- javascript for intro plot -->
                     <script src="d3/intro_plot.js"></script>
                 </div>
-
-
-
-
-
-
-
-
-
             </div>
         </div>
     </section>
@@ -84,24 +64,26 @@
     <section id="about" class="about-section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <h2> Introduction to NYPD Motor Vehicle Collisions </h2>
-                    <p>
+                <div class="col-lg-12" id="area_about">
+                    <h2 class="text-justify"> Introduction to NYPD Motor Vehicle Collisions </h2>
+                    <p class="text-justify">
                     The NYPD Motor Vehicle Collisions (NYPD MVC) has been downloaded from the following source: <a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Motor-Vehicle-Collisions/h9gi-nx95/data">NYPD MVC Data</a> 
                     <br> It is possible to download the used data set in this project assignment here: <a href="https://drive.google.com/file/d/0B42GL3RvQcSCWmNSMUxXazFrajQ/view?usp=sharing"> raw_data.csv</a> 
+                    </p>
                     <br>
-
-                    <h3> Selections of Filters </h3>
+ 
+                    <h3 class="text-justify"> Selections of Filters </h3>
+                    <p class="text-justify">
                     Further the data has been cleaned for analysis. The crime data from the  visualizations include the following filters:
-                    <ul style="list-style-type:circle">
+                    <ul class="text-justify" style="list-style-type:circle">
                         <li>Date: 12/31/2016 and 01/01/2013 </li>
                         <li>Categories: Prostitution and Vehicle Theft </li>
                     </ul>
                     </p>
                     <br>
-                    <h2> Descriptive Stats of the NYPD MVC </h2>
-                    <p>
-                    <ul style="list-style-type:circle">
+                    <h2 class="text-justify"> Descriptive Stats of the NYPD MVC </h2>
+                    <p class="text-justify">
+                    <ul class="text-justify" style="list-style-type:circle">
                         <li>Total number of crimes from the mentioned period: 22,876</li>
                         <li>Number of Prostitution crimes from the mentioned period: 1,463</li>
                         <li>Number of Vehicle Theft from the mentioned period: 21,413</li>
@@ -122,13 +104,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2>Video Presentation of the Data</h2>
-                    <div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/FoEdy_Vy_V4?ecver=2" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe></div>
+                    <h2 class="text-justify">Video Presentation of the Data</h2>
+                    <div style="position:relative;height:0;padding-bottom:56.25%">
+                    <iframe src="https://www.youtube.com/embed/FoEdy_Vy_V4?ecver=2" width="640" height="360" frameborder="0" style="position:absolute;width:80%; height:80%;left: 0" allowfullscreen></iframe>
+                    </div>
+                
+                    <p class="text-justify">
+                    Please click on this botton to go back to the key numbers of this data set: <br> 
+                    <a class="btn btn-default page-scroll" href="#about">About Data</a>
+                    </p>
                 </div>
-                <p>
-                Please click on this botton to go back to the key numbers of this data set: <br> 
-                <a class="btn btn-default page-scroll" href="#about">About Data</a>
-                </p>
             </div>
         </div>
     </section>
@@ -138,21 +123,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2>Data Stories</h2>
-                    <p>This is the secound part of the final assignemnt and it will available near its deadline... </p>
+                    <h2 class="text-justify">Data Stories</h2>
+                    <p class="text-justify">This is the secound part of the final assignemnt and it will available near its deadline... 
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-    <!-- Scrolling Nav JavaScript -->
-    <script src="js/jquery.easing.min.js"></script>
-    <script src="js/scrolling-nav.js"></script>
-
+    
+    <script src="js/jquery.js"></script> <!-- jQuery -->
+    <script src="js/bootstrap.min.js"></script> <!-- Bootstrap Core JavaScript -->
+    <script src="js/jquery.easing.min.js"></script> <!-- Scrolling Nav JavaScript -->
+    <script src="js/scrolling-nav.js"></script> <!-- Scrolling Nav JavaScript -->
 </body>
-
 </html>
