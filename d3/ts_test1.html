@@ -1,0 +1,112 @@
+
+<!-- link https://bl.ocks.org/mbostock/4015254 -->
+
+<!DOCTYPE html>
+<svg width="960" height="500"></svg>
+<!-- <script src="https://d3js.org/d3.v4.min.js"></script> -->
+<script src="https://d3js.org/d3.v4.js"></script>
+<script>
+
+var svg = d3.select("svg"),
+    margin = {top: 20, right: 20, bottom: 30, left: 60},
+    width = +svg.attr("width") - margin.left - margin.right,
+    height = +svg.attr("height") - margin.top - margin.bottom,
+    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var parseDate = d3.timeParse("%m/%d/%Y"),
+    formatDate = d3.timeFormat("%Y");
+
+var x = d3.scaleTime()
+    .domain([new Date(2013, 0, 1), new Date(2017, 0, 1)])
+    .range([0, width]);
+
+var y = d3.scaleLinear()
+    .range([height, 0]);
+
+var xAxis = d3.axisBottom(x);
+
+var yAxis = d3.axisLeft(y);
+
+var area = d3.area()
+    .curve(d3.curveStepAfter)
+    .y0(y(0))
+    .y1(function(d) { return y(d.value); });
+
+var areaPath = g.append("path")
+    .attr("clip-path", "url(#clip)")
+    .attr("fill", "steelblue");
+
+var yGroup = g.append("g");
+
+var xGroup = g.append("g")
+    .attr("transform", "translate(0," + height + ")");
+
+var zoom = d3.zoom()
+    .scaleExtent([1 / 4, 8])
+    .translateExtent([[-width, -Infinity], [2 * width, Infinity]])
+    .on("zoom", zoomed);
+
+var zoomRect = svg.append("rect")
+    .attr("width", width)
+    .attr("height", height)
+    .attr("fill", "none")
+    .attr("pointer-events", "all")
+    .call(zoom);
+
+g.append("clipPath")
+    .attr("id", "clip")
+  .append("rect")
+    .attr("width", width)
+    .attr("height", height);
+
+
+// d3.json("https://titanbender.github.io/data/geo_plot_2013.json", function(data) {
+//         //Create circles
+//         // var data = [{'district': 'BROOKLYN', 'hour': 14, 'lon': -73.957523800000004, 'r': 1, 'lat': 40.580222499999998, 'class': 'all'}, {'district': 'BROOKLYN', 'hour': 15, 'lon': -73.963056600000002, 'r': 1, 'lat': 40.606975200000001, 'class': 'all'}, {'district': 'BROOKLYN', 'hour': 12, 'lon': -74.007564799999997, 'r': 1, 'lat': 40.654430100000006, 'class': 'all'}, {'district': 'QUEENS', 'hour': 0, 'lon': -73.847002500000002, 'r': 1, 'lat': 40.698824200000004, 'class': 'all'}, {'district': 'QUEENS', 'hour': 4, 'lon': -73.86649109999999, 'r': 1, 'lat': 40.747614599999999, 'class': 'all'}, {'district': 'BROOKLYN', 'hour': 11, 'lon': -73.911503699999997, 'r': 1, 'lat': 40.657382599999998, 'class': 'all'}, {'district': 'BROOKLYN', 'hour': 11, 'lon': -73.911503699999997, 'r': 1, 'lat': 40.657382599999998, 'class': 'all'}, {'district': 'QUEENS', 'hour': 7, 'lon': -73.844640200000001, 'r': 1, 'lat': 40.680296500000004, 'class': 'all'}, {'district': 'BROOKLYN', 'hour': 16, 'lon': -73.874158899999998, 'r': 1, 'lat': 40.677689399999998, 'class': 'all'}, {'district': 'BROOKLYN', 'hour': 4, 'lon': -73.898348400000003, 'r': 1, 'lat': 40.6173115, 'class': 'all'}];
+
+//         console.log(data);
+
+
+d3.json("../data/ts_all.json", function(error, data) {
+  data.forEach(function(d) {
+      d.date = parseDate(d.date);
+      d.value = d.value;
+  });
+
+
+
+// d3.json("../data/ts_all.json", 
+// function(d) {
+//   d.date = parseDate(d.date);
+//   // d.value = d.value;
+//   d.value = +d.value;
+  
+// // console.log(d)
+//   return d;
+// }, 
+// function(error, data) {
+//   if (error) throw error;
+
+
+console.log(data)
+
+  var xExtent = d3.extent(data, function(d) { return d.date; });
+  
+  zoom.translateExtent([[x(xExtent[0]), -Infinity], [x(xExtent[1]), Infinity]])
+  
+  y.domain([0, d3.max(data, function(d) { return d.value; })]);
+  
+  yGroup.call(yAxis).select(".domain").remove();
+  
+  areaPath.datum(data);
+  
+  zoomRect.call(zoom.transform, d3.zoomIdentity);
+});
+
+function zoomed() {
+  var xz = d3.event.transform.rescaleX(x);
+  xGroup.call(xAxis.scale(xz));
+  areaPath.attr("d", area.x(function(d) { return xz(d.date); }));
+}
+
+</script>
