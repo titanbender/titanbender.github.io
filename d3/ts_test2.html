@@ -77,15 +77,14 @@ var context = svg.append("g")
     .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
 
 
-d3.json("../data/ts_all.json", function(error, data) {
+d3.json("https://titanbender.github.io/data/ts_all.json", function(error, data) {
   data.forEach(function(d) {
       d.date = parseDate(d.date);
       d.value = d.value;
   });
 
-// d3.csv("sp500.csv", type, function(error, data) {
   if (error) throw error;
-  console.log(data)
+  
   x.domain(d3.extent(data, function(d) { return d.date; }));
   y.domain([0, d3.max(data, function(d) { return d.value; })]);
   x2.domain(x.domain());
