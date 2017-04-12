@@ -69,7 +69,7 @@ var area = d3.area()
 
 var area2 = d3.area()
     .curve(d3.curveMonotoneX)
-    .x(function(d) { return x2(d.tot_acc); })
+    .x(function(d) { return x2(d.date); })
     .y0(height2)
     .y1(function(d) { return y2(d.tot_acc); });
 
@@ -89,13 +89,11 @@ var context = svg.append("g")
 
 
 // d3.json("https://titanbender.github.io/data/ts_all.json", function(error, data) {
-  d3.json("../data/ts_all.json", function(error, data) {
+d3.json("../data/ts_all.json", function(error, data) {
   data.forEach(function(d) {
       d.date = parseDate(d.date);
-      d.tot_acc = d.tot_acc;
+      //d.value = d.value;
   });
-
-  console.
 
   if (error) throw error;
   
