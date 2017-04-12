@@ -65,13 +65,13 @@ var area = d3.area()
     .curve(d3.curveMonotoneX)
     .x(function(d) { return x(d.date); })
     .y0(height)
-    .y1(function(d) { return y(d.value); });
+    .y1(function(d) { return y(d.tot_acc); });
 
 var area2 = d3.area()
     .curve(d3.curveMonotoneX)
-    .x(function(d) { return x2(d.date); })
+    .x(function(d) { return x2(d.tot_acc); })
     .y0(height2)
-    .y1(function(d) { return y2(d.value); });
+    .y1(function(d) { return y2(d.tot_acc); });
 
 svg.append("defs").append("clipPath")
     .attr("id", "clip")
@@ -88,16 +88,19 @@ var context = svg.append("g")
     .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
 
 
-d3.json("https://titanbender.github.io/data/ts_all.json", function(error, data) {
+// d3.json("https://titanbender.github.io/data/ts_all.json", function(error, data) {
+  d3.json("../data/ts_all.json", function(error, data) {
   data.forEach(function(d) {
       d.date = parseDate(d.date);
-      d.value = d.value;
+      d.tot_acc = d.tot_acc;
   });
+
+  console.
 
   if (error) throw error;
   
   x.domain(d3.extent(data, function(d) { return d.date; }));
-  y.domain([0, d3.max(data, function(d) { return d.value; })]);
+  y.domain([0, d3.max(data, function(d) { return d.tot_acc; })]);
   x2.domain(x.domain());
   y2.domain(y.domain());
 
@@ -158,10 +161,5 @@ function zoomed() {
   context.select(".brush").call(brush.move, x.range().map(t.invertX, t));
 }
 
-function type(d) {
-  d.date = parseDate(d.date);
-  // d.value = +d.value;
-  return d;
-}
 
 </script>
