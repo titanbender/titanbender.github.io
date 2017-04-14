@@ -269,7 +269,7 @@
             
             
             // load the data 2014 INITIAL
-            d3.json("https://titanbender.github.io/data/assignment2BJSON_2014.json", function(error, data) {
+            d3.json("/data/assignment2BJSON_2014.json", function(error, data) {
                     data.forEach(function(d) {
                         d.X = d.X;
                         d.Y = d.Y;
@@ -344,7 +344,7 @@
             d3.select("click2014")
                 .on("click", function() {
                     //New values for dataset
-                    d3.json("https://titanbender.github.io/data/assignment2BJSON_2014.json", function(error, data) {
+                    d3.json("data/assignment2BJSON_2014.json", function(error, data) {
                         data.forEach(function(d) {
                             d.X = d.X;
                             d.Y = d.Y;
@@ -380,7 +380,7 @@
             d3.select("click2015")
                 .on("click", function() {
                     //New values for dataset
-                    d3.json("https://titanbender.github.io/data/assignment2BJSON_2015.json", function(error, data) {
+                    d3.json("data/assignment2BJSON_2015.json", function(error, data) {
                         data.forEach(function(d) {
                             d.X = d.X;
                             d.Y = d.Y;
@@ -413,7 +413,7 @@
             d3.select("click2016")
                 .on("click", function() {
                     //New values for dataset
-                    d3.json("https://titanbender.github.io/data/assignment2BJSON_2016.json", function(error, data) {
+                    d3.json("data/assignment2BJSON_2016.json", function(error, data) {
                         data.forEach(function(d) {
                             d.X = d.X;
                             d.Y = d.Y;
