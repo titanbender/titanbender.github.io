@@ -14,5 +14,5 @@ The below three links are essential for the final assignement.
 - fonts folder:
 - js folder:
 - d3 folder: see the [d3 scripts](https://github.com/titanbender/titanbender.github.io)
-- index.html file includes our D3 visualizations and home page structure. It is possible to view the home page on following [link to d3 home page](https://titanbender.github.io)
+- index.html file includes our D3 visualizations and home page structure.
 - Final_project.ipynb file is the python script which is used to filter and prepare our JSON data for the story telling.
