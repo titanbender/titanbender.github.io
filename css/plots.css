@@ -17,6 +17,36 @@ text.title {
   pointer-events: all;
 }
 
+.ts.line.tot {
+  fill: none;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  stroke-width: 0.5px;
+  opacity: 0.5;
+}
+
+.ts.line.kill {
+  fill: none;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  stroke-width: 0.5px;
+  opacity: 0.5;
+}
+
+.ts.line.inj {
+  fill: none;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  stroke-width: 0.5px;
+  opacity: 0.5;
+}
+
+.zoom {
+  cursor: move;
+  fill: none;
+  pointer-events: all;
+}
+
 .axis {
     font-size: 10pt;
     font-family: sans-serif;
