@@ -1,4 +1,4 @@
-// use <script src="https://d3js.org/d3.v3.js"></script> 
+// use <script src="https://d3js.org/d3.v4.js"></script> 
 
 // Width and height of the canvas
 var w = 800, h = 600;
@@ -9,17 +9,17 @@ var width = w - margin.left - margin.right;
 var height = h - margin.top - margin.bottom;
 
 // Set the ranges
-var xScale = d3.scale.ordinal().rangeRoundBands([10, width], .05);
-var yScale = d3.scale.linear().range([height, 0]);
+var xScale = d3.scaleBand().rangeRound([10, width]).padding(0.05);
+var yScale = d3.scaleLinear().range([height, 0]);
 
 // Define the axis
-var xAxis = d3.svg.axis()
-            .scale(xScale)
-            .orient("bottom");
+var xAxis = d3.axisBottom(xScale);
 
-var yAxis = d3.svg.axis()
-            .scale(yScale)
-            .orient("left");
+var yAxis = d3.axisLeft(yScale);
+
+
+
+
 
 //Create SVG element
 var svg = d3.select("#area_intro") 
@@ -30,17 +30,18 @@ var svg = d3.select("#area_intro")
             .attr("transform",  "translate(" + margin.left + "," + margin.top + ")");
 // tip
 var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0])
-    .html(function(d) { return "Frequency: " + d.value; });
+        .html(function(d) { return "Frequency: " + d.value; });
+svg.call(tip);  
+
+
 
 // load inital NYC data
 d3.json("data/bar_dict_NYC.json", function(error, data) {
-    svg.call(tip);           
+             
     // scale the range of the data
     xScale.domain(data.map(function(d) { return d.key; }));
     yMax = d3.max(data, function(d) { return d.value; });
     yScale.domain([0, yMax]);
-
-console.log(data);
 
     //Create bars
      svg.selectAll("rect")
@@ -48,9 +49,11 @@ console.log(data);
         .enter()
         .append("rect")
         .attr("x", function(d) { return xScale(d.key); })
-        .attr("width", xScale.rangeBand())
+        .attr("width", xScale.bandwidth())
         .attr("y", function(d) { return yScale(d.value); })
         .attr("height", function(d) { return height - yScale(d.value); })
+        .style("fill", "teal")
+        .style("hover", "black")
         .on('mouseover', tip.show)
         .on('mouseout', tip.hide)
         ;

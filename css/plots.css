@@ -4,17 +4,11 @@ text.title {
     font-family: sans-serif;
 }
 
-
-.axis path,
-.axis line {
-    fill: none;
-    stroke: #000;
-    shape-rendering: crispEdges;
-}
-
 .area {
-  fill: steelblue;
+  fill: none;
   clip-path: url(#clip);
+  stroke: steelblue;
+  stroke-width: 0.5px;
 }
 
 .zoom {
@@ -23,14 +17,6 @@ text.title {
   pointer-events: all;
 }
 
-
-
-rect{
-    fill: teal;
-}
-rect:hover{
-    fill: steelblue;
-}
 .axis {
     font-size: 10pt;
     font-family: sans-serif;

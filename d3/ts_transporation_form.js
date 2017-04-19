@@ -1,14 +1,17 @@
-var widthT=800, heightT=600;
+// link https://bl.ocks.org/mbostock/34f08d5e11952a80609169b7917d4172
 
-var svg = d3.select("svg"),
-    margin = {top: 20, right: 20, bottom: 110, left: 40},
+var widthT=800, heightT=500;
+
+var margin = {top: 20, right: 20, bottom: 110, left: 40},
     margin2 = {top: 430, right: 20, bottom: 30, left: 40},
-    // width = +svg.attr("width") - margin.left - margin.right,
-    // height = +svg.attr("height") - margin.top - margin.bottom,
-    // height2 = +svg.attr("height") - margin2.top - margin2.bottom;
     width = widthT - margin.left - margin.right,
     height = heightT - margin.top - margin.bottom,
-    height2 = heightT - margin2.top - margin2.bottom;
+    height2 = heightT - margin2.top - margin2.bottom,
+    
+    svg = d3.select("#area_intro") 
+            .append("svg")
+            .attr("width", widthT + margin.left + margin.right)
+            .attr("height", heightT + margin.top + margin.bottom);
 
 // var parseDate = d3.timeParse("%b %Y");
 var parseDate = d3.timeParse("%m/%d/%Y");
@@ -34,20 +37,23 @@ var zoom = d3.zoom()
     .on("zoom", zoomed);
 
 var area = d3.area()
-    .curve(d3.curveMonotoneX)
+    // .curve(d3.curveMonotoneX)
+    .curve(d3.curveBasis)
     .x(function(d) { return x(d.date); })
     .y0(height)
     .y1(function(d) { return y(d.tot_acc); });
 
 var area2 = d3.area()
-    .curve(d3.curveMonotoneX)
+    // .curve(d3.curveMonotoneX)
+    .curve(d3.curveBasis)
     .x(function(d) { return x2(d.date); })
     .y0(height2)
     .y1(function(d) { return y2(d.tot_acc); });
 
 svg.append("defs").append("clipPath")
     .attr("id", "clip")
-  .append("rect")
+    .append("rect")
+    .attr("class", "ts rect")
     .attr("width", width)
     .attr("height", height);
 
@@ -60,15 +66,11 @@ var context = svg.append("g")
     .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
 
 
-// d3.json("https://titanbender.github.io/data/ts_all.json", function(error, data) {
 d3.json("data/ts_all.json", function(error, data) {
     data.forEach(function(d) {
       d.date = parseDate(d.date);
-      //d.value = d.value;
     });
 
-
-    console.log(data);
     if (error) throw error;
 
     x.domain(d3.extent(data, function(d) { return d.date; }));
@@ -76,18 +78,24 @@ d3.json("data/ts_all.json", function(error, data) {
     x2.domain(x.domain());
     y2.domain(y.domain());
 
+    // z.domain(cities.map(function(c) { return c.id; }));
+
+
     focus.append("path")
       .datum(data)
       .attr("class", "area")
-      .attr("d", area);
+      // .attr("d", area);
+      .attr("d", function(d) { return area(d.tot_acc); })
+      // .style("stroke", function(d) { return z(d.id); })
+      ;
 
     focus.append("g")
-      .attr("class", "axis axis--x")
+      .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis);
 
     focus.append("g")
-      .attr("class", "axis axis--y")
+      .attr("class", "y axis")
       .call(yAxis);
 
     context.append("path")
@@ -96,7 +104,7 @@ d3.json("data/ts_all.json", function(error, data) {
       .attr("d", area2);
 
     context.append("g")
-      .attr("class", "axis axis--x")
+      .attr("class", "x axis")
       .attr("transform", "translate(0," + height2 + ")")
       .call(xAxis2);
 
@@ -118,7 +126,7 @@ function brushed() {
   var s = d3.event.selection || x2.range();
   x.domain(s.map(x2.invert, x2));
   focus.select(".area").attr("d", area);
-  focus.select(".axis--x").call(xAxis);
+  focus.select(".x.axis").call(xAxis);
   svg.select(".zoom").call(zoom.transform, d3.zoomIdentity
       .scale(width / (s[1] - s[0]))
       .translate(-s[0], 0));
@@ -129,6 +137,6 @@ function zoomed() {
   var t = d3.event.transform;
   x.domain(t.rescaleX(x2).domain());
   focus.select(".area").attr("d", area);
-  focus.select(".axis--x").call(xAxis);
+  focus.select(".x.axis").call(xAxis);
   context.select(".brush").call(brush.move, x.range().map(t.invertX, t));
 }
