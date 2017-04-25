@@ -7,8 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Social Data and Visualization DTU: Project Assignment</title>
-    <script src="https://d3js.org/d3.v3.js"></script> 
-    <!-- <script src="https://d3js.org/d3.v4.min.js"></script> <!-- For TS --> -->
+    <script src="https://d3js.org/d3.v4.js"></script> 
     <script src="d3/tip.js"></script> 
 
     
@@ -27,8 +26,6 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">DTU Social Data and Visualization</a>
             </div>
@@ -40,7 +37,16 @@
                     <li class="hidden"> <a class="page-scroll" href="#page-top"></a> </li>
                     <li> <a class="page-scroll" href="#about">About Data</a> </li>
                     <li> <a class="page-scroll" href="#video">Video</a> </li>
+                    <li> <a class="page-scroll" href="#motivation">Our Motivation</a> </li>
                     <li> <a class="page-scroll" href="#stories">Stories</a> </li>
+                    <li> <a class="page-scroll" href="#bar_stats">Bars Statistics</a> </li>
+                    <li> <a class="page-scroll" href="#desc_stats">Descriptive Statistics</a> </li>
+                    <li> <a class="page-scroll" href="#TimeSeries">Time Series</a> </li>
+                    <li> <a class="page-scroll" href="#KNN">KNN</a> </li>
+                    <li> <a class="page-scroll" href="#DTREE">Decision Tree</a> </li>
+                    <li> <a class="page-scroll" href="#wather_cor">Weather Correlation</a> </li>
+
+                    
                     
                 </ul>
             </div>
@@ -58,7 +64,7 @@
                     <p class="text-justify">
                     Missing text..
                     <!-- javascript for intro plot -->
-                    <!-- <script src="d3/intro_plot.js"></script> --> <!-- todo -->
+                    <!-- <script src="d3/intro_plot.js"></script> <!-- todo --> -->
                 </div>
             </div>
         </div>
@@ -69,39 +75,43 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12" id="area_about">
-                    <h2 class="text-justify"> Introduction to NYPD Motor Vehicle Collisions </h2>
-                    <p class="text-justify">
+                    <h2> Introduction to NYPD Motor Vehicle Collisions </h2>
+                    <p>
                     The NYPD Motor Vehicle Collisions (NYPD MVC) has been downloaded from the following source: <a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Motor-Vehicle-Collisions/h9gi-nx95/data">NYPD MVC Data</a>
                     <br> It is possible to download the used data set in this project assignment here: <a href="https://drive.google.com/file/d/0B42GL3RvQcSCWmNSMUxXazFrajQ/view?usp=sharing"> raw_data.csv</a>
                     </p>
                     <br>
 
-                    <h3 class="text-justify"> Selections of Filters </h3>
-                    <p class="text-justify">
+                    <h3> Selections of Filters </h3>
+                    <p>
                     Further the data has been cleaned for analysis. The crime data from the  visualizations include the following filters:
-                    <ul class="text-justify" style="list-style-type:circle">
+                    <ul style="list-style-type:circle">
                         <li>Date: 12/31/2016 and 01/01/2013 </li>
                         <li>Categories: Prostitution and Vehicle Theft </li>
                     </ul>
                     </p>
                     <br>
-                    <h2 class="text-justify"> Descriptive Stats of the NYPD MVC </h2>
-                    <p class="text-justify">
-                    <ul class="text-justify" style="list-style-type:circle">
-                        <li>Total number of crimes from the mentioned period: 22,876</li>
-                        <li>Number of Prostitution crimes from the mentioned period: 1,463</li>
-                        <li>Number of Vehicle Theft from the mentioned period: 21,413</li>
-                    </ul>
+                    <h3> The Dimensionality of the NYPD MVC Data set </h3>
+                    <p>
+                    <table class="tg">
+                        <tr>
+                            <th class="tg-031e">Features</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td class="tg-031e">Number of ..</td>
+                            <td>88888888</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-031e">Fatal Accidents</td>
+                            <td>3d</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-031e">Non Fatal Accidents</td>
+                            <td>3d</td>
+                        </tr>
+                    </table>
                     </p>
-                    <p class="text-justify">
-                    Please click on this botton to explore stories from the data set:
-                    <a class="btn btn-default page-scroll" href="#stories">Stories</a>
-                    </p>
-
-
-
-
-
                 </div>
             </div>
         </div>
@@ -128,19 +138,179 @@
         </div>
     </section>
 
+    
     <!-- Stories Sections -->
-    <section id="stories" class="contact-section">
+    <section id="motivation" class="stoires-section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="text-justify">Data Stories</h2>
-                    <p class="text-justify">This is the secound part of the final assignemnt and it will available near its deadline...
+                    <h2> Our Motivation</h2>
+                    <p> I have chosen to look into..... 
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
+
+    <!-- Stories Sections -->
+    <section id="stories" class="stoires-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2> Data Stories</h2>
+                    <p> I have chosen to look into..... <br>
+                    Please click on this botton to explore stories from the data set:
+                    <ul style="list-style-type:circle">
+                        <li>Descriptive Statistics: <a class="page-scroll" href="#desc_stats">Descriptive Statistics</a></li>
+                        <li>Time Serie Plots: <a class="page-scroll" href="#TimeSeries">Time Series</a></li>
+                        <li>K-Nearest Neighbors: <a class="page-scroll" href="#KNN">KNN</a></li>
+                        <li>Decision Tree: <a class="page-scroll" href="#DTREE">Decision Tree</a></li>
+                        <li>Weather Correlation: <a class="page-scroll" href="#wather_cor">Weather Correlation</a></li>
+                    </ul>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="desc_stats" class="stoires-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3> Descriptive Statistics</h3>
+                    <p> mmm</p>
+                </div>
+            </div>
+        </div>
+    </section>
+   
+   <!-- TODO: Text -->
+    <section id="bar_stats" class="stoires-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12" id="area_bar_stats">
+                    <h3> Bars Statistics</h3>
+                    <p>
+                    Missing text..
+                    Select the specific number of clusters you want to explore:
+                    <button> <bar_BRONX> BRONX </bar_BRONX></button> 
+                    <button> <bar_BROOKLYN> BROOKLYN </bar_BROOKLYN></button> 
+                    <button> <bar_STATEN_ISLAND> STATEN ISLAND </bar_STATEN_ISLAND></button> 
+                    <button> <bar_MANHATTAN> MANHATTAN </bar_MANHATTAN></button> 
+                    <button> <bar_QUEENS> QUEENS </bar_QUEENS></button> 
+                    <button> <bar_NYC> NYC </bar_NYC></button> 
+                    </p>
+                    <div align="center">
+                    <script src="d3/des_stats_bar.js"></script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TODO: Text -->
+    <section id="TimeSeries" class="stoires-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12" id="area_TimeSeries">
+                    <h3> Time Serie Plots</h3>
+                    Missing text..
+                    Select the specific number of clusters you want to explore:
+                    <br>
+                    Pedistriants
+                    <br>
+                    <button> <ped_ts_BRONX> BRONX </ped_ts_BRONX></button> 
+                    <button> <ped_ts_BROOKLYN> BROOKLYN </ped_ts_BROOKLYN></button> 
+                    <button> <ped_ts_STATEN_ISLAND> STATEN ISLAND </ped_ts_STATEN_ISLAND></button> 
+                    <button> <ped_ts_MANHATTAN> MANHATTAN </ped_ts_MANHATTAN></button> 
+                    <button> <ped_ts_QUEENS> QUEENS </ped_ts_QUEENS></button> 
+
+                    <br>
+                    Cyclist
+                    <br>
+                    <button> <cyc_ts_BRONX> BRONX </cyc_ts_BRONX></button> 
+                    <button> <cyc_ts_BROOKLYN> BROOKLYN </cyc_ts_BROOKLYN></button> 
+                    <button> <cyc_ts_STATEN_ISLAND> STATEN ISLAND </cyc_ts_STATEN_ISLAND></button> 
+                    <button> <cyc_ts_MANHATTAN> MANHATTAN </cyc_ts_MANHATTAN></button> 
+                    <button> <cyc_ts_QUEENS> QUEENS </cyc_ts_QUEENS></button> 
+
+                    <br>
+                    Motorist
+                    <br>
+                    <button> <mot_ts_BRONX> BRONX </Mot_ts_BRONX></button> 
+                    <button> <mot_ts_BROOKLYN> BROOKLYN </mot_ts_BROOKLYN></button> 
+                    <button> <mot_ts_STATEN_ISLAND> STATEN ISLAND </mot_ts_STATEN_ISLAND></button> 
+                    <button> <mot_ts_MANHATTAN> MANHATTAN </mot_ts_MANHATTAN></button> 
+                    <button> <mot_ts_QUEENS> QUEENS </mot_ts_QUEENS></button> 
+
+                    <!-- <br>
+                    Total
+                    <br>
+                    <button> <tot_ts_BRONX> BRONX </tot_ts_BRONX></button> 
+                    <button> <tot_ts_BROOKLYN> BROOKLYN </tot_ts_BROOKLYN></button> 
+                    <button> <tot_ts_STATEN_ISLAND> STATEN ISLAND </tot_ts_STATEN_ISLAND></button> 
+                    <button> <tot_ts_MANHATTAN> MANHATTAN </tot_ts_MANHATTAN></button> 
+                    <button> <tot_ts_QUEENS> QUEENS </tot_ts_QUEENS></button>  -->
+                    
+
+                    <br>
+                    Complete NYC
+                    <br>
+                    <button> <ts_NYC> NYC </ts_NYC></button> 
+                    </p>
+
+                    <script src="d3/ts_acc.js"></script>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- TODO: Text -->
+    <!-- TODO: All observations -->
+    <section id="KNN" class="stoires-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12" id="area_KNN">
+                    <h3> K-Nearest Neighbors</h3>
+                    <p>
+                    Missing text..
+                    Select the specific number of clusters you want to explore:
+                    <button> <knn_class_0> Non fatal </knn_class_0></button> 
+                    <button> <knn_class_1> Fatal </knn_class_1></button> 
+                    <button> <knn_class_all> Both </knn_class_all></button> 
+                    </p>
+                    <script src="d3/knn_plot.js"></script>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="DTREE" class="stoires-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12" id="area_KNN">
+                    <h3> Decision Tree</h3>
+                    <p> Missing</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="wather_cor" class="stoires-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12" id="area_W_cor">
+                    <h3> Weather Correlation</h3>
+                    <p> MISSING</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Stories Sections -->
 
     <script src="js/jquery.js"></script> <!-- jQuery -->
     <script src="js/bootstrap.min.js"></script> <!-- Bootstrap Core JavaScript -->

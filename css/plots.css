@@ -48,7 +48,7 @@ text.title {
 }
 
 .axis {
-    font-size: 10pt;
+    font-size: 8pt;
     font-family: sans-serif;
 }
 .axis path,
@@ -93,3 +93,34 @@ text.title {
     top: 100%;
     left: 0;
 }
+
+/*Table*/
+.tg {
+  border-collapse:collapse;
+  border-spacing:0;
+}
+.tg td {
+  /*font-family:Arial, sans-serif;
+  font-size:14px;*/
+  padding:5px 5px;
+  border-style:none;
+  border-width:0px;
+  overflow:hidden;
+  word-break:normal;
+}
+.tg th{
+  /*font-family:Arial, sans-serif;
+  font-size:14px;
+  font-weight:normal;*/
+  padding:5px 5px;
+  border-style:none;
+  border-width:0px;
+  overflow:hidden;
+  word-break:normal;
+}
+
+
+
+
+
+

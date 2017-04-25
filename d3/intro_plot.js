@@ -1,4 +1,4 @@
-var width = 800, height = 600;
+var width = 1000, height = 600;
 
 var projection = d3.geoMercator()
                     .scale(55000)

@@ -1,10 +1,10 @@
-var width = 800, height = 600, centered;
+var width = 1000, height = 600, centered;
 
 var projection = d3.geoMercator()
                     .scale(55000)
                     .translate([width / 2, height / 2]);
 
-var svg = d3.select("#area_intro") // todo change
+var svg = d3.select("#area_KNN") // todo change
             .append("svg")
             .attr("width", width)
             .attr("height", height);

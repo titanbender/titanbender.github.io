@@ -1,37 +1,34 @@
-// use <script src="https://d3js.org/d3.v4.js"></script> 
-
 // Width and height of the canvas
-var w = 800, h = 600;
-var trans_dur = 500;
+var w_bar = 1000, h_bar = 600, trans_dur = 500;
 // Plotting margin
-var margin = {top: 20, right: 20, bottom: 87, left: 60};
-var width = w - margin.left - margin.right;
-var height = h - margin.top - margin.bottom;
+var margin_bar = {top: 20, right: 20, bottom: 87, left: 60};
+var width_bar = w_bar - margin_bar.left - margin_bar.right;
+var height_bar = h_bar - margin_bar.top - margin_bar.bottom;
 
 // Set the ranges
-var xScale = d3.scaleBand().rangeRound([10, width]).padding(0.05);
-var yScale = d3.scaleLinear().range([height, 0]);
+var xScale_bar = d3.scaleBand().rangeRound([10, width_bar]).padding(0.05);
+var yScale_bar = d3.scaleLinear().range([height_bar, 0]);
 
 // Define the axis
-var xAxis = d3.axisBottom(xScale);
+var xAxis_bar = d3.axisBottom(xScale_bar);
 
-var yAxis = d3.axisLeft(yScale);
+var yAxis_bar = d3.axisLeft(yScale_bar);
 
 
 
 
 
 //Create SVG element
-var svg = d3.select("#area_intro") 
+var svg_bar = d3.select("#area_bar_stats") 
             .append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
+            .attr("width", width_bar + margin_bar.left + margin_bar.right)
+            .attr("height", height_bar + margin_bar.top + margin_bar.bottom)
             .append("g")
-            .attr("transform",  "translate(" + margin.left + "," + margin.top + ")");
+            .attr("transform",  "translate(" + margin_bar.left + "," + margin_bar.top + ")");
 // tip
-var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0])
+var tip_bar = d3.tip().attr('class', 'd3-tip').offset([-10, 0])
         .html(function(d) { return "Frequency: " + d.value; });
-svg.call(tip);  
+svg_bar.call(tip_bar);  
 
 
 
@@ -39,31 +36,31 @@ svg.call(tip);
 d3.json("data/bar_dict_NYC.json", function(error, data) {
              
     // scale the range of the data
-    xScale.domain(data.map(function(d) { return d.key; }));
-    yMax = d3.max(data, function(d) { return d.value; });
-    yScale.domain([0, yMax]);
+    xScale_bar.domain(data.map(function(d) { return d.key; }));
+    yMax_bar = d3.max(data, function(d) { return d.value; });
+    yScale_bar.domain([0, yMax_bar]);
 
     //Create bars
-     svg.selectAll("rect")
+     svg_bar.selectAll("rect")
         .data(data) // prositution as initial
         .enter()
         .append("rect")
-        .attr("x", function(d) { return xScale(d.key); })
-        .attr("width", xScale.bandwidth())
-        .attr("y", function(d) { return yScale(d.value); })
-        .attr("height", function(d) { return height - yScale(d.value); })
+        .attr("x", function(d) { return xScale_bar(d.key); })
+        .attr("width", xScale_bar.bandwidth())
+        .attr("y", function(d) { return yScale_bar(d.value); })
+        .attr("height", function(d) { return height_bar - yScale_bar(d.value); })
         .style("fill", "teal")
         .style("hover", "black")
-        .on('mouseover', tip.show)
-        .on('mouseout', tip.hide)
+        .on('mouseover', tip_bar.show)
+        .on('mouseout', tip_bar.hide)
         ;
 
     // add axis
     // x-axis
-    svg.append("g")
+    svg_bar.append("g")
         .attr("class", "x axis")
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxis)
+        .attr("transform", "translate(0," + height_bar + ")")
+        .call(xAxis_bar)
         .selectAll("text")
         .style("text-anchor", "end")
         .attr("dx", "-.8em")
@@ -71,13 +68,13 @@ d3.json("data/bar_dict_NYC.json", function(error, data) {
         .attr("transform", "rotate(-90)" );
     
     // y-axis
-    svg.append("g").attr("class", "y axis").call(yAxis);
+    svg_bar.append("g").attr("class", "y axis").call(yAxis_bar);
 
     // add title text   
-    svg.append("text")
+    svg_bar.append("text")
         .attr("class", "title")
-        .attr("x", (width / 2))             
-        .attr("y", 10 - (margin.top / 2))
+        .attr("x", (width_bar / 2))             
+        .attr("y", 10 - (margin_bar.top / 2))
         .text("NYC");
 });
 
@@ -90,22 +87,22 @@ function toggle_bars( key, file, title_b ) {
 	        //New values for dataset
 	        d3.json(file, function(error, data) {
 	        // scale the range of the data
-	        yMax = d3.max(data, function(d) { return d.value; });
-	        yScale.domain([0, yMax]);
+	        yMax_bar = d3.max(data, function(d) { return d.value; });
+	        yScale_bar.domain([0, yMax_bar]);
 
 	        //Create bars
-	         svg.selectAll("rect")
+	         svg_bar.selectAll("rect")
 	            .data(data) // prositution as initial
 	            .transition() 
 	            .delay(function(d, i) { return i * trans_dur/24; })
 	            .duration(trans_dur) 
-	            .attr("y", function(d) { return yScale(d.value); })
-	            .attr("height", function(d) { return height - yScale(d.value); });
+	            .attr("y", function(d) { return yScale_bar(d.value); })
+	            .attr("height", function(d) { return height_bar - yScale_bar(d.value); });
 
 	        // Update title
-	        svg.select("text.title").transition().duration(trans_dur).text(title_b);
+	        svg_bar.select("text.title").transition().duration(trans_dur).text(title_b);
 	        //Update Y axis
-	        svg.select(".y.axis").transition().duration(trans_dur).call(yAxis);
+	        svg_bar.select(".y.axis").transition().duration(trans_dur).call(yAxis_bar);
 	        });
 	    });
 }

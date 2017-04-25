@@ -1,27 +1,33 @@
-var widthT=1000, heightT=500, trans_dur = 500;
+var widthT=800, heightT=500, trans_dur = 500;
 
-var margin_ts = {top: 20, right: 20, bottom: 110, left: 40},
-    width_ts = widthT - margin_ts.left - margin_ts.right,
-    height_ts = heightT - margin_ts.top - margin_ts.bottom;
-
-
-var svg = d3.select("#area_TimeSeries") 
+var margin = {top: 20, right: 20, bottom: 110, left: 40},
+    margin2 = {top: 430, right: 20, bottom: 30, left: 40},
+    width = widthT - margin.left - margin.right,
+    height = heightT - margin.top - margin.bottom,
+    height2 = heightT - margin2.top - margin2.bottom,
+    
+    svg = d3.select("#area_intro") 
             .append("svg")
-            .attr("width", widthT + margin_ts.left + margin_ts.right)
-            .attr("height", heightT + margin_ts.top + margin_ts.bottom);
+            .attr("width", widthT + margin.left + margin.right)
+            .attr("height", heightT + margin.top + margin.bottom);
+    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var g = svg.append("g").attr("transform", "translate(" + margin_ts.left + "," + margin_ts.top + ")");
-
+var svg = d3.select("svg"),
+    margin = {top: 20, right: 20, bottom: 30, left: 50},
+    width = +svg.attr("width") - margin.left - margin.right,
+    height = +svg.attr("height") - margin.top - margin.bottom,
+    g = svg.append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 var parseDate = d3.timeParse("%m/%d/%Y"),
     formatDate = d3.timeFormat("%Y"),
     formatDate_tip = d3.timeFormat("%m/%d/%Y");
 
 var x = d3.scaleTime()
-    .rangeRound([0, width_ts]);
+    .rangeRound([0, width]);
 
 var y = d3.scaleLinear()
-    .rangeRound([height_ts, 0]);
+    .rangeRound([height, 0]);
 
 
 // legends
@@ -37,14 +43,14 @@ var legend = g.append("g")
   .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
 legend.append("rect")
-  .attr("x", width_ts - 19)
+  .attr("x", width - 19)
   .attr("width", 10)
   .attr("height", 1)
   .style('fill', function(d) { return d.col; })
   .style('opacity', 0.5);
   
 legend.append("text")
-  .attr("x", width_ts - 24)
+  .attr("x", width - 24)
   .attr("y", 4)
   .text(function(d) { return d.name; })
 
@@ -52,32 +58,69 @@ legend.append("text")
 var tip_tot = d3.tip()
   .attr('class', 'd3-tip')
   .attr("transform", "translate(" + x(function(d) { return x(d.date); }) + "," + y(function(d) { return y(d.tot); }) + ")")
-  .offset([-10, 0])
+  .offset([-5, 0])
   .html(function(d) { return "Date: " + formatDate_tip(d.date) + "<br/>" +  "Injured: " + d.inj + "<br/>"  + "Killed: " + d.kill ; });
 
 var tip_inj = d3.tip()
   .attr('class', 'd3-tip')
   .attr("transform", "translate(" + x(function(d) { return x(d.date); }) + "," + y(function(d) { return y(d.inj); }) + ")")
-  .offset([-10, 0])
+  .offset([-5, 0])
   .html(function(d) { return "Date: " + formatDate_tip(d.date) + "<br/>" +  "Injured: " + d.inj + "<br/>"  + "Killed: " + d.kill ; });
 
 var tip_kill = d3.tip()
   .attr('class', 'd3-tip')
   .attr("transform", "translate(" + x(function(d) { return x(d.date); }) + "," + y(function(d) { return y(d.kill); }) + ")")
-  .offset([-10, 0])
+  .offset([-5, 0])
   .html(function(d) { return "Date: " + formatDate_tip(d.date) + "<br/>" +  "Injured: " + d.inj + "<br/>"  + "Killed: " + d.kill ; });
 
 g.call(tip_inj);  
 g.call(tip_kill);
 g.call(tip_tot);   
 
+// Zoom
+var yGroup = g.append("g");
+
+var xGroup = g.append("g")
+    .attr("transform", "translate(0," + height + ")");
+
+var zoom = d3.zoom()
+    .scaleExtent([1 / 4, 8])
+    .translateExtent([[-width, -Infinity], [2 * width, Infinity]])
+    .on("zoom", zoomed);
+
+var zoomRect = svg.append("rect")
+    .attr("width", width)
+    .attr("height", height)
+    .attr("fill", "none")
+    .attr("pointer-events", "all")
+    .call(zoom);
+
+function zoomed() {
+  var xz = d3.event.transform.rescaleX(x);
+  xGroup.call(xAxis.scale(xz));
+  areaPath.attr("d", area.x(function(d) { return xz(d.date); }));
+}
+
+
 
 // insert data
-
 d3.json("data/ts/ts_NYC.json", function(error, data) {
   data.forEach(function(d) { d.date = parseDate(d.date); });
   if (error) throw error;
   
+
+
+
+var xExtent = d3.extent(data, function(d) { return d.date; });
+  zoom.translateExtent([[x(xExtent[0]), -Infinity], [x(xExtent[1]), Infinity]])
+  
+
+  
+  yGroup.call(yAxis).select(".domain").remove();
+  areaPath.datum(data);
+  zoomRect.call(zoom.transform, d3.zoomIdentity);
+
+
   var line1 = d3.line()
     .x(function(d) { return x(d.date); })
     .y(function(d) { return y(d.tot); });
@@ -96,7 +139,7 @@ d3.json("data/ts/ts_NYC.json", function(error, data) {
   // 
   g.append("g")
       .attr("class", "x axis")
-      .attr("transform", "translate(0," + height_ts + ")")
+      .attr("transform", "translate(0," + height + ")")
       .call(d3.axisBottom(x));
 
   g.append("g")
@@ -108,6 +151,7 @@ d3.json("data/ts/ts_NYC.json", function(error, data) {
     .datum(data)
     .attr("stroke", "none")
     .attr("d", line1);
+
 
   g.append("path")
     .attr("class", "ts line inj")
