@@ -165,7 +165,7 @@ d3.json("data/ts/ts_NYC.json", function(error, data) {
   g.append("text")
     .attr("class", "title")
     .attr("x", (width / 2))             
-    .attr("y", 10 - (margin.top / 2))
+    .attr("y", 10 - (margin_ts.top / 2))
     .text("NYC");
 });
 

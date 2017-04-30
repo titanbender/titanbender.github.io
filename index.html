@@ -37,10 +37,10 @@
                     <li class="hidden"> <a class="page-scroll" href="#page-top"></a> </li>
                     <li> <a class="page-scroll" href="#about">About Data</a> </li>
                     <li> <a class="page-scroll" href="#video">Video</a> </li>
-                    <li> <a class="page-scroll" href="#motivation">Our Motivation</a> </li>
+                    <!-- <li> <a class="page-scroll" href="#motivation">Motivation</a> </li> -->
                     <li> <a class="page-scroll" href="#stories">Stories</a> </li>
-                    <li> <a class="page-scroll" href="#desc_stats">Descriptive Statistics</a> </li>
-                    <li> <a class="page-scroll" href="#bar_stats">Bars Statistics</a> </li>
+                    <!-- <li> <a class="page-scroll" href="#desc_stats">Descriptive Statistics</a> </li> -->
+                    <li> <a class="page-scroll" href="#bar_stats">Bar Statistics</a> </li>
                     <li> <a class="page-scroll" href="#TimeSeries">Time Series</a> </li>
                     <li> <a class="page-scroll" href="#KNN">KNN</a> </li>
                     <li> <a class="page-scroll" href="#DTREE">Decision Tree</a> </li>
@@ -117,40 +117,38 @@
         </div>
     </section>
 
-    <!-- video Section -->
+    <!-- video Section DONE -->
     <section id="video" class="video-section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <h2 class="text-justify">Video Presentation</h2>
+                    <p class="text-justify">
+                    The video has a length of 03:30. The fist 20 secounds are introduction and the music is fading out in the last 15 secounds of the video.
+                    </p>
                     <div style="position:relative;height:0;padding-bottom:56.25%">
                     <iframe src="https://player.vimeo.com/video/211653855?loop=1" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                     <p><a href="https://vimeo.com/211653855">Social Data and Visualization</a> from <a href="https://vimeo.com/user33463773">Johan</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
                     <p>This video is about Motor Vehicle Collisions in New York City</p>
                     </div>
-
-                  <!--   <p class="text-justify">
-                    Please click on this botton to go back to the key numbers of this data set: <br>
-                    <a class="btn btn-default page-scroll" href="#about">About Data</a>
-                    </p> -->
                 </div>
             </div>
         </div>
     </section>
 
     
-    <!-- Stories Sections -->
-    <section id="motivation" class="stoires-section">
+    <!-- Motivation -->
+    <!-- <section id="motivation" class="stoires-section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2> Our Motivation</h2>
+                    <h2> Motivation</h2>
                     <p> I have chosen to look into..... 
                     </p>
                 </div>
             </div>
         </div>
-    </section>
+    </section>  -->
 
 
     <!-- Stories Sections -->
@@ -162,7 +160,8 @@
                     <p> I have chosen to look into..... <br>
                     Please click on this botton to explore stories from the data set:
                     <ul style="list-style-type:circle">
-                        <li>Descriptive Statistics: <a class="page-scroll" href="#desc_stats">Descriptive Statistics</a></li>
+                        <!-- <li>Descriptive Statistics: <a class="page-scroll" href="#desc_stats">Descriptive Statistics</a></li> -->
+                        <li>Bar Statistics: <a class="page-scroll" href="#bar_stats">Bar Statistics</a></li>
                         <li>Time Serie Plots: <a class="page-scroll" href="#TimeSeries">Time Series</a></li>
                         <li>K-Nearest Neighbors: <a class="page-scroll" href="#KNN">KNN</a></li>
                         <li>Decision Tree: <a class="page-scroll" href="#DTREE">Decision Tree</a></li>
@@ -175,7 +174,7 @@
     </section>
 
 
-    <section id="desc_stats" class="stoires-section">
+    <!-- <section id="desc_stats" class="stoires-section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -184,7 +183,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
    
    <!-- TODO: Text -->
     <section id="bar_stats" class="stoires-section">
@@ -193,14 +192,33 @@
                 <div class="col-lg-12" id="area_bar_stats">
                     <h3> Bars Statistics</h3>
                     <p>
-                    Missing text..
-                    Select the specific number of clusters you want to explore:
+                    Total <br>
                     <button> <bar_BRONX> BRONX </bar_BRONX></button> 
                     <button> <bar_BROOKLYN> BROOKLYN </bar_BROOKLYN></button> 
                     <button> <bar_STATEN_ISLAND> STATEN ISLAND </bar_STATEN_ISLAND></button> 
                     <button> <bar_MANHATTAN> MANHATTAN </bar_MANHATTAN></button> 
                     <button> <bar_QUEENS> QUEENS </bar_QUEENS></button> 
                     <button> <bar_NYC> NYC </bar_NYC></button> 
+                    <br>
+                    inj <br>
+                    <button> <bar_BRONX_inj> BRONX </bar_BRONX_inj></button> 
+                    <button> <bar_BROOKLYN_inj> BROOKLYN </bar_BROOKLYN_inj></button> 
+                    <button> <bar_STATEN_ISLAND_inj> STATEN ISLAND </bar_STATEN_ISLAND_inj></button> 
+                    <button> <bar_MANHATTAN_inj> MANHATTAN </bar_MANHATTAN_inj></button> 
+                    <button> <bar_QUEENS_inj> QUEENS </bar_QUEENS_inj></button> 
+                    <button> <bar_NYC_inj> NYC </bar_NYC_inj></button> 
+                    <br>
+                    kill <br>
+                   <button> <bar_BRONX_kill> BRONX </bar_BRONX_kill></button> 
+                    <button> <bar_BROOKLYN_kill> BROOKLYN </bar_BROOKLYN_kill></button> 
+                    <button> <bar_STATEN_ISLAND_kill> STATEN ISLAND </bar_STATEN_ISLAND_kill></button> 
+                    <button> <bar_MANHATTAN_kill> MANHATTAN </bar_MANHATTAN_kill></button> 
+                    <button> <bar_QUEENS_kill> QUEENS </bar_QUEENS_kill></button> 
+                    <button> <bar_NYC_kill> NYC </bar_NYC_kill></button> 
+
+
+
+
                     </p>
                     <div align="center">
                     <script src="d3/des_stats_bar.js"></script>
