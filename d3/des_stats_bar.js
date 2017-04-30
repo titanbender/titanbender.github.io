@@ -1,5 +1,5 @@
 // Width and height of the canvas
-var w_bar = 1000, h_bar = 600, trans_dur = 500;
+var w_bar = 1000, h_bar = 500, trans_dur = 500;
 // Plotting margin
 var margin_bar = {top: 20, right: 20, bottom: 87, left: 60};
 var width_bar = w_bar - margin_bar.left - margin_bar.right;
@@ -33,7 +33,7 @@ svg_bar.call(tip_bar);
 
 
 // load inital NYC data
-d3.json("data/bar_dict_NYC.json", function(error, data) {
+d3.json("data/bar/bar_dict_NYC.json", function(error, data) {
              
     // scale the range of the data
     xScale_bar.domain(data.map(function(d) { return d.key; }));
@@ -108,25 +108,25 @@ function toggle_bars( key, file, title_b ) {
 }
 
 // Aæll
-toggle_bars( key = "bar_BRONX", file = "data/bar_dict_BRONX.json", title_b = "BRONX")
-toggle_bars( key = "bar_BROOKLYN", file = "data/bar_dict_BROOKLYN.json", title_b = "BROOKLYN")
-toggle_bars( key = "bar_STATEN_ISLAND", file = "data/bar_dict_STATEN_ISLAND.json", title_b = "STATEN ISLAND")
-toggle_bars( key = "bar_MANHATTAN", file = "data/bar_dict_MANHATTAN.json", title_b = "MANHATTAN")
-toggle_bars( key = "bar_QUEENS", file = "data/bar_dict_QUEENS.json", title_b = "QUEENS")
-toggle_bars( key = "bar_NYC", file = "data/bar_dict_NYC.json", title_b = "NYC")
+toggle_bars( key = "bar_BRONX", file = "data/bar/bar_dict_BRONX.json", title_b = "BRONX")
+toggle_bars( key = "bar_BROOKLYN", file = "data/bar/bar_dict_BROOKLYN.json", title_b = "BROOKLYN")
+toggle_bars( key = "bar_STATEN_ISLAND", file = "data/bar/bar_dict_STATEN_ISLAND.json", title_b = "STATEN ISLAND")
+toggle_bars( key = "bar_MANHATTAN", file = "data/bar/bar_dict_MANHATTAN.json", title_b = "MANHATTAN")
+toggle_bars( key = "bar_QUEENS", file = "data/bar/bar_dict_QUEENS.json", title_b = "QUEENS")
+toggle_bars( key = "bar_NYC", file = "data/bar/bar_dict_NYC.json", title_b = "NYC")
 
 // Injured
-toggle_bars( key = "bar_BRONX_inj", file = "data/bar_dict_BRONX_inj.json", title_b = "BRONX Injured")
-toggle_bars( key = "bar_BROOKLYN_inj", file = "data/bar_dict_BROOKLYN_inj.json", title_b = "BROOKLYN Injured")
-toggle_bars( key = "bar_STATEN_ISLAND_inj", file = "data/bar_dict_STATEN_ISLAND_inj.json", title_b = "STATEN ISLAND Injured")
-toggle_bars( key = "bar_MANHATTAN_inj", file = "data/bar_dict_MANHATTAN_inj.json", title_b = "MANHATTAN Injured")
-toggle_bars( key = "bar_QUEENS_inj", file = "data/bar_dict_QUEENS_inj.json", title_b = "QUEENS Injured")
-toggle_bars( key = "bar_NYC_inj", file = "data/bar_dict_NYC_inj.json", title_b = "NYC Injured")
+toggle_bars( key = "bar_BRONX_inj", file = "data/bar/bar_dict_BRONX_inj.json", title_b = "BRONX Injured")
+toggle_bars( key = "bar_BROOKLYN_inj", file = "data/bar/bar_dict_BROOKLYN_inj.json", title_b = "BROOKLYN Injured")
+toggle_bars( key = "bar_STATEN_ISLAND_inj", file = "data/bar/bar_dict_STATEN_ISLAND_inj.json", title_b = "STATEN ISLAND Injured")
+toggle_bars( key = "bar_MANHATTAN_inj", file = "data/bar/bar_dict_MANHATTAN_inj.json", title_b = "MANHATTAN Injured")
+toggle_bars( key = "bar_QUEENS_inj", file = "data/bar/bar_dict_QUEENS_inj.json", title_b = "QUEENS Injured")
+toggle_bars( key = "bar_NYC_inj", file = "data/bar/bar_dict_NYC_inj.json", title_b = "NYC Injured")
 
 // Killed
-toggle_bars( key = "bar_BRONX_kill", file = "data/bar_dict_BRONX_kill.json", title_b = "BRONX Killed")
-toggle_bars( key = "bar_BROOKLYN_kill", file = "data/bar_dict_BROOKLYN_kill.json", title_b = "BROOKLYN Killed")
-toggle_bars( key = "bar_STATEN_ISLAND_kill", file = "data/bar_dict_STATEN_ISLAND_kill.json", title_b = "STATEN ISLAND Killed")
-toggle_bars( key = "bar_MANHATTAN_kill", file = "data/bar_dict_MANHATTAN_kill.json", title_b = "MANHATTAN Killed")
-toggle_bars( key = "bar_QUEENS_kill", file = "data/bar_dict_QUEENS_kill.json", title_b = "QUEENS Killed")
-toggle_bars( key = "bar_NYC_kill", file = "data/bar_dict_NYC_kill.json", title_b = "NYC Killed")
+toggle_bars( key = "bar_BRONX_kill", file = "data/bar/bar_dict_BRONX_kill.json", title_b = "BRONX Killed")
+toggle_bars( key = "bar_BROOKLYN_kill", file = "data/bar/bar_dict_BROOKLYN_kill.json", title_b = "BROOKLYN Killed")
+toggle_bars( key = "bar_STATEN_ISLAND_kill", file = "data/bar/bar_dict_STATEN_ISLAND_kill.json", title_b = "STATEN ISLAND Killed")
+toggle_bars( key = "bar_MANHATTAN_kill", file = "data/bar/bar_dict_MANHATTAN_kill.json", title_b = "MANHATTAN Killed")
+toggle_bars( key = "bar_QUEENS_kill", file = "data/bar/bar_dict_QUEENS_kill.json", title_b = "QUEENS Killed")
+toggle_bars( key = "bar_NYC_kill", file = "data/bar/bar_dict_NYC_kill.json", title_b = "NYC Killed")

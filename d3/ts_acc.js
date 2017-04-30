@@ -26,7 +26,7 @@ var y = d3.scaleLinear()
 
 // legends
 // cat = [{name:"Kill", col:"red"}, {name:"Injured", col:"green"}, {name:"Total", col:"stealblue"}]
-cat = [{name:"Kill", col:"red"}, {name:"Injured", col:"green"}]
+cat = [{name:"Killed", col:"red"}, {name:"Injured", col:"green"}]
 
 var legend = g.append("g")
   .attr("class", "x axis")
@@ -164,7 +164,7 @@ d3.json("data/ts/ts_NYC.json", function(error, data) {
   // add title text   
   g.append("text")
     .attr("class", "title")
-    .attr("x", (width / 2))             
+    .attr("x", (width_ts / 2))             
     .attr("y", 10 - (margin_ts.top / 2))
     .text("NYC");
 });

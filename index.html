@@ -60,11 +60,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12" id="area_intro">
-                    <h1 class="text-justify">Project Assignment</h1>
-                    <p class="text-justify">
-                    Missing text..
-                    <!-- javascript for intro plot -->
-                    <!-- <script src="d3/intro_plot.js"></script> <!-- todo --> -->
+                    <h1>Project Assignment</h1>
+                    <iframe src="data/heatmap.html" width="1000" height="600" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    
+
+
+                    <!-- <script src="d3/intro_plot.js"></script>  -->
                 </div>
             </div>
         </div>
@@ -186,7 +187,7 @@
     </section> -->
    
    <!-- TODO: Text -->
-    <section id="bar_stats" class="stoires-section">
+    <section id="bar_stats" class="bar-section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12" id="area_bar_stats">
@@ -229,7 +230,7 @@
     </section>
 
     <!-- TODO: Text -->
-    <section id="TimeSeries" class="stoires-section">
+    <section id="TimeSeries" class="TimeSeries-section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12" id="area_TimeSeries">
@@ -287,41 +288,122 @@
     
     <!-- TODO: Text -->
     <!-- TODO: All observations -->
-    <section id="KNN" class="stoires-section">
+    <section id="KNN" class="KNN-section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12" id="area_KNN">
                     <h3> K-Nearest Neighbors</h3>
                     <p>
-                    Missing text..
                     Select the specific number of clusters you want to explore:
-                    <button> <knn_class_0> Non fatal </knn_class_0></button> 
-                    <button> <knn_class_1> Fatal </knn_class_1></button> 
+                    <button> <knn_class_0> Injured </knn_class_0></button> 
+                    <button> <knn_class_1> Killed </knn_class_1></button> 
                     <button> <knn_class_all> Both </knn_class_all></button> 
                     </p>
                     <script src="d3/knn_plot.js"></script>
+                    <h4> Prediction validation</h4>
+                    <p>
+                    missing
+                    </p>
+
+
+
+
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="DTREE" class="stoires-section">
+    <section id="DTREE" class="DTREE-section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12" id="area_KNN">
+                <div class="col-lg-12" id="area_DTREE">
                     <h3> Decision Tree</h3>
                     <p> Missing</p>
+                    <script src="d3/dtree.js"></script>
+                    <h4> Prediction validation</h4>
+                    <p>
+                    missing
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="wather_cor" class="stoires-section">
+    <section id="wather_cor" class="wather_cor-section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12" id="area_W_cor">
                     <h3> Weather Correlation</h3>
-                    <p> MISSING</p>
+                                        Missing text..
+                    Select the specific number of clusters you want to explore:
+                    <!--<br>
+                    Pedistriants
+                    <br>
+                    <button> <ped_W_cor_BRONX> BRONX </ped_W_cor_BRONX></button> 
+                    <button> <ped_W_cor_BROOKLYN> BROOKLYN </ped_W_cor_BROOKLYN></button> 
+                    <button> <ped_W_cor_STATEN_ISLAND> STATEN ISLAND </ped_W_cor_STATEN_ISLAND></button> 
+                    <button> <ped_W_cor_MANHATTAN> MANHATTAN </ped_W_cor_MANHATTAN></button> 
+                    <button> <ped_W_cor_QUEENS> QUEENS </ped_W_cor_QUEENS></button> 
+
+                    <br>
+                    Cyclist
+                    <br>
+                    <button> <cyc_W_cor_BRONX> BRONX </cyc_W_cor_BRONX></button> 
+                    <button> <cyc_W_cor_BROOKLYN> BROOKLYN </cyc_W_cor_BROOKLYN></button> 
+                    <button> <cyc_W_cor_STATEN_ISLAND> STATEN ISLAND </cyc_W_cor_STATEN_ISLAND></button> 
+                    <button> <cyc_W_cor_MANHATTAN> MANHATTAN </cyc_W_cor_MANHATTAN></button> 
+                    <button> <cyc_W_cor_QUEENS> QUEENS </cyc_W_cor_QUEENS></button> 
+
+                    <br>
+                    Motorist
+                    <br>
+                    <button> <mot_W_cor_BRONX> BRONX </Mot_W_cor_BRONX></button> 
+                    <button> <mot_W_cor_BROOKLYN> BROOKLYN </mot_W_cor_BROOKLYN></button> 
+                    <button> <mot_W_cor_STATEN_ISLAND> STATEN ISLAND </mot_W_cor_STATEN_ISLAND></button> 
+                    <button> <mot_W_cor_MANHATTAN> MANHATTAN </mot_W_cor_MANHATTAN></button> 
+                    <button> <mot_W_cor_QUEENS> QUEENS </mot_W_cor_QUEENS></button>  -->
+
+                    <br>
+                    Total
+                    <br>
+                    <button> <tot_W_cor_BRONX> BRONX </tot_W_cor_BRONX></button> 
+                    <button> <tot_W_cor_BROOKLYN> BROOKLYN </tot_W_cor_BROOKLYN></button> 
+                    <button> <tot_W_cor_STATEN_ISLAND> STATEN ISLAND </tot_W_cor_STATEN_ISLAND></button> 
+                    <button> <tot_W_cor_MANHATTAN> MANHATTAN </tot_W_cor_MANHATTAN></button> 
+                    <button> <tot_W_cor_QUEENS> QUEENS </tot_W_cor_QUEENS></button> 
+                    <button> <ts_NYC> NYC </ts_NYC></button> 
+                    </p>
+
+                    <script src="d3/ts_waether.js"></script>
+                    <h4> Correlation matrix </h4>
+                    <p>
+                    <table class="tg">
+                        <tr>
+                        <th class="tg-031e"><br></th><th class="tg-031e">NYC</th><th class="tg-yw4l">BRONX</th><th class="tg-yw4l">BROOKLYN</th><th class="tg-yw4l">STATEN ISLAND</th><th class="tg-yw4l">MANHATTAN</th><th class="tg-yw4l">QUEENS</th><th class="tg-yw4l">Rain</th>
+                        </tr>
+                        <tr>
+                        <td class="tg-031e">NYC</td><td class="tg-031e">1</td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td>
+                        </tr>
+                        <tr>
+                        <td class="tg-031e">BRONX</td><td class="tg-031e"></td><td class="tg-yw4l">1</td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td>
+                        </tr>
+                        <tr>
+                        <td class="tg-yw4l">BROOKLYN</td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l">1</td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td>
+                        </tr>
+                        <tr>
+                        <td class="tg-yw4l">STATEN ISLAND</td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l">1</td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td>
+                        </tr>
+                        <tr>
+                        <td class="tg-yw4l">MANHATTAN</td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l">1</td><td class="tg-yw4l"></td><td class="tg-yw4l"></td>
+                        </tr>
+                        <tr>
+                        <td class="tg-yw4l">QUEENS</td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l">1</td><td class="tg-yw4l"></td>
+                        </tr>
+                        <tr>
+                        <td class="tg-yw4l">Rain</td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l">1</td>
+                        </tr>
+                    </table>
+                    </p>
                 </div>
             </div>
         </div>

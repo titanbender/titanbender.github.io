@@ -58,3 +58,53 @@ of those sections to manage the look and feel of the site. */
     text-align: left;
     background: #eee;
 }
+
+.bar-section {
+    height: 100%;
+    padding-top: 100px;
+    text-align: left;
+    background: #fff;
+}
+
+.TimeSeries-section {
+    height: 100%;
+    padding-top: 100px;
+    text-align: left;
+    background: #eee;
+}
+
+.KNN-section {
+    height: 100%;
+    padding-top: 100px;
+    text-align: left;
+    background: #fff;
+}
+
+.DTREE-section {
+    height: 100%;
+    padding-top: 100px;
+    text-align: left;
+    background: #eee;
+}
+
+.wather_cor-section {
+    height: 100%;
+    padding-top: 100px;
+    text-align: left;
+    background: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
