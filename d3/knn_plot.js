@@ -11,7 +11,7 @@ var svg = d3.select("#area_KNN") // todo change
 
 
 
-cat_knn = [{name:"Injured", col:"blue"}, {name:"Killed", col:"red"}]
+cat_knn = [{name:"Non Fatal", col:"blue"}, {name:"Fatal (injured / killed)", col:"red"}]
 
 var legend_knn = svg.append("g")
   .attr("class", "x axis")
@@ -65,7 +65,7 @@ d3.json("data/nyc.geojson", function(nyc_map) {
         
         console.log(data);
         svg.selectAll("g")
-            .data(data) // prositution as initial
+            .data(data)
             .enter()
             .append("circle")
             .attr("class", "knn_circles")
@@ -73,16 +73,7 @@ d3.json("data/nyc.geojson", function(nyc_map) {
             .attr("cy", function (d) {return projection([d.lon, d.lat])[1] ;})
             .attr("r", 1.0)
             // if fatal accident color red
-            .style("fill", function(d) { if (d.class == 1) {return 'rgba(255,0,0, 0.1)'} else { return 'rgba(0,0,255,0.1)' };})
-            ;
-
-
-        // // title text   
-        // svg.append("text")
-        //     .attr("class", "title")
-        //     .attr("x", projection([-74.005502, 40.819729])[0])             
-        //     .attr("y", projection([-74.005502, 40.819729])[1])             
-        //     .text("Both");
+            .style("fill", function(d) { if (d.class == 1) {return 'rgba(255,0,0, 0.1)'} else { return 'rgba(0,0,255,0.1)' };});
         });
 
 });
@@ -92,8 +83,6 @@ function toggle_accidents( key, p_color, s_color, title_b ) {
     d3.select(key).on("click", function() {
         svg.selectAll("circle.knn_circles")
             .style("fill", function(d) { if (d.class == 1) {return p_color} else { return s_color };});
-        // // Update title
-        // svg.select("text.title").text(title_b);
         });    
 }
 
