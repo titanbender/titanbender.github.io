@@ -1,18 +1,5 @@
 // https://bl.ocks.org/d3noob/43a860bc0024792f8803bba8ca0d5ecd
-var treeData =
-  {
-    "name": "Top Level",
-    "children": [
-      { 
-        "name": "Level 2: A",
-        "children": [
-          { "name": "Son of A" },
-          { "name": "Daughter of A" }
-        ]
-      },
-      { "name": "Level 2: B" }
-    ]
-  };
+// http://planspace.org/20151129-see_sklearn_trees_with_d3/
 
 // Set the dimensions and margins of the diagram
 var margin_dtree = {top: 20, right: 90, bottom: 30, left: 90},
@@ -35,15 +22,32 @@ var i = 0,
 // declares a tree layout and assigns the size
 var treemap = d3.tree().size([height_dtree, width_dtree]);
 
-// Assigns parent, children, height, depth
-root = d3.hierarchy(treeData, function(d) { return d.children; });
-root.x0 = height_dtree / 2;
-root.y0 = 0;
+// init
+var dtree_T = "dtree_json_2"
+toggle_dtree(file = "data/dtree/" + dtree_T + ".json")
 
-// Collapse after the second level
-root.children.forEach(collapse);
+// Toggle values
+d3.select("#area_DTREE_level1").on("change", function() {
+  dtree_T = this.value  
+  toggle_dtree(file = "data/dtree/" + dtree_T + ".json")
+});
 
-update(root);
+// toggle between boroughs function
+function toggle_dtree(file) {
+  d3.json(file, function(error, data) { 
+    treeData = data
+
+    // Assigns parent, children, height, depth
+    root = d3.hierarchy(treeData, function(d) { return d.children; });
+    root.x0 = height_dtree / 2;
+    root.y0 = 0;
+
+    // Collapse after the second level
+    root.children.forEach(collapse);
+
+    update(root);
+  }); 
+}
 
 // Collapse the node and all it's children
 function collapse(d) {
@@ -53,7 +57,6 @@ function collapse(d) {
     d.children = null
   }
 }
-
 function update(source) {
 
   // Assigns the x and y position for the nodes
