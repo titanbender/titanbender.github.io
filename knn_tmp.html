@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Social Data and Visualization DTU: Project Assignment</title>
-    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://d3js.org/d3.v4.js"></script> 
     <script src="d3/tip.js"></script> 
 
     
@@ -26,8 +26,6 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">DTU Social Data and Visualization</a>
             </div>
@@ -39,7 +37,16 @@
                     <li class="hidden"> <a class="page-scroll" href="#page-top"></a> </li>
                     <li> <a class="page-scroll" href="#about">About Data</a> </li>
                     <li> <a class="page-scroll" href="#video">Video</a> </li>
+                    <!-- <li> <a class="page-scroll" href="#motivation">Motivation</a> </li> -->
                     <li> <a class="page-scroll" href="#stories">Stories</a> </li>
+                    <!-- <li> <a class="page-scroll" href="#desc_stats">Descriptive Statistics</a> </li> -->
+                    <li> <a class="page-scroll" href="#bar_stats">Bar Statistics</a> </li>
+                    <li> <a class="page-scroll" href="#TimeSeries">Time Series</a> </li>
+                    <li> <a class="page-scroll" href="#KNN">KNN</a> </li>
+                    <li> <a class="page-scroll" href="#DTREE">Decision Tree</a> </li>
+                    <li> <a class="page-scroll" href="#wather_cor">Weather Correlation</a> </li>
+
+                    
                     
                 </ul>
             </div>
@@ -53,91 +60,222 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12" id="area_intro">
-                    <h1 class="text-justify">Project Assignment</h1>
-                    
-<!--                     <p class="text-justify">
-                    Missing text..
-                    Select the specific number of clusters you want to explore:
-                    <button> <knn_class_0> Non fatal </knn_class_0></button> 
-                    <button> <knn_class_1> Fatal </knn_class_1></button> 
-                    <button> <knn_class_all> Both </knn_class_all></button> 
+                    <h1>Project Assignment</h1>
+                    <!-- <iframe src="data/heatmap.html" width="1000" height="600" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> -->
+                    <p> Only showing 50%, random smapled, of the accidents. </p>
+
+                    <!-- <script src="d3/intro_plot.js"></script>  -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12" id="area_about">
+                    <h2> Introduction to NYPD Motor Vehicle Collisions </h2>
+                    <p>
+                    The NYPD Motor Vehicle Collisions (NYPD MVC) has been downloaded from the following source: <a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Motor-Vehicle-Collisions/h9gi-nx95/data">NYPD MVC Data</a>
+                    <br> It is possible to download the used data set in this project assignment here: <a href="https://drive.google.com/file/d/0B42GL3RvQcSCWmNSMUxXazFrajQ/view?usp=sharing"> raw_data.csv</a>
+                    <br> and the weather data used here: <a href="https://drive.google.com/open?id=0B42GL3RvQcSCVWotQThvS3ZYcGM"> raw_data_weather.csv</a>
+
                     </p>
-                    <script src="d3/intro_plot.js"></script> -->
+                    <br>
 
-                    
-<!--                     <p class="text-justify">
-                    Missing text..
-                    Select the specific number of clusters you want to explore:
-                    <button> <knn_class_0> Non fatal </knn_class_0></button> 
-                    <button> <knn_class_1> Fatal </knn_class_1></button> 
-                    <button> <knn_class_all> Both </knn_class_all></button> 
+                    <h3> Selections of Filters </h3>
+                    <p>
+                    Further the data has been cleaned for analysis. The crime data from the  visualizations include the following filters:
+                    <ul style="list-style-type:circle">
+                        <li>Date: 12/31/2016 and 01/01/2013 </li>
+                        <li>Categories: Prostitution and Vehicle Theft </li>
+                    </ul>
                     </p>
-                    <script src="d3/knn_plot.js"></script> -->
+                    <br>
+                    <h3> The Dimensionality of the NYPD MVC Data set </h3>
+                    <p>
+                    <table class="tg">
+                        <tr>
+                            <th class="tg-031e">Features</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td class="tg-031e">Number of ..</td>
+                            <td>88888888</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-031e">Fatal Accidents</td>
+                            <td>3d</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-031e">Non Fatal Accidents</td>
+                            <td>3d</td>
+                        </tr>
+                    </table>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- 
-
+    <!-- video Section DONE -->
+    <section id="video" class="video-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="text-justify">Video Presentation</h2>
                     <p class="text-justify">
+                    The video has a length of 03:30. The fist 20 secounds are introduction and the music is fading out in the last 15 secounds of the video.
+                    </p>
+                    <div style="position:relative;height:0;padding-bottom:56.25%">
+                    <iframe src="https://player.vimeo.com/video/211653855?loop=1" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    <p><a href="https://vimeo.com/211653855">Social Data and Visualization</a> from <a href="https://vimeo.com/user33463773">Johan</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+                    <p>This video is about Motor Vehicle Collisions in New York City</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Motivation -->
+    <!-- <section id="motivation" class="stoires-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2> Motivation</h2>
+                    <p> I have chosen to look into..... 
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>  -->
+
+
+    <!-- Stories Sections -->
+    <section id="stories" class="stoires-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2> Data Stories</h2>
+                    <p> I have chosen to look into..... <br>
+                    Please click on this botton to explore stories from the data set:
+                    <ul style="list-style-type:circle">
+                        <!-- <li>Descriptive Statistics: <a class="page-scroll" href="#desc_stats">Descriptive Statistics</a></li> -->
+                        <li>Bar Statistics: <a class="page-scroll" href="#bar_stats">Bar Statistics</a></li>
+                        <li>Time Serie Plots: <a class="page-scroll" href="#TimeSeries">Time Series</a></li>
+                        <li>K-Nearest Neighbors: <a class="page-scroll" href="#KNN">KNN</a></li>
+                        <li>Decision Tree: <a class="page-scroll" href="#DTREE">Decision Tree</a></li>
+                        <li>Weather Correlation: <a class="page-scroll" href="#wather_cor">Weather Correlation</a></li>
+                    </ul>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- <section id="desc_stats" class="stoires-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3> Descriptive Statistics</h3>
+                    <p> mmm</p>
+                </div>
+            </div>
+        </div>
+    </section> -->
+   
+   <!-- TODO: Text -->
+    <section id="bar_stats" class="bar-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12" id="area_bar_stats">
+                    <h3> Bars Statistics</h3>
+                    <select id="area_bar_stats_level1">
+                        <option value="NYC">NYC</option>
+                        <option value="BRONX">BRONX</option>
+                        <option value="BROOKLYN">BROOKLYN</option>
+                        <option value="STATEN_ISLAND">STATEN ISLAND</option>
+                        <option value="MANHATTAN">MANHATTAN</option>
+                    </select>
+                        <select id="area_bar_stats_level2">
+                        <option value="">Total</option>
+                        <option value="_inj">Injured</option>
+                        <option value="_kill">Killed</option>
+                    </select>
+                    
+                    <!-- <script src="d3/des_stats_bar-kopi.js"></script> -->
+                   
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TODO: Text -->
+    <section id="TimeSeries" class="TimeSeries-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12" id="area_TimeSeries">
+                    <h3> Time Serie Plots</h3>
                     Missing text..
                     Select the specific number of clusters you want to explore:
-                    <br>
-                    Pedistriants
-                    <br>
-                    <button> <ped_ts_BRONX> BRONX </ped_ts_BRONX></button> 
-                    <button> <ped_ts_BROOKLYN> BROOKLYN </ped_ts_BROOKLYN></button> 
-                    <button> <ped_ts_STATEN_ISLAND> STATEN ISLAND </ped_ts_STATEN_ISLAND></button> 
-                    <button> <ped_ts_MANHATTAN> MANHATTAN </ped_ts_MANHATTAN></button> 
-                    <button> <ped_ts_QUEENS> QUEENS </ped_ts_QUEENS></button> 
+            
 
-                    <br>
-                    Cyclist
-                    <br>
-                    <button> <cyc_ts_BRONX> BRONX </cyc_ts_BRONX></button> 
-                    <button> <cyc_ts_BROOKLYN> BROOKLYN </cyc_ts_BROOKLYN></button> 
-                    <button> <cyc_ts_STATEN_ISLAND> STATEN ISLAND </cyc_ts_STATEN_ISLAND></button> 
-                    <button> <cyc_ts_MANHATTAN> MANHATTAN </cyc_ts_MANHATTAN></button> 
-                    <button> <cyc_ts_QUEENS> QUEENS </cyc_ts_QUEENS></button> 
+                    <select id="area_TimeSeries_level1">
+                        <option value="NYC">NYC</option>
+                        <option value="BRONX">BRONX</option>
+                        <option value="BROOKLYN">BROOKLYN</option>
+                        <option value="STATEN ISLAND">STATEN ISLAND</option>
+                        <option value="MANHATTAN">MANHATTAN</option>
+                        <option value="QUEENS">QUEENS</option>
+                    </select>
+                        <select id="area_TimeSeries_level2">
+                        <option value="ped">Pedistriants</option>
+                        <option value="cyc">Cyclist</option>
+                        <option value="mot">Motorist</option>
+                    </select>
+                    </select>
+                        <select id="area_TimeSeries_level3">
+                        <option value="all">All</option>
+                        <option value="tot">Total</option>
+                        <option value="inj">Injured</option>
+                        <option value="kill">Killed</option>
+                    </select>
 
-                    <br>
-                    Motorist
-                    <br>
-                    <button> <mot_ts_BRONX> BRONX </Mot_ts_BRONX></button> 
-                    <button> <mot_ts_BROOKLYN> BROOKLYN </mot_ts_BROOKLYN></button> 
-                    <button> <mot_ts_STATEN_ISLAND> STATEN ISLAND </mot_ts_STATEN_ISLAND></button> 
-                    <button> <mot_ts_MANHATTAN> MANHATTAN </mot_ts_MANHATTAN></button> 
-                    <button> <mot_ts_QUEENS> QUEENS </mot_ts_QUEENS></button> 
-
-                    <br>
-                    Total
-                    <br>
-                    <button> <tot_ts_BRONX> BRONX </tot_ts_BRONX></button> 
-                    <button> <tot_ts_BROOKLYN> BROOKLYN </tot_ts_BROOKLYN></button> 
-                    <button> <tot_ts_STATEN_ISLAND> STATEN ISLAND </tot_ts_STATEN_ISLAND></button> 
-                    <button> <tot_ts_MANHATTAN> MANHATTAN </tot_ts_MANHATTAN></button> 
-                    <button> <tot_ts_QUEENS> QUEENS </tot_ts_QUEENS></button> 
+                    <!-- <script src="d3/ts_acc.js"></script> -->
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- TODO: Text -->
+    <!-- TODO: All observations -->
+    <section id="KNN" class="KNN-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12" id="area_KNN">
+                    <h3> K-Nearest Neighbors</h3>
+                    
+                    Missing
                     
 
-                    <br>
-                    Complete NYC
-                    <br>
-                    <button> <ts_NYC> NYC </ts_NYC></button> 
-                    </p>
+                    </select>
+                        <select id="area_KNN_level1">
+                        <option value="knn_class_all">All</option>
+                        <option value="knn_class_0">Non Fatal</option>
+                        <option value="knn_class_1">Fatal</option>
+                    </select>
 
-                    <script src="d3/ts_acc.js"></script> -->
-                    <!-- <script src="d3/tmp.js"></script> -->
+
+                    <!-- <script src="d3/knn_plot-kopi.js"></script> -->
                     
-
-
-                  <!--   <<p class="text-justify">
-                    Missing text..
-                    Select the specific number of clusters you want to explore:
-                    <button> <bar_BRONX> BRONX </bar_BRONX></button> 
-                    <button> <bar_BROOKLYN> BROOKLYN </bar_BROOKLYN></button> 
-                    <button> <bar_STATEN_ISLAND> STATEN ISLAND </bar_STATEN_ISLAND></button> 
-                    <button> <bar_MANHATTAN> MANHATTAN </bar_MANHATTAN></button> 
-                    <button> <bar_QUEENS> QUEENS </bar_QUEENS></button> 
-                    <button> <bar_NYC> NYC </bar_NYC></button> 
+                    <h4> Prediction validation</h4>
+                    <p>
+                    missing
                     </p>
-                    <script src="d3/des_stats_bar.js"></script> -->
+
 
 
 
@@ -146,9 +284,65 @@
         </div>
     </section>
 
+    <section id="DTREE" class="DTREE-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12" id="area_DTREE">
+                    <h3> Decision Tree</h3>
+                    <p> Missing</p>
+                    <script src="d3/dtree.js"></script>
+                    <h4> Prediction validation</h4>
+                    <p>
+                    missing
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="wather_cor" class="wather_cor-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12" id="area_W_cor">
+                    <h3> Weather Correlation</h3>
+                    Missing text...
+
+                    <select id="area_W_cor_level1">
+                        <option value="NYC">NYC</option>
+                        <option value="BRONX">BRONX</option>
+                        <option value="BROOKLYN">BROOKLYN</option>
+                        <option value="STATEN ISLAND">STATEN ISLAND</option>
+                        <option value="MANHATTAN">MANHATTAN</option>
+                        <option value="QUEENS">QUEENS</option>
+                    </select>
+                        <select id="area_W_cor_level1">
+                        <option value="ped">Pedistriants</option>
+                        <option value="cyc">Cyclist</option>
+                        <option value="mot">Motorist</option>
+                    </select>
+                    </select>
+                        <select id="area_W_cor_level1">
+                        <option value="all">All</option>
+                        <option value="tot">Total</option>
+                        <option value="inj">Injured</option>
+                        <option value="kill">Killed</option>
+                    </select>
 
 
-    <script src="js/jquery.js"></script> <!-- jQuery
+
+
+
+                    <script src="d3/ts_waether.js"></script>
+                    <h4> Correlation matrix </h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Stories Sections -->
+
+    <script src="js/jquery.js"></script> <!-- jQuery -->
     <script src="js/bootstrap.min.js"></script> <!-- Bootstrap Core JavaScript -->
     <script src="js/jquery.easing.min.js"></script> <!-- Scrolling Nav JavaScript -->
     <script src="js/scrolling-nav.js"></script> <!-- Scrolling Nav JavaScript -->

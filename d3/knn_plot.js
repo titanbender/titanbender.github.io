@@ -57,13 +57,9 @@ d3.json("data/nyc.geojson", function(nyc_map) {
         .attr("d", path)
         .style("fill","white")
         .attr("stroke-width", 0.25)
-        .style("stroke","black")
-        // .on("click", clicked);
-        ;
+        .style("stroke","black");
 
     d3.json("data/knn_json.json", function(data) {
-        
-        console.log(data);
         svg.selectAll("g")
             .data(data)
             .enter()
@@ -75,18 +71,37 @@ d3.json("data/nyc.geojson", function(nyc_map) {
             // if fatal accident color red
             .style("fill", function(d) { if (d.class == 1) {return 'rgba(255,0,0, 0.1)'} else { return 'rgba(0,0,255,0.1)' };});
         });
+});
 
+// Toggle values
+var key_knn = "knn_class_all"
+
+d3.select("#area_KNN_level1").on("change", function() {
+  key_knn = this.value
+  
+  toggle_accidents(key = key_knn)
 });
 
 // toggle function
-function toggle_accidents( key, p_color, s_color, title_b ) {
-    d3.select(key).on("click", function() {
-        svg.selectAll("circle.knn_circles")
-            .style("fill", function(d) { if (d.class == 1) {return p_color} else { return s_color };});
-        });    
+function toggle_accidents( key ) {      
+  var p_color = "", s_color = "";
+  if (key == "knn_class_0") {
+    p_color = "rgba(0,0,0,0)"
+    s_color = "rgba(0,0,255,0.1)"
+    console.log("there")
+  }
+  else if (key == "knn_class_1") {
+    p_color = "rgba(255,0,0,0.1)"
+    s_color = "rgba(0,0,0,0)"
+    console.log("theresddddd")
+  } else {
+    p_color = "rgba(255,0,0, 0.1)"
+    s_color = "rgba(0,0,255,0.1)"
+    console.log("theressssssss")
+  }
+
+  // change colors
+  svg.selectAll("circle.knn_circles")
+    .style("fill", function(d) { if (d.class == 1) {return p_color} else { return s_color };});
 }
 
-// 
-toggle_accidents( key = "knn_class_0", p_color = "rgba(0,0,0,0)", s_color = "rgba(0,0,255,0.1)",title_b = "Non fatal")
-toggle_accidents( key = "knn_class_1", p_color = "rgba(255,0,0,0.1)", s_color = "rgba(0,0,0,0)", title_b = "Fatal")
-toggle_accidents( key = "knn_class_all", p_color = "rgba(255,0,0, 0.1)", s_color = "rgba(0,0,255,0.1)", title_b = "Both")

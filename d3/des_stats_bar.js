@@ -27,10 +27,8 @@ var svg_bar = d3.select("#area_bar_stats")
             .attr("transform",  "translate(" + margin_bar.left + "," + margin_bar.top + ")");
 // tip
 var tip_bar = d3.tip().attr('class', 'd3-tip').offset([-10, 0])
-        .html(function(d) { return "Frequency: " + d.value; });
+    .html(function(d) { return "Frequency: " + d.value; });
 svg_bar.call(tip_bar);  
-
-
 
 // load inital NYC data
 d3.json("data/bar/bar_dict_NYC.json", function(error, data) {
@@ -70,63 +68,48 @@ d3.json("data/bar/bar_dict_NYC.json", function(error, data) {
     // y-axis
     svg_bar.append("g").attr("class", "y axis").call(yAxis_bar);
 
-    // add title text   
-    svg_bar.append("text")
-        .attr("class", "title")
-        .attr("x", (width_bar / 2))             
-        .attr("y", 10 - (margin_bar.top / 2))
-        .text("NYC");
+    // // add title text   
+    // svg_bar.append("text")
+    //     .attr("class", "title")
+    //     .attr("x", (width_bar / 2))             
+    //     .attr("y", 10 - (margin_bar.top / 2))
+    //     .text("NYC");
+});
+
+
+
+// Toggle values
+var borough_bar = "NYC", type_bar = ""
+
+d3.select("#area_bar_stats_level1").on("change", function() {
+  borough_bar = this.value
+  toggle_bars(file = "data/bar/bar_dict_" + borough_bar + type_bar + ".json")
+});
+d3.select("#area_bar_stats_level2").on("change", function() {
+  type_bar = this.value
+  toggle_bars(file = "data/bar/bar_dict_" + borough_bar + type_bar + ".json")
 });
 
 
 // toggle between boroughs function
-function toggle_bars( key, file, title_b ) {
-	// BRONX
-	d3.select(key)
-	    .on("click", function() {
-	        //New values for dataset
-	        d3.json(file, function(error, data) {
-	        // scale the range of the data
-	        yMax_bar = d3.max(data, function(d) { return d.value; });
-	        yScale_bar.domain([0, yMax_bar]);
+function toggle_bars(file) {
+    d3.json(file, function(error, data) {
+    // scale the range of the data
+    yMax_bar = d3.max(data, function(d) { return d.value; });
+    yScale_bar.domain([0, yMax_bar]);
 
-	        //Create bars
-	         svg_bar.selectAll("rect")
-	            .data(data) // prositution as initial
-	            .transition() 
-	            .delay(function(d, i) { return i * trans_dur/24; })
-	            .duration(trans_dur) 
-	            .attr("y", function(d) { return yScale_bar(d.value); })
-	            .attr("height", function(d) { return height_bar - yScale_bar(d.value); });
+    //Create bars
+     svg_bar.selectAll("rect")
+        .data(data) // prositution as initial
+        .transition() 
+        .delay(function(d, i) { return i * trans_dur/24; })
+        .duration(trans_dur) 
+        .attr("y", function(d) { return yScale_bar(d.value); })
+        .attr("height", function(d) { return height_bar - yScale_bar(d.value); });
 
-	        // Update title
-	        svg_bar.select("text.title").transition().duration(trans_dur).text(title_b);
-	        //Update Y axis
-	        svg_bar.select(".y.axis").transition().duration(trans_dur).call(yAxis_bar);
-	        });
-	    });
+    // // Update title
+    // svg_bar.select("text.title").transition().duration(trans_dur).text(title_b);
+    //Update Y axis
+    svg_bar.select(".y.axis").transition().duration(trans_dur).call(yAxis_bar);
+    });
 }
-
-// Aæll
-toggle_bars( key = "bar_BRONX", file = "data/bar/bar_dict_BRONX.json", title_b = "BRONX")
-toggle_bars( key = "bar_BROOKLYN", file = "data/bar/bar_dict_BROOKLYN.json", title_b = "BROOKLYN")
-toggle_bars( key = "bar_STATEN_ISLAND", file = "data/bar/bar_dict_STATEN_ISLAND.json", title_b = "STATEN ISLAND")
-toggle_bars( key = "bar_MANHATTAN", file = "data/bar/bar_dict_MANHATTAN.json", title_b = "MANHATTAN")
-toggle_bars( key = "bar_QUEENS", file = "data/bar/bar_dict_QUEENS.json", title_b = "QUEENS")
-toggle_bars( key = "bar_NYC", file = "data/bar/bar_dict_NYC.json", title_b = "NYC")
-
-// Injured
-toggle_bars( key = "bar_BRONX_inj", file = "data/bar/bar_dict_BRONX_inj.json", title_b = "BRONX Injured")
-toggle_bars( key = "bar_BROOKLYN_inj", file = "data/bar/bar_dict_BROOKLYN_inj.json", title_b = "BROOKLYN Injured")
-toggle_bars( key = "bar_STATEN_ISLAND_inj", file = "data/bar/bar_dict_STATEN_ISLAND_inj.json", title_b = "STATEN ISLAND Injured")
-toggle_bars( key = "bar_MANHATTAN_inj", file = "data/bar/bar_dict_MANHATTAN_inj.json", title_b = "MANHATTAN Injured")
-toggle_bars( key = "bar_QUEENS_inj", file = "data/bar/bar_dict_QUEENS_inj.json", title_b = "QUEENS Injured")
-toggle_bars( key = "bar_NYC_inj", file = "data/bar/bar_dict_NYC_inj.json", title_b = "NYC Injured")
-
-// Killed
-toggle_bars( key = "bar_BRONX_kill", file = "data/bar/bar_dict_BRONX_kill.json", title_b = "BRONX Killed")
-toggle_bars( key = "bar_BROOKLYN_kill", file = "data/bar/bar_dict_BROOKLYN_kill.json", title_b = "BROOKLYN Killed")
-toggle_bars( key = "bar_STATEN_ISLAND_kill", file = "data/bar/bar_dict_STATEN_ISLAND_kill.json", title_b = "STATEN ISLAND Killed")
-toggle_bars( key = "bar_MANHATTAN_kill", file = "data/bar/bar_dict_MANHATTAN_kill.json", title_b = "MANHATTAN Killed")
-toggle_bars( key = "bar_QUEENS_kill", file = "data/bar/bar_dict_QUEENS_kill.json", title_b = "QUEENS Killed")
-toggle_bars( key = "bar_NYC_kill", file = "data/bar/bar_dict_NYC_kill.json", title_b = "NYC Killed")

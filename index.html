@@ -79,6 +79,8 @@
                     <p>
                     The NYPD Motor Vehicle Collisions (NYPD MVC) has been downloaded from the following source: <a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Motor-Vehicle-Collisions/h9gi-nx95/data">NYPD MVC Data</a>
                     <br> It is possible to download the used data set in this project assignment here: <a href="https://drive.google.com/file/d/0B42GL3RvQcSCWmNSMUxXazFrajQ/view?usp=sharing"> raw_data.csv</a>
+                    <br> and the weather data used here: <a href="https://drive.google.com/open?id=0B42GL3RvQcSCVWotQThvS3ZYcGM"> raw_data_weather.csv</a>
+
                     </p>
                     <br>
 
@@ -191,36 +193,21 @@
             <div class="row">
                 <div class="col-lg-12" id="area_bar_stats">
                     <h3> Bars Statistics</h3>
-                    <p>
-                    Total <br>
-                    <button> <bar_BRONX> BRONX </bar_BRONX></button> 
-                    <button> <bar_BROOKLYN> BROOKLYN </bar_BROOKLYN></button> 
-                    <button> <bar_STATEN_ISLAND> STATEN ISLAND </bar_STATEN_ISLAND></button> 
-                    <button> <bar_MANHATTAN> MANHATTAN </bar_MANHATTAN></button> 
-                    <button> <bar_QUEENS> QUEENS </bar_QUEENS></button> 
-                    <button> <bar_NYC> NYC </bar_NYC></button> 
-                    <br>
-                    inj <br>
-                    <button> <bar_BRONX_inj> BRONX </bar_BRONX_inj></button> 
-                    <button> <bar_BROOKLYN_inj> BROOKLYN </bar_BROOKLYN_inj></button> 
-                    <button> <bar_STATEN_ISLAND_inj> STATEN ISLAND </bar_STATEN_ISLAND_inj></button> 
-                    <button> <bar_MANHATTAN_inj> MANHATTAN </bar_MANHATTAN_inj></button> 
-                    <button> <bar_QUEENS_inj> QUEENS </bar_QUEENS_inj></button> 
-                    <button> <bar_NYC_inj> NYC </bar_NYC_inj></button> 
-                    <br>
-                    kill <br>
-                   <button> <bar_BRONX_kill> BRONX </bar_BRONX_kill></button> 
-                    <button> <bar_BROOKLYN_kill> BROOKLYN </bar_BROOKLYN_kill></button> 
-                    <button> <bar_STATEN_ISLAND_kill> STATEN ISLAND </bar_STATEN_ISLAND_kill></button> 
-                    <button> <bar_MANHATTAN_kill> MANHATTAN </bar_MANHATTAN_kill></button> 
-                    <button> <bar_QUEENS_kill> QUEENS </bar_QUEENS_kill></button> 
-                    <button> <bar_NYC_kill> NYC </bar_NYC_kill></button> 
-
-
-
-
-                    </p>
-                    <div align="center">
+                    
+                    <p> MISSING </p>
+                    <select id="area_bar_stats_level1">
+                        <option value="NYC">NYC</option>
+                        <option value="BRONX">BRONX</option>
+                        <option value="BROOKLYN">BROOKLYN</option>
+                        <option value="STATEN_ISLAND">STATEN ISLAND</option>
+                        <option value="MANHATTAN">MANHATTAN</option>
+                        <option value="QUEENS">QUEENS</option>
+                    </select>
+                        <select id="area_bar_stats_level2">
+                        <option value="">Total</option>
+                        <option value="_inj">Injured</option>
+                        <option value="_kill">Killed</option>
+                    </select>
                     <script src="d3/des_stats_bar.js"></script>
                     </div>
                 </div>
@@ -234,50 +221,30 @@
             <div class="row">
                 <div class="col-lg-12" id="area_TimeSeries">
                     <h3> Time Serie Plots</h3>
+                    <p>
                     Missing text..
-                    Select the specific number of clusters you want to explore:
-                    <br>
-                    Pedistriants
-                    <br>
-                    <button> <ped_ts_BRONX> BRONX </ped_ts_BRONX></button> 
-                    <button> <ped_ts_BROOKLYN> BROOKLYN </ped_ts_BROOKLYN></button> 
-                    <button> <ped_ts_STATEN_ISLAND> STATEN ISLAND </ped_ts_STATEN_ISLAND></button> 
-                    <button> <ped_ts_MANHATTAN> MANHATTAN </ped_ts_MANHATTAN></button> 
-                    <button> <ped_ts_QUEENS> QUEENS </ped_ts_QUEENS></button> 
-
-                    <br>
-                    Cyclist
-                    <br>
-                    <button> <cyc_ts_BRONX> BRONX </cyc_ts_BRONX></button> 
-                    <button> <cyc_ts_BROOKLYN> BROOKLYN </cyc_ts_BROOKLYN></button> 
-                    <button> <cyc_ts_STATEN_ISLAND> STATEN ISLAND </cyc_ts_STATEN_ISLAND></button> 
-                    <button> <cyc_ts_MANHATTAN> MANHATTAN </cyc_ts_MANHATTAN></button> 
-                    <button> <cyc_ts_QUEENS> QUEENS </cyc_ts_QUEENS></button> 
-
-                    <br>
-                    Motorist
-                    <br>
-                    <button> <mot_ts_BRONX> BRONX </Mot_ts_BRONX></button> 
-                    <button> <mot_ts_BROOKLYN> BROOKLYN </mot_ts_BROOKLYN></button> 
-                    <button> <mot_ts_STATEN_ISLAND> STATEN ISLAND </mot_ts_STATEN_ISLAND></button> 
-                    <button> <mot_ts_MANHATTAN> MANHATTAN </mot_ts_MANHATTAN></button> 
-                    <button> <mot_ts_QUEENS> QUEENS </mot_ts_QUEENS></button> 
-
-                    <!-- <br>
-                    Total
-                    <br>
-                    <button> <tot_ts_BRONX> BRONX </tot_ts_BRONX></button> 
-                    <button> <tot_ts_BROOKLYN> BROOKLYN </tot_ts_BROOKLYN></button> 
-                    <button> <tot_ts_STATEN_ISLAND> STATEN ISLAND </tot_ts_STATEN_ISLAND></button> 
-                    <button> <tot_ts_MANHATTAN> MANHATTAN </tot_ts_MANHATTAN></button> 
-                    <button> <tot_ts_QUEENS> QUEENS </tot_ts_QUEENS></button>  -->
                     
-
-                    <br>
-                    Complete NYC
-                    <br>
-                    <button> <ts_NYC> NYC </ts_NYC></button> 
                     </p>
+                    <select id="area_TimeSeries_level1">
+                        <option value="NYC">NYC</option>
+                        <option value="BRONX">BRONX</option>
+                        <option value="BROOKLYN">BROOKLYN</option>
+                        <option value="STATEN ISLAND">STATEN ISLAND</option>
+                        <option value="MANHATTAN">MANHATTAN</option>
+                        <option value="QUEENS">QUEENS</option>
+                    </select>
+                        <select id="area_TimeSeries_level2">
+                        <option value="ped">Pedistriants</option>
+                        <option value="cyc">Cyclist</option>
+                        <option value="mot">Motorist</option>
+                    </select>
+                    </select>
+                        <select id="area_TimeSeries_level3">
+                        <option value="all">All</option>
+                        <option value="tot">Total</option>
+                        <option value="inj">Injured</option>
+                        <option value="kill">Killed</option>
+                    </select>
 
                     <script src="d3/ts_acc.js"></script>
                 </div>
@@ -292,12 +259,15 @@
             <div class="row">
                 <div class="col-lg-12" id="area_KNN">
                     <h3> K-Nearest Neighbors</h3>
-                    <p>
-                    Select the specific number of clusters you want to explore:
-                    <button> <knn_class_0> Non Fatal </knn_class_0></button> 
-                    <button> <knn_class_1> Fatal </knn_class_1></button> 
-                    <button> <knn_class_all> Both </knn_class_all></button> 
-                    </p>
+                    Missing
+                    
+                    </select>
+                        <select id="area_KNN_level1">
+                        <option value="knn_class_all">All</option>
+                        <option value="knn_class_0">Non Fatal</option>
+                        <option value="knn_class_1">Fatal</option>
+                    </select>
+
                     <script src="d3/knn_plot.js"></script>
                     <h4> Prediction validation</h4>
                     <p>
@@ -320,9 +290,9 @@
                     <p> Missing</p>
                     <script src="d3/dtree.js"></script>
                     <h4> Prediction validation</h4>
-                    <p>
+                    
                     missing
-                    </p>
+                    
                 </div>
             </div>
         </div>
@@ -333,49 +303,21 @@
             <div class="row">
                 <div class="col-lg-12" id="area_W_cor">
                     <h3> Weather Correlation</h3>
-                                        Missing text..
                     Select the specific number of clusters you want to explore:
-                    <!--<br>
-                    Pedistriants
-                    <br>
-                    <button> <ped_W_cor_BRONX> BRONX </ped_W_cor_BRONX></button> 
-                    <button> <ped_W_cor_BROOKLYN> BROOKLYN </ped_W_cor_BROOKLYN></button> 
-                    <button> <ped_W_cor_STATEN_ISLAND> STATEN ISLAND </ped_W_cor_STATEN_ISLAND></button> 
-                    <button> <ped_W_cor_MANHATTAN> MANHATTAN </ped_W_cor_MANHATTAN></button> 
-                    <button> <ped_W_cor_QUEENS> QUEENS </ped_W_cor_QUEENS></button> 
+                    
 
-                    <br>
-                    Cyclist
-                    <br>
-                    <button> <cyc_W_cor_BRONX> BRONX </cyc_W_cor_BRONX></button> 
-                    <button> <cyc_W_cor_BROOKLYN> BROOKLYN </cyc_W_cor_BROOKLYN></button> 
-                    <button> <cyc_W_cor_STATEN_ISLAND> STATEN ISLAND </cyc_W_cor_STATEN_ISLAND></button> 
-                    <button> <cyc_W_cor_MANHATTAN> MANHATTAN </cyc_W_cor_MANHATTAN></button> 
-                    <button> <cyc_W_cor_QUEENS> QUEENS </cyc_W_cor_QUEENS></button> 
+                    
 
-                    <br>
-                    Motorist
-                    <br>
-                    <button> <mot_W_cor_BRONX> BRONX </Mot_W_cor_BRONX></button> 
-                    <button> <mot_W_cor_BROOKLYN> BROOKLYN </mot_W_cor_BROOKLYN></button> 
-                    <button> <mot_W_cor_STATEN_ISLAND> STATEN ISLAND </mot_W_cor_STATEN_ISLAND></button> 
-                    <button> <mot_W_cor_MANHATTAN> MANHATTAN </mot_W_cor_MANHATTAN></button> 
-                    <button> <mot_W_cor_QUEENS> QUEENS </mot_W_cor_QUEENS></button>  -->
 
-                    <br>
-                    Total
-                    <br>
-                    <button> <tot_W_cor_BRONX> BRONX </tot_W_cor_BRONX></button> 
-                    <button> <tot_W_cor_BROOKLYN> BROOKLYN </tot_W_cor_BROOKLYN></button> 
-                    <button> <tot_W_cor_STATEN_ISLAND> STATEN ISLAND </tot_W_cor_STATEN_ISLAND></button> 
-                    <button> <tot_W_cor_MANHATTAN> MANHATTAN </tot_W_cor_MANHATTAN></button> 
-                    <button> <tot_W_cor_QUEENS> QUEENS </tot_W_cor_QUEENS></button> 
-                    <button> <ts_NYC> NYC </ts_NYC></button> 
-                    </p>
 
-                    <script src="d3/ts_waether.js"></script>
+                    <!-- <script src="d3/ts_waether.js"></script> -->
+                    
+
+
+
+
+
                     <h4> Correlation matrix </h4>
-                    <p>
                     <table class="tg">
                         <tr>
                         <th class="tg-031e"><br></th><th class="tg-031e">NYC</th><th class="tg-yw4l">BRONX</th><th class="tg-yw4l">BROOKLYN</th><th class="tg-yw4l">STATEN ISLAND</th><th class="tg-yw4l">MANHATTAN</th><th class="tg-yw4l">QUEENS</th><th class="tg-yw4l">Rain</th>
@@ -402,7 +344,11 @@
                         <td class="tg-yw4l">Rain</td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l">1</td>
                         </tr>
                     </table>
-                    </p>
+
+                    <h4> Prediction validation</h4>
+                    
+                    missing
+                    
                 </div>
             </div>
         </div>
