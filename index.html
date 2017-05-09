@@ -1,200 +1,100 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<title>NYC Traffic Accidents</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Social Data and Visualization DTU: Project Assignment</title>
-    <script src="https://d3js.org/d3.v4.js"></script> 
-    <script src="d3/tip.js"></script> 
-
-    
-    <link href="css/bootstrap.min.css" rel="stylesheet"> <!-- Bootstrap Core CSS -->
-    <link href="css/scrolling-nav.css" rel="stylesheet"> <!-- Custom CSS -->
-    <link href="css/plots.css" rel="stylesheet"> <!-- plots CSS -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+<head>
+<style>
+body {
+  font: 12px sans-serif;
+  background-color: #fff;
+}
+.container {
+    width: 1080px;
+    margin: 40px auto 0 auto;
+    padding: 60px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+.hozlabel path,
+.hozlabel line {
+    display: none;
+}
+.bar {
+  fill: steelblue;
+}
+.x.axis path {
+  display: none;
+}
+p#g10k, p#g100k {
+    background-color: #4682b4;
+}
+div.tooltip {
+    color: #222;
+    background-color: #fff;
+    padding: .5em;
+    text-shadow: #f5f5f5 0 1px 0;
+    border-radius: 2px;
+    opacity: 0.9;
+    position: absolute;
+}
+.legend {
+    font-size: 12px;
+}
+</style>
+<script src="https://d3js.org/d3.v4.js"></script> 
+<script src="d3/tip.js"></script> 
+<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+<script src='js/jquery.zoom.min.js'></script>
 
 </head>
+<body>
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand page-scroll" href="#page-top">DTU Social Data and Visualization</a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav">
-                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                    <li class="hidden"> <a class="page-scroll" href="#page-top"></a> </li>
-                    <li> <a class="page-scroll" href="#about">About Data</a> </li>
-                    <li> <a class="page-scroll" href="#video">Video</a> </li>
-                    <!-- <li> <a class="page-scroll" href="#motivation">Motivation</a> </li> -->
-                    <li> <a class="page-scroll" href="#stories">Stories</a> </li>
-                    <!-- <li> <a class="page-scroll" href="#desc_stats">Descriptive Statistics</a> </li> -->
-                    <li> <a class="page-scroll" href="#bar_stats">Bar Statistics</a> </li>
-                    <li> <a class="page-scroll" href="#TimeSeries">Time Series</a> </li>
-                    <li> <a class="page-scroll" href="#KNN">KNN</a> </li>
-                    <li> <a class="page-scroll" href="#DTREE">Decision Tree</a> </li>
-                    <li> <a class="page-scroll" href="#wather_cor">Weather Correlation</a> </li>
-
-                    
-                    
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
-
-    <!-- Intro Section -->
-    <section id="intro" class="intro-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12" id="area_intro">
-                    <h1>Project Assignment</h1>
-                 
-
-                    <!-- <script src="d3/intro_plot.js"></script>  -->
-                </div>
-            </div>
-        </div>
+    <section class="page-header">
+      <h1 class="project-name">Traffic Accidents in NYC</h1>
+      <h2 class="project-tagline">Social Data Analysis and Visualization</h2>
+      <a href="https://github.com/titanbender/titanbender.github.io" class="btn">View GitHub Files</a>
+      <a href="http://nbviewer.jupyter.org/url/titanbender.github.io/Final_project.ipynb" class="btn">View the jupyter notebook</a>
     </section>
-
-    <!-- About Section -->
-    <section id="about" class="about-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12" id="area_about">
-                    <h2> Introduction to NYPD Motor Vehicle Collisions </h2>
-                    <p>
-                    The NYPD Motor Vehicle Collisions (NYPD MVC) has been downloaded from the following source: <a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Motor-Vehicle-Collisions/h9gi-nx95/data">NYPD MVC Data</a>
-                    <br> It is possible to download the used data set in this project assignment here: <a href="https://drive.google.com/file/d/0B42GL3RvQcSCWmNSMUxXazFrajQ/view?usp=sharing"> raw_data.csv</a>
-                    <br> and the weather data used here: <a href="https://drive.google.com/open?id=0B42GL3RvQcSCVWotQThvS3ZYcGM"> raw_data_weather.csv</a>
-
-                    </p>
-                    <br>
-
-                    <h3> Selections of Filters </h3>
-                    <p>
-                    Further the data has been cleaned for analysis. The crime data from the  visualizations include the following filters:
-                    <ul style="list-style-type:circle">
-                        <li>Date: 12/31/2016 and 01/01/2013 </li>
-                        <li>Categories: Prostitution and Vehicle Theft </li>
-                    </ul>
-                    </p>
-                    <br>
-                    <h3> The Dimensionality of the NYPD MVC Data set </h3>
-                    <p>
-                    <table class="tg">
-                        <tr>
-                            <th class="tg-031e">Features</th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <td class="tg-031e">Number of ..</td>
-                            <td>88888888</td>
-                        </tr>
-                        <tr>
-                            <td class="tg-031e">Fatal Accidents</td>
-                            <td>3d</td>
-                        </tr>
-                        <tr>
-                            <td class="tg-031e">Non Fatal Accidents</td>
-                            <td>3d</td>
-                        </tr>
-                    </table>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- video Section DONE -->
-    <section id="video" class="video-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2 class="text-justify">Video Presentation</h2>
-                    <p class="text-justify">
-                    The video has a length of 03:30. The fist 20 secounds are introduction and the music is fading out in the last 15 secounds of the video.
-                    </p>
-                    <div style="position:relative;height:0;padding-bottom:56.25%">
-                    <iframe src="https://player.vimeo.com/video/211653855?loop=1" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                    <p><a href="https://vimeo.com/211653855">Social Data and Visualization</a> from <a href="https://vimeo.com/user33463773">Johan</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
-                    <p>This video is about Motor Vehicle Collisions in New York City</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    
-    <!-- Motivation -->
-    <!-- <section id="motivation" class="stoires-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2> Motivation</h2>
-                    <p> I have chosen to look into..... 
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>  -->
+<br>
+    <br>
 
 
-    <!-- Stories Sections -->
-    <section id="stories" class="stoires-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2> Data Stories</h2>
-                    <p> I have chosen to look into..... <br>
-                    Please click on this botton to explore stories from the data set:
-                    <ul style="list-style-type:circle">
-                        <!-- <li>Descriptive Statistics: <a class="page-scroll" href="#desc_stats">Descriptive Statistics</a></li> -->
-                        <li>Bar Statistics: <a class="page-scroll" href="#bar_stats">Bar Statistics</a></li>
-                        <li>Time Serie Plots: <a class="page-scroll" href="#TimeSeries">Time Series</a></li>
-                        <li>K-Nearest Neighbors: <a class="page-scroll" href="#KNN">KNN</a></li>
-                        <li>Decision Tree: <a class="page-scroll" href="#DTREE">Decision Tree</a></li>
-                        <li>Weather Correlation: <a class="page-scroll" href="#wather_cor">Weather Correlation</a></li>
-                    </ul>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <section class="main-content">
+        
+    <h1>Introduction</h1>
+    <p> Hello! Whether you're a New Yorker or live somewhere else, you're now going to become intimately familiar with the traffic dangers of the strets of the Big Apple. We've worked with traffic accident data from the years 2013-2016 and as well as weather data throughout the same period to explore visualizations of different patterns and predictions. Ready? You should be.By the end of presentation, you will be an expert, rivalring the NYPD motorvehicle department. 
+    </p>
 
 
-    <!-- <section id="desc_stats" class="stoires-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h3> Descriptive Statistics</h3>
-                    <p> mmm</p>
-                </div>
-            </div>
-        </div>
-    </section> -->
-   
-   <!-- TODO: Text -->
-    <section id="bar_stats" class="bar-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12" id="area_bar_stats">
-                    <h3> Bars Statistics</h3>
-                    
-                    <p> MISSING </p>
-                    <select id="area_bar_stats_level1">
+    <h2>Heatmap of traffic accidents</h2>
+    <p>First off, let’s have a look at how the traffic accidents are distributed in NYC. Below is a map of all the 601,313 observations. The darker the color the higher concentration of accidents. As you can see that Midtown Manhatten is the location within the city with the concentrated amount of accidents. Is this because of increased traffic in the region or is it because of the way people drive in the area? This is tough to figure out, unless you have access data regarding the data flow. What we've done, however, is allowed you to explore how the observations are spread across the city for each of the years. Click on the map below to taken to the sub page including the visualization.
+    </p>
+
+    <br>
+    <br>
+    <a href ="https://bl.ocks.org/titanbender/raw/3f36bfd9597c99509ec043946ccf20f9/"> <img src="https://raw.githubusercontent.com/titanbender/titanbender.github.io/master/data/heatmap.png" alt="heat map" style="widows: 1400px;px;height:500px;"> </a> 
+
+    <br>
+    <br>
+
+    <h2>Accidents during the day</h2>
+
+    <p>Traffic flow changes during the day. Therefore, it seems obvious to explore if traffic accidents indeed happen more frequently during morning and afternoon traffic. Does this pattern exist for both non-lethal and lethal accidents? Try to explore by hitting the buttons below. If you spend enough time, you might find that certain districts follow specific patterns while other districts behave more randomly. Non-fatal traffic accidents generally occour frequent during the morning up to late afternoon, whereas it decreases drastically. Fatal traffic accidents, on the other hand, are much more evenly distributed throughout the hours of the day. This could be intreprated as even though there is less traffic during the late hours of the day, fatal accidents occur just as frequent because of other factors such as limited visibality, intoxicated drivers, pedestrians or bicyclists that are more prevelant during those hours. 
+    </p>
+    <br>
+    <br>
+    <div class="col-lg-12" id="area_bar_stats">
+            <select id="area_bar_stats_level1">
                         <option value="NYC">NYC</option>
                         <option value="BRONX">BRONX</option>
                         <option value="BROOKLYN">BROOKLYN</option>
@@ -206,168 +106,109 @@
                         <option value="">Total</option>
                         <option value="_inj">Injured</option>
                         <option value="_kill">Killed</option>
-                    </select>
-                    <script src="d3/des_stats_bar.js"></script>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            </select>
+    <br>
+    <br>
+    <br>
+    <script src="d3/des_stats_bar_new.js"></script>
+    </div>
 
-    <!-- TODO: Text -->
-    <section id="TimeSeries" class="TimeSeries-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12" id="area_TimeSeries">
-                    <h3> Time Serie Plots</h3>
-                    <p>
-                    Missing text..
-                    
+    <br>
+    <br>
+    <h2>Seasonality</h2>
+
+    <p> So we loooked at the specific hours of the day. What about the seasonality over the year? For example does accidents happen more frequently in February than July? Are there certain months that are more dangerous for bicyclists? This time we created a time series to give you the opportunity to explore traffic accidents involving Pedestrians, Cyclists, and Motorists vary 5 New York City Boroughs throughout the year. Here we see a clear pattern for teh aggregated accident data: Accidents happen more frequently during the summer months compared to the winter. However, for pedistrians the risk is almost the same throughout the season. The pattern emerges from the fact that cyclists and motorists follow this trend. What is the reason for this? It's tough to predict. Personally, I would have expected the winter months to be more dangerous as NYC is known for snow and ice during this season. </p>
+    <br>
+    <div class="col-lg-12" id="area_TimeSeries">
+      <b>Pedestriants in Trafic Accidents</b>
+      <br>
+                    <button> <ped_ts_BRONX> BRONX </ped_ts_BRONX></button> 
+                    <button> <ped_ts_BROOKLYN> BROOKLYN </ped_ts_BROOKLYN></button>
+                    <button> <ped_ts_STATEN_ISLAND> STATEN ISLAND </ped_ts_STATEN_ISLAND></button> 
+                    <button> <ped_ts_MANHATTAN> MANHATTAN </ped_ts_MANHATTAN></button> 
+                    <button> <ped_ts_QUEENS> QUEENS </ped_ts_QUEENS></button> 
+                    <br>
+                    <br>
+      <b>Cyclists in Trafic Accidents</b>
+      <br>
+                    <button> <cyc_ts_BRONX> BRONX </cyc_ts_BRONX></button> 
+                    <button> <cyc_ts_BROOKLYN> BROOKLYN </cyc_ts_BROOKLYN></button> 
+                    <button> <cyc_ts_STATEN_ISLAND> STATEN ISLAND </cyc_ts_STATEN_ISLAND></button> 
+                    <button> <cyc_ts_MANHATTAN> MANHATTAN </cyc_ts_MANHATTAN></button> 
+                    <button> <cyc_ts_QUEENS> QUEENS </cyc_ts_QUEENS></button> 
+                    <br>
+                    <br>
+     <b>Motorists in Trafic Accidents</b>
+     <br>
+                    <button> <mot_ts_BRONX> BRONX </Mot_ts_BRONX></button> 
+                    <button> <mot_ts_BROOKLYN> BROOKLYN </mot_ts_BROOKLYN></button> 
+                    <button> <mot_ts_STATEN_ISLAND> STATEN ISLAND </mot_ts_STATEN_ISLAND></button> 
+                    <button> <mot_ts_MANHATTAN> MANHATTAN </mot_ts_MANHATTAN></button> 
+                    <button> <mot_ts_QUEENS> QUEENS </mot_ts_QUEENS></button> 
+                    <br>
+                    <br>
+      <b>Total People in Trafic Accidents</b>
+      <br>
+                    <button> <tot_ts_BRONX> BRONX </Mot_ts_BRONX></button> 
+                    <button> <tot_ts_BROOKLYN> BROOKLYN </mot_ts_BROOKLYN></button> 
+                    <button> <tot_ts_STATEN_ISLAND> STATEN ISLAND </mot_ts_STATEN_ISLAND></button> 
+                    <button> <tot_ts_MANHATTAN> MANHATTAN </mot_ts_MANHATTAN></button> 
+                    <button> <tot_ts_QUEENS> QUEENS </mot_ts_QUEENS></button> 
+                    <button> <ts_NYC> New York City </ts_NYC></button> 
                     </p>
-                    <select id="area_TimeSeries_level1">
-                        <option value="NYC">NYC</option>
-                        <option value="BRONX">BRONX</option>
-                        <option value="BROOKLYN">BROOKLYN</option>
-                        <option value="STATEN ISLAND">STATEN ISLAND</option>
-                        <option value="MANHATTAN">MANHATTAN</option>
-                        <option value="QUEENS">QUEENS</option>
-                    </select>
-                        <select id="area_TimeSeries_level2">
-                        <option value="ped">Pedistriants</option>
-                        <option value="cyc">Cyclist</option>
-                        <option value="mot">Motorist</option>
-                    </select>
-                    </select>
-                        <select id="area_TimeSeries_level3">
-                        <option value="all">All</option>
-                        <option value="tot">Total</option>
-                        <option value="inj">Injured</option>
-                        <option value="kill">Killed</option>
-                    </select>
+                    <br>
+                    <br>
+                    <br>
+    <script src="d3/ts_acc.js"></script>
+    </div>
 
-                    <script src="d3/ts_acc.js"></script>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- TODO: Text -->
-    <!-- TODO: All observations -->
-    <section id="KNN" class="KNN-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12" id="area_KNN">
-                    <h3> K-Nearest Neighbors</h3>
-                    Missing
-                    
-                    </select>
-                        <select id="area_KNN_level1">
-                        <option value="knn_class_all">All</option>
-                        <option value="knn_class_0">Non Fatal</option>
-                        <option value="knn_class_1">Fatal</option>
-                    </select>
+    <br>
+    <br>
+    <h2>Weather</h2>
+    <p>So we brought up weather in the seasonility exploration as we expected more accidents during the winter months, but you can't really argue with data. One explanation that counter the impact of bad weather is the fact that drivers might be more careful during those conditions. To get a sense of whether a rainy day impacts the number of accidents, we've done some data analysis. Below you see a graph displaying number of accidents and the amount of rain on particular days. The graph doesn't show a clear pattern, which is also supported by the fact that the pearson correlation, an indicator of a linear relationsship, is close to 0, which indicates no linear relation. 
+    </p>
+    <br>
+    <br>
 
-                      <!-- <script src="d3/knn_plot.js"></script> -->
-                    <h4> Prediction validation</h4>
-                    <p>
-                    missing
-                    </p>
+    <img src="https://raw.githubusercontent.com/titanbender/titanbender.github.io/master/Images/Rain%20fall%20and%20accidents.png" alt="heat map" style="widows: px;px;height:px;">
+
+    <br>
+    <br>
+
+    <h2>K nearest neighbors (KNN)</h2>
+    <p> So, if NYC gets a report about an accident is it possible to predict the severity of the accident based on just the geographic location? Using KNN, we're able to create a grid over the city with predictions for each locations. If you're a New Yorker and have a specific route to work every day, this could show some disturbing results. Therefore, the results are saved in a different page, so that we do not disturb your sleep tonight unless you're willing to take the chance. "Pssst - Fear Not". Since non-fatal accidents are overrepresented in the dataset, almost all prediction in the unbalanced dataset are of non-fatal character. However, we've also created a unbalanced calculations with an equal number of non-lethal and lethal data sampled. Don't be too worried when you view this map. It does not represent the real world (Fortuntaly!).
+    </p>
+    <br>
+    <br>
+       <a href ="https://bl.ocks.org/johanbender/raw/533e32bd039f3f195290dcfbd09c529b/"> <img src="https://raw.githubusercontent.com/titanbender/titanbender.github.io/master/Images/KNN%20image.png" alt="KNN map" style="widows: 800px;px;height:400px;"> </a> 
+    <br>
+    <br>
+
+    <br>
+    <br>
 
 
+  <h2>Decision Tree</h2>
+  <p>So what are the best questions to ask in terms of identifying a lethal accident? To figure this out, we've applied a decision tree to uncover this. Based on the anwer of each question, there are an optimal follow up question to ask. Without giving away too much information, we can tell you that the most important factor is the type of motorvehicle that is involved. So are sportscars one of the sinners? Or is it a different type of vehicle that you should look out for? Again, explore at your own risk by clicking the image below. We sincerely hope that you never have to use this tool for real life situations!</p>
+  <br>
+  <br>
+  
+  <a href ="https://bl.ocks.org/johanbender/raw/533e32bd039f3f195290dcfbd09c529b/"> <img src="https://raw.githubusercontent.com/titanbender/titanbender.github.io/master/Images/Desicion%20Tree.jpg" alt="KNN map" style="widows: 800px;px;height:600px;"> </a>
 
 
-                </div>
-            </div>
-        </div>
-    </section>
+<h2>Thank you</h2>
+  <p>Thanks for visting our page! Hopefully, you now know a lot more about traffic accidents in NYC. To list some examples: You know which section of New York City where accidents happen most frequently, you know that the summer months are the most dangerous for motorists and cyclists, you know that rain fall doesn't have a significant impact on the number of accidents, you know that vehicle types are the most important in terms of identifying lethal accidents. If you discover any other interesting findings in the data visualizations, please share them with me: mail@johanbender.com </p>
 
-    <section id="DTREE" class="DTREE-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12" id="area_DTREE">
-                    <h3> Decision Tree</h3>
-                    Missing
-                    </select>
-                        <select id="area_DTREE_level1">
-                        <option value="dtree_json_2">Max depth: 2</option>
-                        <option value="dtree_json_3">Max depth: 3</option>
-                        <option value="dtree_json_4">Max depth: 4</option>
-                        <option value="dtree_json_5">Max depth: 5</option>
-                    </select>
+</section>
 
-                     <!-- <script src="d3/dtree.js"></script>  -->
-                    
-                    <h4> Prediction validation</h4>
-                    
-                    missing
-                    
-                </div>
-            </div>
-        </div>
-    </section>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/kristiangreve/socialdata">Socialdata</a> is maintained by <a href="https://github.com/kristiangreve">kristiangreve</a>.</span>
 
-    <section id="wather_cor" class="wather_cor-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12" id="area_W_cor">
-                    <h3> Weather Correlation</h3>
-                    Select the specific number of clusters you want to explore:
-                    
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
 
-                    
+    </body>
 
-
-
-                    <!-- <script src="d3/ts_waether.js"></script> -->
-                    
-
-
-
-
-
-                    <h4> Correlation matrix </h4>
-                    <table class="tg">
-                        <tr>
-                        <th class="tg-031e"><br></th><th class="tg-031e">NYC</th><th class="tg-yw4l">BRONX</th><th class="tg-yw4l">BROOKLYN</th><th class="tg-yw4l">STATEN ISLAND</th><th class="tg-yw4l">MANHATTAN</th><th class="tg-yw4l">QUEENS</th><th class="tg-yw4l">Rain</th>
-                        </tr>
-                        <tr>
-                        <td class="tg-031e">NYC</td><td class="tg-031e">1</td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td>
-                        </tr>
-                        <tr>
-                        <td class="tg-031e">BRONX</td><td class="tg-031e"></td><td class="tg-yw4l">1</td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td>
-                        </tr>
-                        <tr>
-                        <td class="tg-yw4l">BROOKLYN</td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l">1</td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td>
-                        </tr>
-                        <tr>
-                        <td class="tg-yw4l">STATEN ISLAND</td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l">1</td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td>
-                        </tr>
-                        <tr>
-                        <td class="tg-yw4l">MANHATTAN</td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l">1</td><td class="tg-yw4l"></td><td class="tg-yw4l"></td>
-                        </tr>
-                        <tr>
-                        <td class="tg-yw4l">QUEENS</td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l">1</td><td class="tg-yw4l"></td>
-                        </tr>
-                        <tr>
-                        <td class="tg-yw4l">Rain</td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l"></td><td class="tg-yw4l">1</td>
-                        </tr>
-                    </table>
-
-                    <h4> Prediction validation</h4>
-                    
-                    missing
-                    
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Stories Sections -->
-
-    <script src="js/jquery.js"></script> <!-- jQuery -->
-    <script src="js/bootstrap.min.js"></script> <!-- Bootstrap Core JavaScript -->
-    <script src="js/jquery.easing.min.js"></script> <!-- Scrolling Nav JavaScript -->
-    <script src="js/scrolling-nav.js"></script> <!-- Scrolling Nav JavaScript -->
-</body>
 </html>
+Contact GitHub API Training Shop Blog About
+© 2017 GitHub, Inc. Terms Privacy Security Status Help
