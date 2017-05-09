@@ -43,7 +43,7 @@ d3.json("https://raw.githubusercontent.com/titanbender/titanbender.github.io/mas
         .attr("width", xScale_bar.bandwidth())
         .attr("y", function(d) { return yScale_bar(d.value); })
         .attr("height", function(d) { return height_bar - yScale_bar(d.value); })
-        .style("fill", "teal")
+        .style("fill", "#155799")
         .style("hover", "black")
         .on('mouseover', tip_bar.show)
         .on('mouseout', tip_bar.hide)
@@ -64,12 +64,7 @@ d3.json("https://raw.githubusercontent.com/titanbender/titanbender.github.io/mas
     // y-axis
     svg_bar.append("g").attr("class", "y axis").call(yAxis_bar);
 
-    // // add title text   
-    // svg_bar.append("text")
-    //     .attr("class", "title")
-    //     .attr("x", (width_bar / 2))             
-    //     .attr("y", 10 - (margin_bar.top / 2))
-    //     .text("NYC");
+
 });
 
 
