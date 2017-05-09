@@ -113,7 +113,7 @@ d3.json("https://raw.githubusercontent.com/titanbender/titanbender.github.io/mas
   g.append("path")
     .attr("class", "ts line inj")
     .datum(data)
-    .attr("stroke", "green")
+    .attr("stroke", "#155799")
     .attr("d", line2);
 
   g.append("path")
