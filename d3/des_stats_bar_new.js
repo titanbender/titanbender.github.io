@@ -22,7 +22,7 @@ var svg_bar = d3.select("#area_bar_stats")
             .append("g")
             .attr("transform",  "translate(" + margin_bar.left + "," + margin_bar.top + ")");
 // tip
-var tip_bar = d3.tip().attr('class', 'd3-tip').offset([-10, 0])
+var tip_bar = d3.tip().attr('class', 'd3-tip').offset([-100, 0])
     .html(function(d) { return "Frequency: " + d.value; });
 svg_bar.call(tip_bar);  
 
